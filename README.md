@@ -4,4 +4,4 @@ This is a [Unity](https://unity3d.com/) game for a space game project on [Mediac
 
 ---
 
-![alt text](https://www.ma-web.nl/static/vector/Logo_blok.svg)
+<img src="https://www.ma-web.nl/static/vector/Logo_blok.svg" width="48">
