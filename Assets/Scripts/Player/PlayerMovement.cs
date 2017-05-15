@@ -5,8 +5,8 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour {
 
 	Rigidbody2D rb;
-	Vector3 mousePosition;
 
+	[Header("Speed variables")]
 	[SerializeField]
 	float speed = 20;
 	[SerializeField]
@@ -21,9 +21,8 @@ public class PlayerMovement : MonoBehaviour {
 		rb = GetComponent<Rigidbody2D> ();
 	}
 
-	public void LookAtCursor()
-	{
-		mousePosition = Input.mousePosition;           
+	public void LookAtCursor(Vector3 mousePosition)
+	{           
 		mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
 
 		Quaternion rot = Quaternion.LookRotation(transform.position - mousePosition, Vector3.forward);
@@ -31,16 +30,12 @@ public class PlayerMovement : MonoBehaviour {
 		transform.eulerAngles = new Vector3(0, 0,transform.eulerAngles.z);
 	}
 
-	public void Move()
+	public void Move(float horizontalMovement, float verticalMovement, bool getBrakeKey)
 	{
-		rb.AddRelativeForce (Vector2.up * Input.GetAxis ("Vertical") * speed);
+		rb.AddRelativeForce (Vector2.up * verticalMovement * speed);
 
-		finalSlowDownSpeed = Input.GetKeyDown ? slowDownSpeed : brakeSpeed;
+		finalSlowDownSpeed = getBrakeKey ? slowDownSpeed : brakeSpeed;
 
 		rb.velocity = Vector2.Lerp (rb.velocity, Vector2.zero, Time.deltaTime * finalSlowDownSpeed);
-
-		print (rb.velocity.ToString());
-
-		//rb.AddRelativeForce (Vector2.right * Input.GetAxis ("Horizontal") * speed);
 	}
 }

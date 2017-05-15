@@ -11,7 +11,7 @@ public class PlayerInput : MonoBehaviour {
 	}
 
 	void Update () {
-		playerMovement.LookAtCursor ();
-		playerMovement.Move ();
+		playerMovement.LookAtCursor (Input.mousePosition);
+		playerMovement.Move (Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), Input.GetKey(KeyCode.Space));
 	}
 }
