@@ -12,7 +12,7 @@ public class PlayerMovement : MonoBehaviour {
 	[SerializeField]
 	float slowDownSpeed = 1;
 	[SerializeField]
-	float brakeSpeed = 10;
+	float manualSlowDownSpeed = 10;
 
 	float finalSlowDownSpeed;
 
@@ -22,20 +22,26 @@ public class PlayerMovement : MonoBehaviour {
 	}
 
 	public void LookAtCursor(Vector3 mousePosition)
-	{           
+    {
 		mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
-
+        
 		Quaternion rot = Quaternion.LookRotation(transform.position - mousePosition, Vector3.forward);
-		transform.rotation = rot;
+
+        // set rotation
+
+        transform.rotation = rot;
 		transform.eulerAngles = new Vector3(0, 0,transform.eulerAngles.z);
 	}
 
 	public void Move(float horizontalMovement, float verticalMovement, bool getBrakeKey)
 	{
+        // movement
+
 		rb.AddRelativeForce (Vector2.up * verticalMovement * speed);
+        
+        // velocity
 
-		finalSlowDownSpeed = getBrakeKey ? slowDownSpeed : brakeSpeed;
-
+		finalSlowDownSpeed = getBrakeKey ?  manualSlowDownSpeed : slowDownSpeed;
 		rb.velocity = Vector2.Lerp (rb.velocity, Vector2.zero, Time.deltaTime * finalSlowDownSpeed);
 	}
 }
