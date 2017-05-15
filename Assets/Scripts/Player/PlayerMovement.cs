@@ -9,6 +9,12 @@ public class PlayerMovement : MonoBehaviour {
 
 	[SerializeField]
 	float speed = 20;
+	[SerializeField]
+	float slowDownSpeed = 1;
+	[SerializeField]
+	float brakeSpeed = 10;
+
+	float finalSlowDownSpeed;
 
 	void Start()
 	{
@@ -28,7 +34,13 @@ public class PlayerMovement : MonoBehaviour {
 	public void Move()
 	{
 		rb.AddRelativeForce (Vector2.up * Input.GetAxis ("Vertical") * speed);
+
+		finalSlowDownSpeed = Input.GetKeyDown ? slowDownSpeed : brakeSpeed;
+
+		rb.velocity = Vector2.Lerp (rb.velocity, Vector2.zero, Time.deltaTime * finalSlowDownSpeed);
+
 		print (rb.velocity.ToString());
+
 		//rb.AddRelativeForce (Vector2.right * Input.GetAxis ("Horizontal") * speed);
 	}
 }
