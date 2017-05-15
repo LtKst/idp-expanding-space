@@ -158,7 +158,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0211f52f8f69764f959a8557a9f8d20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0
+  speed: 7
 --- !u!212 &456043134
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -205,13 +205,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 456043131}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.9689693, y: -2.1022496, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0.3776582, w: 0.9259451}
+  m_LocalPosition: {x: -10.74, y: -5.09, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -44.377003}
 --- !u!60 &456043136
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -554,7 +554,7 @@ GameObject:
   - component: {fileID: 948150621}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -916,6 +916,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a71b46bf462e9244baff6084103ad126, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  randomWallpaper:
+  - {fileID: 21300000, guid: 32654ae5614c7ca4eb7d86abc1d5478a, type: 3}
+  - {fileID: 21300000, guid: 113d4deb47b44c1479148800e416e377, type: 3}
+  - {fileID: 21300000, guid: bb18b131012e7584189daed5e9dce540, type: 3}
+  - {fileID: 21300000, guid: 0b7ed0371f106c24ca3eb1be2e754aac, type: 3}
 --- !u!1 &1751735377
 GameObject:
   m_ObjectHideFlags: 0

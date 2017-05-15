@@ -3,10 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Background : MonoBehaviour {
-    
+
+    [SerializeField]
+    Sprite[] randomWallpaper;
+
 	void Start () {
         var sr = GetComponent<SpriteRenderer>();
-        if (sr == null) return;
+
+        if (sr == null)
+        {
+            return;
+        }
+
+        sr.sprite = randomWallpaper[Random.Range(0, randomWallpaper.Length)];
 
         transform.position = Vector3.zero;
         transform.localScale = new Vector3(1, 1, 1);
