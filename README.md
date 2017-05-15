@@ -1,4 +1,4 @@
-#Expanding space
+# Expanding space
 
 This is a [Unity](https://unity3d.com/) game for a space game project on [Mediacollege](https://www.ma-web.nl/)
 
