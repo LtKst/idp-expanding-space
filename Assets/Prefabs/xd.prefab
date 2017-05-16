@@ -75,8 +75,8 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.92499995, y: 3.5083332}
+  m_Offset: {x: 0, y: 0.4}
+  m_Size: {x: 0.23, y: 1.29}
   m_Direction: 0
 --- !u!114 &114308774442923876
 MonoBehaviour:
@@ -92,6 +92,7 @@ MonoBehaviour:
   speed: 440
   explosionParticleSystem: {fileID: 1514980749585460, guid: 8e7e3877e1ec6eb4590f32b93c24557f,
     type: 2}
+  maxDistanceFromPlayer: 200
 --- !u!212 &212632686935562220
 SpriteRenderer:
   m_ObjectHideFlags: 1
