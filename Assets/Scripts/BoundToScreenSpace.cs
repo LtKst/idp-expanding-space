@@ -7,17 +7,11 @@ public class BoundToScreenSpace : MonoBehaviour {
     [SerializeField]
     float offset = 2.5f;
 
-    float left;
-    float right;
-
     Vector2 horizontal;
-
-    float top;
-    float bottom;
-
     Vector2 vertical;
 
-	void Update () {
+    private void Start()
+    {
         horizontal = new Vector2(
             Camera.main.ScreenToWorldPoint(Vector3.zero).x - offset,
             Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, 0)).x + offset
@@ -27,7 +21,9 @@ public class BoundToScreenSpace : MonoBehaviour {
             Camera.main.ScreenToWorldPoint(new Vector3(0, Screen.height)).y + offset,
             Camera.main.ScreenToWorldPoint(new Vector3(0, 0)).y - offset
         );
+    }
 
+    private void Update () {
         // horizontal
         if (transform.position.x <= horizontal.x)
         {
