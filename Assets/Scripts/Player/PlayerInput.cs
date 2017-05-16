@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(PlayerManager))]
+[RequireComponent(typeof(PlayerMovement))]
+[RequireComponent(typeof(PlayerShoot))]
 public class PlayerInput : MonoBehaviour {
 
     PlayerManager playerManager;

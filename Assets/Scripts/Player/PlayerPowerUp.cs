@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerCamera : MonoBehaviour {
+public class PlayerPowerUp : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
