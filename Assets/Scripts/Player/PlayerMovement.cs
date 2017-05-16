@@ -9,7 +9,9 @@ public class PlayerMovement : MonoBehaviour {
 	[Header("Speed variables")]
 	[SerializeField]
 	float speed = 20;
-	[SerializeField]
+    [SerializeField]
+    float rotationSpeed = 15;
+    [SerializeField]
 	float slowDownSpeed = 1;
 	[SerializeField]
 	float manualSlowDownSpeed = 10;
@@ -37,7 +39,12 @@ public class PlayerMovement : MonoBehaviour {
 	{
         // movement
 
-		rb.AddRelativeForce (Vector2.up * verticalMovement * speed);
+		rb.AddRelativeForce (Vector2.up * verticalMovement * speed * Time.deltaTime);
+
+        // rotation
+
+        //rb.MoveRotation(rb.rotation + horizontalMovement * rotationSpeed * Time.deltaTime);
+        transform.Rotate(new Vector3(0, 0, -horizontalMovement) * rotationSpeed * Time.deltaTime);
         
         // velocity
 

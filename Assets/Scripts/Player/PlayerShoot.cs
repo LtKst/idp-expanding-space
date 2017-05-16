@@ -6,8 +6,10 @@ public class PlayerShoot : MonoBehaviour {
 
     [SerializeField]
     GameObject missile;
-	
-	void Update () {
-		
+    GameObject missileInstance;
+
+	public void Shoot () {
+        missileInstance = Instantiate(missile);
+        missileInstance.transform.SetPositionAndRotation(transform.position, transform.rotation);
 	}
 }
