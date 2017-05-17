@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 50831202939644018}
   - component: {fileID: 70392050217608494}
   m_Layer: 0
-  m_Name: xd
+  m_Name: Rocket
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -75,8 +75,8 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.4}
-  m_Size: {x: 0.23, y: 1.29}
+  m_Offset: {x: 0, y: 0.24}
+  m_Size: {x: 0.13, y: 0.92}
   m_Direction: 0
 --- !u!114 &114308774442923876
 MonoBehaviour:

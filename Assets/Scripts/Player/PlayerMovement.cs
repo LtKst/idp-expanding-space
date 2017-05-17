@@ -9,13 +9,13 @@ public class PlayerMovement : MonoBehaviour {
 
 	[Header("Speed variables")]
 	[SerializeField]
-	float speed = 20;
+	float speed = 700;
     [SerializeField]
-    float rotationSpeed = 15;
+    float rotationSpeed = 150;
     [SerializeField]
-	float slowDownSpeed = 1;
+	float slowDownSpeed = 0.5f;
 	[SerializeField]
-	float manualSlowDownSpeed = 10;
+	float manualSlowDownSpeed = 5;
 
 	float finalSlowDownSpeed;
 
@@ -36,12 +36,14 @@ public class PlayerMovement : MonoBehaviour {
 		transform.eulerAngles = new Vector3(0, 0,transform.eulerAngles.z);
 	}
 
-	public void Move(float horizontalMovement, float verticalMovement, bool getBrakeKey)
+	public void Move(float horizontalMovement, bool getForwardKey, bool getBrakeKey)
 	{
         // movement
 
-		rb.AddRelativeForce (Vector2.up * verticalMovement * speed * Time.deltaTime);
-
+        if (getForwardKey)
+        {
+            rb.AddRelativeForce(Vector2.up * speed * Time.deltaTime);
+        }
         // rotation
 
         //rb.MoveRotation(rb.rotation + horizontalMovement * rotationSpeed * Time.deltaTime);

@@ -22,15 +22,23 @@ public class PlayerInput : MonoBehaviour {
         switch (playerManager.player)
         {
             case PlayerManager.Player.One:
-                playerMovement.Move(Input.GetAxis("PlayerOneHorizontal"), Input.GetAxis("PlayerOneVertical"), Input.GetKey(KeyCode.Space));
+                playerMovement.Move(Input.GetAxis("PlayerOneHorizontal"), Input.GetKey(KeyCode.W), Input.GetKey(KeyCode.S));
+
+                if (Input.GetKeyDown(KeyCode.Space))
+                {
+                    playerShoot.Shoot();
+                }
+
                 break;
             case PlayerManager.Player.Two:
-                playerMovement.Move(Input.GetAxis("PlayerTwoHorizontal"), Input.GetAxis("PlayerTwoVertical"), Input.GetKey(KeyCode.Keypad0));
+                playerMovement.Move(Input.GetAxis("PlayerTwoHorizontal"), Input.GetKey(KeyCode.Keypad8), Input.GetKey(KeyCode.Keypad5));
+
+                if (Input.GetKeyDown(KeyCode.Keypad0))
+                {
+                    playerShoot.Shoot();
+                }
+
                 break;
-        }
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            playerShoot.Shoot();
         }
 	}
 }
