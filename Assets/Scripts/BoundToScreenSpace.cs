@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BoundToScreenSpace : MonoBehaviour {
+public class BoundToScreenSpace : MonoBehaviour
+{
 
     [SerializeField]
     float offset = 2.5f;
@@ -23,7 +24,8 @@ public class BoundToScreenSpace : MonoBehaviour {
         );
     }
 
-    private void Update () {
+    private void Update()
+    {
         // horizontal
         if (transform.position.x <= horizontal.x)
         {

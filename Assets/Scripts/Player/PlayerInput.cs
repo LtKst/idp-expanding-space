@@ -5,19 +5,22 @@ using UnityEngine;
 [RequireComponent(typeof(PlayerManager))]
 [RequireComponent(typeof(PlayerMovement))]
 [RequireComponent(typeof(PlayerShoot))]
-public class PlayerInput : MonoBehaviour {
+public class PlayerInput : MonoBehaviour
+{
 
     PlayerManager playerManager;
-	PlayerMovement playerMovement;
+    PlayerMovement playerMovement;
     PlayerShoot playerShoot;
 
-	void Start () {
+    void Start()
+    {
         playerManager = GetComponent<PlayerManager>();
-		playerMovement = GetComponent<PlayerMovement>();
+        playerMovement = GetComponent<PlayerMovement>();
         playerShoot = GetComponent<PlayerShoot>();
-	}
+    }
 
-    void Update() {
+    void Update()
+    {
         //playerMovement.LookAtCursor(Input.mousePosition);
         switch (playerManager.player)
         {
@@ -40,5 +43,5 @@ public class PlayerInput : MonoBehaviour {
 
                 break;
         }
-	}
+    }
 }

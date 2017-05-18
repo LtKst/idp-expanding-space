@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PowerUpSpawner : MonoBehaviour {
+public class PowerUpSpawner : MonoBehaviour
+{
 
     [SerializeField]
     GameObject powerUp;
@@ -36,7 +37,7 @@ public class PowerUpSpawner : MonoBehaviour {
 
     private void Update()
     {
-        timer -= Time.deltaTime*2;
+        timer -= Time.deltaTime * 2;
 
         if (timer <= 0 || Input.GetKeyDown(KeyCode.X))
         {

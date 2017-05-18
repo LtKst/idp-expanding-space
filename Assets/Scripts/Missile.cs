@@ -3,27 +3,32 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
-public class Missile : MonoBehaviour {
-    
+public class Missile : MonoBehaviour
+{
+
     [SerializeField]
     float speed = 400;
 
     [SerializeField]
-    GameObject explosionParticleSystem;
+    int damage;
 
     [SerializeField]
     float maxDistanceFromPlayer = 200;
 
-    Rigidbody2D rb;
-    GameObject player;
+    [SerializeField]
+    GameObject explosionParticleSystem;
 
-    void Start()
+    Rigidbody2D rb;
+    [HideInInspector]
+    public GameObject player;
+
+    private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        player = GameObject.FindWithTag("Player");
     }
 
-    void Update () {
+    private void Update()
+    {
         rb.AddRelativeForce(Vector2.up * speed * Time.deltaTime);
 
         if (Vector3.Distance(transform.position, player.transform.position) >= maxDistanceFromPlayer)
@@ -32,9 +37,13 @@ public class Missile : MonoBehaviour {
         }
     }
 
-    void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.GetComponent<Asteroid>())
+        if (collision.gameObject.tag == "Player")
+        {
+            collision.GetComponent<PlayerHealth>().Health -= damage;
+        }
+        else if (collision.gameObject.GetComponent<Asteroid>())
         {
             collision.gameObject.GetComponent<Asteroid>().Break();
 

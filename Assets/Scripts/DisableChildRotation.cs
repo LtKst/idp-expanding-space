@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DisableChildRotation : MonoBehaviour {
+public class DisableChildRotation : MonoBehaviour
+{
 
     Quaternion rotation;
 

@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
-public class Asteroid : MonoBehaviour {
-
-    [SerializeField]
-    GameObject asteroid;
+public class Asteroid : MonoBehaviour
+{
     GameObject miniAsteroid;
+
     [SerializeField]
     float forceOnHit;
 
@@ -31,12 +30,13 @@ public class Asteroid : MonoBehaviour {
         }
     }
 
-    public void Break () {
-		if (!isHit)
+    public void Break()
+    {
+        if (!isHit)
         {
             for (int i = 0; i < 4; i++)
             {
-                miniAsteroid = Instantiate(asteroid);
+                miniAsteroid = Instantiate(gameObject);
                 miniAsteroid.transform.localScale = transform.localScale / 2;
                 miniAsteroid.GetComponent<Asteroid>().isHit = true;
             }

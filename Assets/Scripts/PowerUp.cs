@@ -4,7 +4,8 @@ using UnityEngine;
 
 [RequireComponent(typeof(SpriteRenderer))]
 [RequireComponent(typeof(Collider2D))]
-public class PowerUp : MonoBehaviour {
+public class PowerUp : MonoBehaviour
+{
 
     [SerializeField]
     float colorTransitionSpeed = 1;
@@ -15,16 +16,18 @@ public class PowerUp : MonoBehaviour {
 
     SpriteRenderer spriteRenderer;
     Collider2D col;
-    
-	private void Start () {
+
+    private void Start()
+    {
         spriteRenderer = GetComponent<SpriteRenderer>();
         col = GetComponent<Collider2D>();
 
         spriteRenderer.color = new Color(255, 255, 255, 0);
         col.enabled = false;
-	}
-	
-	private void Update () {
+    }
+
+    private void Update()
+    {
         spriteRenderer.color = Color.Lerp(spriteRenderer.color, new Color(255, 255, 255, 1), colorTransitionSpeed * Time.deltaTime);
 
         if (spriteRenderer.color.a >= 0.93)
@@ -42,7 +45,7 @@ public class PowerUp : MonoBehaviour {
                 Destroy(gameObject);
             }
         }
-	}
+    }
 
     private void UpdateTimer()
     {
