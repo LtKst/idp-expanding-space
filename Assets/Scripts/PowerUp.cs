@@ -46,7 +46,6 @@ public class PowerUp : MonoBehaviour
             }
         }
     }
-<<<<<<< HEAD:Assets/Scripts/PowerUp.cs
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -57,8 +56,6 @@ public class PowerUp : MonoBehaviour
             despawned = true;
         }
     }
-=======
->>>>>>> ec792f55fda1041e98791741b9328b1782982ceb:Assets/Scripts/PowerUp.cs
 
     private void UpdateTimer()
     {

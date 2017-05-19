@@ -12,27 +12,16 @@ public class PlayerInput : MonoBehaviour
     PlayerMovement playerMovement;
     PlayerShoot playerShoot;
 
-<<<<<<< HEAD
     private void Start()
-=======
-    void Start()
->>>>>>> ec792f55fda1041e98791741b9328b1782982ceb
     {
         playerManager = GetComponent<PlayerManager>();
         playerMovement = GetComponent<PlayerMovement>();
         playerShoot = GetComponent<PlayerShoot>();
     }
 
-<<<<<<< HEAD
     private void Update()
     {
         if (Manager.GameStarted)
-=======
-    void Update()
-    {
-        //playerMovement.LookAtCursor(Input.mousePosition);
-        switch (playerManager.player)
->>>>>>> ec792f55fda1041e98791741b9328b1782982ceb
         {
             switch (playerManager.player)
             {

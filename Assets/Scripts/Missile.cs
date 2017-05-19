@@ -19,16 +19,10 @@ public class Missile : MonoBehaviour
     GameObject explosionParticleSystem;
 
     Rigidbody2D rb;
-<<<<<<< HEAD
 
     [HideInInspector]
     public GameObject belongsTo;
 
-=======
-    [HideInInspector]
-    public GameObject player;
-
->>>>>>> ec792f55fda1041e98791741b9328b1782982ceb
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -46,15 +40,7 @@ public class Missile : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-<<<<<<< HEAD
         if (collision.gameObject.tag == "Player" && collision.gameObject != belongsTo)
-=======
-        if (collision.gameObject.tag == "Player")
-        {
-            collision.GetComponent<PlayerHealth>().Health -= damage;
-        }
-        else if (collision.gameObject.GetComponent<Asteroid>())
->>>>>>> ec792f55fda1041e98791741b9328b1782982ceb
         {
             collision.GetComponent<PlayerHealth>().Health -= damage;
 

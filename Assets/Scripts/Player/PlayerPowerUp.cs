@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-<<<<<<< HEAD
 [RequireComponent(typeof(PlayerHealth))]
 [RequireComponent(typeof(PlayerShoot))]
 [RequireComponent(typeof(PlayerMovement))]
@@ -90,20 +89,5 @@ public class PlayerPowerUp : MonoBehaviour
             playerHasPowerUp = false;
             powerUpDuration = initialPowerUpDuration;
         }
-=======
-public class PlayerPowerUp : MonoBehaviour
-{
-
-    // Use this for initialization
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
->>>>>>> ec792f55fda1041e98791741b9328b1782982ceb
     }
 }

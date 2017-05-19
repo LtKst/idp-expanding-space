@@ -9,12 +9,7 @@ public class PlayerMovement : MonoBehaviour
     Rigidbody2D rb;
 
     [Header("Speed variables")]
-<<<<<<< HEAD
     public float speed = 700;
-=======
-    [SerializeField]
-    float speed = 700;
->>>>>>> ec792f55fda1041e98791741b9328b1782982ceb
     [SerializeField]
     float rotationSpeed = 150;
     [SerializeField]
