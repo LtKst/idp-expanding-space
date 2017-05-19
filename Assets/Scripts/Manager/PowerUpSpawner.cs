@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PowerUpSpawner : MonoBehaviour {
-
+public class PowerUpSpawner : MonoBehaviour
+{
     [SerializeField]
     GameObject powerUp;
     GameObject powerUpInstance;
@@ -18,6 +18,9 @@ public class PowerUpSpawner : MonoBehaviour {
 
     Vector2 horizontal;
     Vector2 vertical;
+
+    [SerializeField]
+    bool spawnWithX;
 
     private void Start()
     {
@@ -36,9 +39,9 @@ public class PowerUpSpawner : MonoBehaviour {
 
     private void Update()
     {
-        timer -= Time.deltaTime*2;
+        timer -= Time.deltaTime * 2;
 
-        if (timer <= 0 || Input.GetKeyDown(KeyCode.X))
+        if (timer <= 0 || (Input.GetKeyDown(KeyCode.X) && spawnWithX))
         {
             powerUpInstance = Instantiate(powerUp);
             powerUpInstance.transform.position = new Vector3(Random.Range(horizontal.x, horizontal.y), Random.Range(vertical.x, vertical.y));

@@ -5,40 +5,45 @@ using UnityEngine;
 [RequireComponent(typeof(PlayerManager))]
 [RequireComponent(typeof(PlayerMovement))]
 [RequireComponent(typeof(PlayerShoot))]
-public class PlayerInput : MonoBehaviour {
+public class PlayerInput : MonoBehaviour
+{
 
     PlayerManager playerManager;
-	PlayerMovement playerMovement;
+    PlayerMovement playerMovement;
     PlayerShoot playerShoot;
 
-	void Start () {
+    private void Start()
+    {
         playerManager = GetComponent<PlayerManager>();
-		playerMovement = GetComponent<PlayerMovement>();
+        playerMovement = GetComponent<PlayerMovement>();
         playerShoot = GetComponent<PlayerShoot>();
-	}
+    }
 
-    void Update() {
-        //playerMovement.LookAtCursor(Input.mousePosition);
-        switch (playerManager.player)
+    private void Update()
+    {
+        if (Manager.GameStarted)
         {
-            case PlayerManager.Player.One:
-                playerMovement.Move(Input.GetAxis("PlayerOneHorizontal"), Input.GetKey(KeyCode.W), Input.GetKey(KeyCode.S));
+            switch (playerManager.player)
+            {
+                case PlayerManager.Player.One:
+                    playerMovement.Move(Input.GetAxis("PlayerOneHorizontal"), Input.GetKey(KeyCode.W), Input.GetKey(KeyCode.S));
 
-                if (Input.GetKeyDown(KeyCode.Space))
-                {
-                    playerShoot.Shoot();
-                }
+                    if (Input.GetKeyDown(KeyCode.Space))
+                    {
+                        playerShoot.Shoot();
+                    }
 
-                break;
-            case PlayerManager.Player.Two:
-                playerMovement.Move(Input.GetAxis("PlayerTwoHorizontal"), Input.GetKey(KeyCode.Keypad8), Input.GetKey(KeyCode.Keypad5));
+                    break;
+                case PlayerManager.Player.Two:
+                    playerMovement.Move(Input.GetAxis("PlayerTwoHorizontal"), Input.GetKey(KeyCode.Keypad8), Input.GetKey(KeyCode.Keypad5));
 
-                if (Input.GetKeyDown(KeyCode.Keypad0))
-                {
-                    playerShoot.Shoot();
-                }
+                    if (Input.GetKeyDown(KeyCode.Keypad0))
+                    {
+                        playerShoot.Shoot();
+                    }
 
-                break;
+                    break;
+            }
         }
-	}
+    }
 }
