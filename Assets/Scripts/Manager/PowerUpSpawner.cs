@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class PowerUpSpawner : MonoBehaviour
 {
+<<<<<<< HEAD
+=======
+
+>>>>>>> ec792f55fda1041e98791741b9328b1782982ceb
     [SerializeField]
     GameObject powerUp;
     GameObject powerUpInstance;
