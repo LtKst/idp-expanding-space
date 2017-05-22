@@ -8,6 +8,8 @@ public class PlayerManager : MonoBehaviour
     public enum Player { One, Two };
     public Player player;
 
+    public string playerName;
+
     GameObject[] players;
 
     private void Start()

@@ -43,6 +43,8 @@ public class PlayerPowerUp : MonoBehaviour
 
     private void Update()
     {
+        ResetPowerUps();
+
         if (playerHasPowerUp)
         {
             switch (currentPowerUp)
@@ -66,11 +68,12 @@ public class PlayerPowerUp : MonoBehaviour
 
             UpdateTimer();
         }
+    }
 
-        if (!playerHasPowerUp || currentPowerUp != PowerUpTypes.small)
-        {
-            transform.localScale = Vector3.Lerp(transform.localScale, initialScale, Time.deltaTime);
-        }
+    void ResetPowerUps()
+    {
+        transform.localScale = Vector3.Lerp(transform.localScale, initialScale, Time.deltaTime);
+        playerMovement.speed = initialSpeed;
     }
 
     public void GetPowerUp()

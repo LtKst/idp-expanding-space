@@ -12,9 +12,13 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField]
     bool godMode;
 
+    Manager manager;
+
     private void Start()
     {
         initialHealth = health;
+
+        manager = GameObject.FindWithTag("Manager").GetComponent<Manager>();
     }
 
     private void Update()
@@ -35,6 +39,8 @@ public class PlayerHealth : MonoBehaviour
     private void Die()
     {
         Destroy(gameObject);
+
+        manager.EndGame();
     }
 
     public int Health
