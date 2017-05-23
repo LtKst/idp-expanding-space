@@ -62,9 +62,13 @@ public class Background : MonoBehaviour
     public void NextBackground()
     {
         if (currentBackground >= backgrounds.Length - 1)
+        {
             currentBackground = 0;
+        }
         else
+        {
             currentBackground++;
+        }
 
         ChangeBackground();
     }
