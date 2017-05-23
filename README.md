@@ -1,6 +1,6 @@
 # Expanding space
 
-This is a [Unity](https://unity3d.com/){:target="_blank"} game for a space game project on [Mediacollege](https://www.ma-web.nl/){:target="_blank"} 
+This is a [Unity](https://unity3d.com/) game for a space game project on [Mediacollege](https://www.ma-web.nl/)
 
 ---
 
