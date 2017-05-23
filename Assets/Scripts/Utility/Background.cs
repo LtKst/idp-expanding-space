@@ -19,7 +19,7 @@ public class Background : MonoBehaviour
     [SerializeField]
     float colorLerpSpeed = 5;
 
-    int currentBackground = 0;
+    int backgroundIndex = 0;
     bool backgroundChanged = false;
 
     private void Start()
@@ -49,7 +49,7 @@ public class Background : MonoBehaviour
 
             if (spriteRenderer.color.r <= 0.05f)
             {
-                spriteRenderer.sprite = backgrounds[currentBackground];
+                spriteRenderer.sprite = backgrounds[backgroundIndex];
                 backgroundChanged = false;
             }
         }
@@ -61,13 +61,13 @@ public class Background : MonoBehaviour
 
     public void NextBackground()
     {
-        if (currentBackground >= backgrounds.Length - 1)
+        if (backgroundIndex >= backgrounds.Length - 1)
         {
-            currentBackground = 0;
+            backgroundIndex = 0;
         }
         else
         {
-            currentBackground++;
+            backgroundIndex++;
         }
 
         ChangeBackground();
@@ -75,17 +75,33 @@ public class Background : MonoBehaviour
 
     public void PreviousBackground()
     {
-        if (currentBackground <= 0)
-            currentBackground = backgrounds.Length - 1;
+        if (backgroundIndex <= 0)
+        {
+            backgroundIndex = backgrounds.Length - 1;
+        }
         else
-            currentBackground--;
+        {
+            backgroundIndex--;
+        }
+
+        ChangeBackground();
+    }
+
+    public void RandomBackground()
+    {
+        int oldBackgroundIndex = backgroundIndex;
+
+        while (oldBackgroundIndex == backgroundIndex)
+        {
+            backgroundIndex = Random.Range(0, backgrounds.Length);
+        }
 
         ChangeBackground();
     }
 
     void ChangeBackground()
     {
-        previewImage.sprite = backgrounds[currentBackground];
+        previewImage.sprite = backgrounds[backgroundIndex];
         backgroundChanged = true;
     }
 }
