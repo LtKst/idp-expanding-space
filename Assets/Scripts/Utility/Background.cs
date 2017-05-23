@@ -6,6 +6,8 @@ using UnityEngine.UI;
 [RequireComponent(typeof(SpriteRenderer))]
 public class Background : MonoBehaviour
 {
+    SpriteRenderer spriteRenderer;
+
     [SerializeField]
     Sprite[] backgrounds;
     [SerializeField]
@@ -14,9 +16,11 @@ public class Background : MonoBehaviour
     [SerializeField]
     Image previewImage;
 
-    int currentBackground = 0;
+    [SerializeField]
+    float colorLerpSpeed = 5;
 
-    SpriteRenderer spriteRenderer;
+    int currentBackground = 0;
+    bool backgroundChanged = false;
 
     private void Start()
     {
@@ -34,6 +38,24 @@ public class Background : MonoBehaviour
             float worldScreenWidth = worldScreenHeight / Screen.height * Screen.width;
 
             transform.localScale = new Vector3(worldScreenWidth / width, worldScreenHeight / height, 0);
+        }
+    }
+
+    private void Update()
+    {
+        if (backgroundChanged)
+        {
+            spriteRenderer.color = Color.Lerp(spriteRenderer.color, Color.black, Time.deltaTime * colorLerpSpeed);
+
+            if (spriteRenderer.color.r <= 0.05f)
+            {
+                spriteRenderer.sprite = backgrounds[currentBackground];
+                backgroundChanged = false;
+            }
+        }
+        else
+        {
+            spriteRenderer.color = Color.Lerp(spriteRenderer.color, Color.white, Time.deltaTime * colorLerpSpeed);
         }
     }
 
@@ -59,7 +81,7 @@ public class Background : MonoBehaviour
 
     void ChangeBackground()
     {
-        spriteRenderer.sprite = backgrounds[currentBackground];
         previewImage.sprite = backgrounds[currentBackground];
+        backgroundChanged = true;
     }
 }
