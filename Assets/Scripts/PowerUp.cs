@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 [RequireComponent(typeof(SpriteRenderer))]
 [RequireComponent(typeof(Collider2D))]
@@ -15,15 +13,12 @@ public class PowerUp : MonoBehaviour
     bool despawned;
 
     SpriteRenderer spriteRenderer;
-    Collider2D col;
 
     private void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
-        col = GetComponent<Collider2D>();
 
         spriteRenderer.color = new Color(255, 255, 255, 0);
-        col.enabled = false;
     }
 
     private void Update()
@@ -32,7 +27,6 @@ public class PowerUp : MonoBehaviour
 
         if (spriteRenderer.color.a >= 0.93)
         {
-            col.enabled = true;
             UpdateTimer();
         }
 
@@ -51,9 +45,12 @@ public class PowerUp : MonoBehaviour
     {
         if (collision.GetComponent<PlayerPowerUp>())
         {
-            collision.GetComponent<PlayerPowerUp>().GetPowerUp();
+            if (!collision.GetComponent<PlayerPowerUp>().HasPowerUp)
+            {
+                collision.GetComponent<PlayerPowerUp>().GetPowerUp();
 
-            despawned = true;
+                despawned = true;
+            }
         }
     }
 

@@ -39,7 +39,10 @@ public class PowerUpSpawner : MonoBehaviour
 
     private void Update()
     {
-        timer -= Time.deltaTime * 2;
+        if (Manager.GameStarted)
+        {
+            timer -= Time.deltaTime * 2;
+        }
 
         if (timer <= 0 || (Input.GetKeyDown(KeyCode.X) && spawnWithX))
         {

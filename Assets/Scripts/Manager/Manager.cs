@@ -80,11 +80,11 @@ public class Manager : MonoBehaviour
         gameCountDownStarted = true;
     }
 
-    public void EndGame()
+    public void EndGame(string winnerName)
     {
         if (!gameEnded)
         {
-            victoriousPlayerName = GameObject.FindWithTag("Player").GetComponent<PlayerManager>().playerName;
+            victoriousPlayerName = winnerName;
 
             gameEnded = true;
             endCountDownText.text = victoriousPlayerName + " is victorious!\nNew game starting in: " + endTimer;

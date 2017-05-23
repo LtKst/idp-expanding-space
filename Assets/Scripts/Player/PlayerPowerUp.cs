@@ -11,20 +11,38 @@ public class PlayerPowerUp : MonoBehaviour
     PlayerShoot playerShoot;
     PlayerMovement playerMovement;
 
+    enum PowerUpTypes { regenarateHealth, speedUp, small, fireRateUp }
+    PowerUpTypes currentPowerUp;
+
+    [Header("Heal")]
     [SerializeField]
     int healAmount = 15;
+
+    [Header("Speed")]
     [SerializeField]
     float speedIncrement = 1.2f;
     float initialSpeed;
 
+    [Header("Scale")]
     [SerializeField]
     float scaleIncrement = 0.5f;
     Vector3 initialScale;
 
-    enum PowerUpTypes { small, speedUp, fireRateUp, regenarateHealth }
-    PowerUpTypes currentPowerUp;
+    [Header("Fire rate")]
+    [SerializeField]
+    float fireRateIncrement = 0.5f;
+    float initialFireRate;
+    bool resetFireRate = false;
 
-    bool playerHasPowerUp = false;
+    bool hasPowerUp = false;
+
+    public bool HasPowerUp
+    {
+        get
+        {
+            return hasPowerUp;
+        }
+    }
 
     float powerUpDuration = 15;
     float initialPowerUpDuration;
@@ -37,36 +55,44 @@ public class PlayerPowerUp : MonoBehaviour
 
         initialSpeed = playerMovement.speed;
         initialScale = transform.localScale;
+        initialFireRate = playerShoot.FireRate;
 
         initialPowerUpDuration = powerUpDuration;
     }
 
     private void Update()
     {
-        ResetPowerUps();
-
-        if (playerHasPowerUp)
+        if (hasPowerUp)
         {
             switch (currentPowerUp)
             {
-                case PowerUpTypes.fireRateUp:
-
-                    break;
-
                 case PowerUpTypes.regenarateHealth:
-                    playerHealth.Health += healAmount;
-                    break;
-
-                case PowerUpTypes.small:
-                    transform.localScale = Vector3.Lerp(transform.localScale, initialScale * scaleIncrement, Time.deltaTime);
+                    playerHealth.Health += healAmount * (int)Time.deltaTime;
+                    print("health");
                     break;
 
                 case PowerUpTypes.speedUp:
                     playerMovement.speed = initialSpeed * speedIncrement;
+                    print("speed");
                     break;
+
+                case PowerUpTypes.small:
+                    transform.localScale = Vector3.Lerp(transform.localScale, initialScale * scaleIncrement, Time.deltaTime);
+                    print("scale");
+                    break;
+
+                /*case PowerUpTypes.fireRateUp:
+                    playerShoot.FireRate = initialFireRate * fireRateIncrement;
+                    resetFireRate = true;
+                    print("firerate");
+                    break;*/
             }
 
             UpdateTimer();
+        }
+        else
+        {
+            ResetPowerUps();
         }
     }
 
@@ -74,13 +100,24 @@ public class PlayerPowerUp : MonoBehaviour
     {
         transform.localScale = Vector3.Lerp(transform.localScale, initialScale, Time.deltaTime);
         playerMovement.speed = initialSpeed;
+
+        /*if (playerShoot.FireRate != initialFireRate && resetFireRate)
+        {
+            playerShoot.FireRate = initialFireRate;
+            resetFireRate = false;
+        }*/
     }
 
     public void GetPowerUp()
     {
-        currentPowerUp = (PowerUpTypes)Random.Range(0, System.Enum.GetValues(typeof(PowerUpTypes)).Length);
+        if (!hasPowerUp)
+        {
+            currentPowerUp = (PowerUpTypes)Random.Range(0, System.Enum.GetValues(typeof(PowerUpTypes)).Length);
 
-        playerHasPowerUp = true;
+            powerUpDuration = initialPowerUpDuration;
+
+            hasPowerUp = true;
+        }
     }
 
     void UpdateTimer()
@@ -89,7 +126,7 @@ public class PlayerPowerUp : MonoBehaviour
 
         if (powerUpDuration <= 0)
         {
-            playerHasPowerUp = false;
+            hasPowerUp = false;
             powerUpDuration = initialPowerUpDuration;
         }
     }

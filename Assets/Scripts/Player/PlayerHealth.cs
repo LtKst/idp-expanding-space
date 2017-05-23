@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(PlayerManager))]
 public class PlayerHealth : MonoBehaviour
 {
 
@@ -12,12 +13,14 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField]
     bool godMode;
 
+    PlayerManager playerManager;
     Manager manager;
 
     private void Start()
     {
         initialHealth = health;
 
+        playerManager = GetComponent<PlayerManager>();
         manager = GameObject.FindWithTag("Manager").GetComponent<Manager>();
     }
 
@@ -40,7 +43,7 @@ public class PlayerHealth : MonoBehaviour
     {
         Destroy(gameObject);
 
-        manager.EndGame();
+        manager.EndGame(playerManager.OtherPlayer.GetComponent<PlayerManager>().playerName);
     }
 
     public int Health
