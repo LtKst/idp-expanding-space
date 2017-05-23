@@ -99,6 +99,12 @@ public class Background : MonoBehaviour
         ChangeBackground();
     }
 
+    public void FlipBackground()
+    {
+        spriteRenderer.flipX = !spriteRenderer.flipX;
+        //spriteRenderer.flipX = !spriteRenderer.flipX;
+    }
+
     void ChangeBackground()
     {
         previewImage.sprite = backgrounds[backgroundIndex];
