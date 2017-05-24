@@ -21,7 +21,7 @@ public class PlayerInput : MonoBehaviour
 
     private void Update()
     {
-        if (Manager.GameStarted)
+        if (Manager.GameStarted && !PauseManager.IsPaused)
         {
             switch (playerManager.player)
             {

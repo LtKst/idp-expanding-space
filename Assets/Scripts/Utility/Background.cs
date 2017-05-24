@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(SpriteRenderer))]
@@ -21,6 +19,9 @@ public class Background : MonoBehaviour
 
     int backgroundIndex = 0;
     bool backgroundChanged = false;
+    bool flippingBackground = false;
+
+    bool flipped = false;
 
     private void Start()
     {
@@ -43,14 +44,17 @@ public class Background : MonoBehaviour
 
     private void Update()
     {
-        if (backgroundChanged)
+        if (backgroundChanged || flippingBackground)
         {
             spriteRenderer.color = Color.Lerp(spriteRenderer.color, Color.black, Time.deltaTime * colorLerpSpeed);
 
             if (spriteRenderer.color.r <= 0.05f)
             {
                 spriteRenderer.sprite = backgrounds[backgroundIndex];
+                spriteRenderer.flipX = flipped;
+
                 backgroundChanged = false;
+                flippingBackground = false;
             }
         }
         else
@@ -101,8 +105,8 @@ public class Background : MonoBehaviour
 
     public void FlipBackground()
     {
-        spriteRenderer.flipX = !spriteRenderer.flipX;
-        //spriteRenderer.flipX = !spriteRenderer.flipX;
+        flipped = !flipped;
+        flippingBackground = true;
     }
 
     void ChangeBackground()

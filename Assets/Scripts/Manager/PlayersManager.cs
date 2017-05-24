@@ -6,11 +6,11 @@ using UnityEngine.UI;
 public class PlayersManager : MonoBehaviour {
 
     [SerializeField]
-    GameObject playerOne;
+    PlayerManager playerOne;
     [SerializeField]
     InputField playerOneName;
     [SerializeField]
-    GameObject playerTwo;
+    PlayerManager playerTwo;
     [SerializeField]
     InputField playerTwoName;
 
@@ -24,12 +24,12 @@ public class PlayersManager : MonoBehaviour {
     {
         if (playerOneName.text != string.Empty)
         {
-            playerOne.GetComponent<PlayerManager>().playerName = playerOneName.text;
+            playerOne.playerName = playerOneName.text;
         }
 
         if (playerTwoName.text != string.Empty)
         {
-            playerTwo.GetComponent<PlayerManager>().playerName = playerTwoName.text;
+            playerTwo.playerName = playerTwoName.text;
         }
     }
 }

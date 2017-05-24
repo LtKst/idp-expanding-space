@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-public class SettinsPanel : MonoBehaviour {
+public class uiPanel : MonoBehaviour {
 
     RectTransform rect;
 
@@ -14,50 +14,48 @@ public class SettinsPanel : MonoBehaviour {
     Vector3 hiddenPosition = new Vector3(200, 0, 0);
 
     [SerializeField]
-    Text showButtonText;
-    [SerializeField]
-    string visibleText = ">";
-    [SerializeField]
-    string hiddenText = "<";
-
-    bool isVisible;
+    bool visible;
 
     private void Start()
     {
         rect = GetComponent<RectTransform>();
 
-        if (isVisible)
+        if (visible)
         {
             rect.anchoredPosition = visiblePosition;
-
-            showButtonText.text = visibleText;
         }
         else
         {
             rect.anchoredPosition = hiddenPosition;
-
-            showButtonText.text = hiddenText;
         }
     }
 
     private void Update()
     {
-        if (isVisible)
+        if (visible)
         {
             rect.anchoredPosition = Vector3.Lerp(rect.anchoredPosition, visiblePosition, Time.deltaTime * slideSpeed);
-
-            showButtonText.text = visibleText;
         }
         else
         {
             rect.anchoredPosition = Vector3.Lerp(rect.anchoredPosition, hiddenPosition, Time.deltaTime * slideSpeed);
-
-            showButtonText.text = hiddenText;
         }
     }
 
     public void ToggleVisible()
     {
-        isVisible = !isVisible;
+        visible = !visible;
+    }
+
+    public bool IsVisible
+    {
+        get
+        {
+            return visible;
+        }
+        set
+        {
+            visible = value;
+        }
     }
 }
