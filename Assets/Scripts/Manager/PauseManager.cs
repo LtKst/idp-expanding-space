@@ -18,7 +18,7 @@ public class PauseManager : MonoBehaviour {
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) && GameStateManager.InGame)
         {
             if (!isPaused)
             {
@@ -33,6 +33,7 @@ public class PauseManager : MonoBehaviour {
 
     public void Pause()
     {
+        Time.timeScale = 0;
         pausePanel.IsVisible = true;
 
         isPaused = true;
@@ -40,6 +41,7 @@ public class PauseManager : MonoBehaviour {
 
     public void Resume()
     {
+        Time.timeScale = 1;
         managerUI.HideAllPanels();
 
         isPaused = false;

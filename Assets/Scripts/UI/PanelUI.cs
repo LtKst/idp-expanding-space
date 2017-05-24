@@ -39,11 +39,11 @@ public class PanelUI : MonoBehaviour
     {
         if (visible)
         {
-            rect.anchoredPosition = Vector3.Lerp(rect.anchoredPosition, visiblePosition, Time.deltaTime * slideSpeed);
+            rect.anchoredPosition = Vector3.Lerp(rect.anchoredPosition, visiblePosition, Time.unscaledDeltaTime * slideSpeed);
         }
         else
         {
-            rect.anchoredPosition = Vector3.Lerp(rect.anchoredPosition, hiddenPosition, Time.deltaTime * slideSpeed);
+            rect.anchoredPosition = Vector3.Lerp(rect.anchoredPosition, hiddenPosition, Time.unscaledDeltaTime * slideSpeed);
         }
 
         if (changeGameObject && Vector3.Distance(rect.anchoredPosition, hiddenPosition) <= 0.2f)
