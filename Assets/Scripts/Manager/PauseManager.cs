@@ -9,15 +9,40 @@ public class PauseManager : MonoBehaviour {
 
     static bool isPaused;
 
+    uiManager managerUI;
+
+    private void Start()
+    {
+        managerUI = GameObject.FindWithTag("Manager").GetComponent<uiManager>();
+    }
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            isPaused = !isPaused;
-
-            pausePanel.IsVisible = isPaused;
-            //Time.timeScale = isPaused ? 1 : 0;
+            if (!isPaused)
+            {
+                Pause();
+            }
+            else
+            {
+                Resume();
+            }
         }
+    }
+
+    public void Pause()
+    {
+        isPaused = true;
+
+        pausePanel.IsVisible = true;
+    }
+
+    public void Resume()
+    {
+        managerUI.HideAllPanels();
+
+        isPaused = false;
     }
 
     public static bool IsPaused

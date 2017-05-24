@@ -5,14 +5,17 @@ using UnityEngine.UI;
 
 public class PlayersManager : MonoBehaviour {
 
+    [Header("Players")]
     [SerializeField]
-    PlayerManager playerOne;
+    GameObject playerOne;
     [SerializeField]
-    InputField playerOneName;
+    GameObject playerTwo;
+
+    [Header("Name Input Fields")]
     [SerializeField]
-    PlayerManager playerTwo;
+    InputField playerOneNameInputField;
     [SerializeField]
-    InputField playerTwoName;
+    InputField playerTwoNameInputField;
 
     private void Start()
     {
@@ -22,14 +25,30 @@ public class PlayersManager : MonoBehaviour {
 
     public void SetNames()
     {
-        if (playerOneName.text != string.Empty)
+        if (playerOneNameInputField.text != string.Empty)
         {
-            playerOne.playerName = playerOneName.text;
+            playerOne.GetComponent<PlayerManager>().playerName = playerOneNameInputField.text;
         }
 
-        if (playerTwoName.text != string.Empty)
+        if (playerTwoNameInputField.text != string.Empty)
         {
-            playerTwo.playerName = playerTwoName.text;
+            playerTwo.GetComponent<PlayerManager>().playerName = playerTwoNameInputField.text;
+        }
+    }
+
+    public GameObject PlayerOne
+    {
+        get
+        {
+            return playerOne;
+        }
+    }
+
+    public GameObject PlayerTwo
+    {
+        get
+        {
+            return playerTwo;
         }
     }
 }
