@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-public class uiPanel : MonoBehaviour {
-
+public class PanelUI : MonoBehaviour
+{
     RectTransform rect;
 
     [SerializeField]
@@ -15,6 +15,11 @@ public class uiPanel : MonoBehaviour {
 
     [SerializeField]
     bool visible;
+
+    bool changeGameObject;
+
+    GameObject changeOldGameObject;
+    GameObject changeNewGameObject;
 
     private void Start()
     {
@@ -40,11 +45,25 @@ public class uiPanel : MonoBehaviour {
         {
             rect.anchoredPosition = Vector3.Lerp(rect.anchoredPosition, hiddenPosition, Time.deltaTime * slideSpeed);
         }
+
+        if (changeGameObject && Vector3.Distance(rect.anchoredPosition, hiddenPosition) <= 0.2f)
+        {
+            changeOldGameObject.SetActive(false);
+            changeNewGameObject.SetActive(true);
+        }
     }
 
     public void ToggleVisible()
     {
         visible = !visible;
+    }
+
+    public void ChangeAfterDisappear(GameObject oldGameObject, GameObject newGameObject)
+    {
+        changeOldGameObject = oldGameObject;
+        changeNewGameObject = newGameObject;
+
+        changeGameObject = true;
     }
 
     public bool IsVisible

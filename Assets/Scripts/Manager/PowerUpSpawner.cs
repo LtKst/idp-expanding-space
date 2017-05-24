@@ -39,7 +39,7 @@ public class PowerUpSpawner : MonoBehaviour
 
     private void Update()
     {
-        if (Manager.GameStarted)
+        if (GameStateManager.InGame)
         {
             timer -= Time.deltaTime * 2;
         }

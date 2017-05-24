@@ -21,7 +21,7 @@ public class PlayerInput : MonoBehaviour
 
     private void Update()
     {
-        if (Manager.GameStarted && !PauseManager.IsPaused)
+        if (GameStateManager.InGame && !PauseManager.IsPaused)
         {
             switch (playerManager.player)
             {
@@ -32,7 +32,6 @@ public class PlayerInput : MonoBehaviour
                     {
                         playerShoot.Shoot();
                     }
-
                     break;
                 case PlayerManager.Player.Two:
                     playerMovement.Move(Input.GetAxis("PlayerTwoHorizontal"), Input.GetKey(KeyCode.Keypad8), Input.GetKey(KeyCode.Keypad5));
@@ -41,7 +40,6 @@ public class PlayerInput : MonoBehaviour
                     {
                         playerShoot.Shoot();
                     }
-
                     break;
             }
         }

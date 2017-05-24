@@ -5,7 +5,7 @@ using UnityEngine;
 public class PauseManager : MonoBehaviour {
 
     [SerializeField]
-    uiPanel pausePanel;
+    PanelUI pausePanel;
 
     static bool isPaused;
 
@@ -33,9 +33,9 @@ public class PauseManager : MonoBehaviour {
 
     public void Pause()
     {
-        isPaused = true;
-
         pausePanel.IsVisible = true;
+
+        isPaused = true;
     }
 
     public void Resume()

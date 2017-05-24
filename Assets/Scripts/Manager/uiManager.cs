@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class uiManager : MonoBehaviour {
     
-    uiPanel[] panels;
+    PanelUI[] panels;
 
     private void Start()
     {
-        panels = FindObjectsOfType(typeof(uiPanel)) as uiPanel[];
+        panels = FindObjectsOfType(typeof(PanelUI)) as PanelUI[];
     }
 
     public void HideAllPanels()

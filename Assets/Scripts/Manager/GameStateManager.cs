@@ -8,6 +8,20 @@ public class GameStateManager : MonoBehaviour {
     static bool inGame;
     static bool gameEnded;
 
+    [SerializeField]
+    PanelUI mainPanel;
+    [SerializeField]
+    GameObject startUI;
+    [SerializeField]
+    GameObject pauseUI;
+
+    public void StartGame()
+    {
+        gameStarted = true;
+
+        mainPanel.ChangeAfterDisappear(startUI, pauseUI);
+    }
+
 
     public static bool GameStarted
     {

@@ -18,9 +18,6 @@ public class PlayerManager : MonoBehaviour
     {
         players = GameObject.FindGameObjectsWithTag("Player");
 
-        players[0].GetComponent<PlayerManager>().player = Player.One;
-        players[1].GetComponent<PlayerManager>().player = Player.Two;
-
         for (int i = 0; i < players.Length; i++)
         {
             if (players[i] != gameObject)
