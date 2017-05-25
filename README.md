@@ -1,6 +1,6 @@
 # Astrozone
 
-This is a <a href="https://unity3d.com/" target="_blank">Unity</a> game for a space game project on <a href="https://ma-web.nl/" target="_blank">Mediacollege</a>
+This is a local multiplayer asteroid shooter game made in <a href="https://unity3d.com/" target="_blank">Unity</a> for an assignment on <a href="https://ma-web.nl/" target="_blank">Mediacollege</a>
 
 ---
 
