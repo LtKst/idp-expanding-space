@@ -15,7 +15,7 @@ public class VolumeSlider : MonoBehaviour {
     [SerializeField]
     VolumeType volumeType;
 
-    AudioManager[] audioManagers;
+    SoundType[] audioManagers;
 
     private void Start()
     {
@@ -24,7 +24,7 @@ public class VolumeSlider : MonoBehaviour {
 
     private void Update()
     {
-        audioManagers = FindObjectsOfType(typeof(AudioManager)) as AudioManager[];
+        audioManagers = FindObjectsOfType(typeof(SoundType)) as SoundType[];
 
         if (!QuitManager.IsQuitting)
         {
@@ -42,7 +42,7 @@ public class VolumeSlider : MonoBehaviour {
                     
                     for (int i = 0; i < audioManagers.Length; i++)
                     {
-                        if (audioManagers[i].soundType == AudioManager.SoundType.Music)
+                        if (audioManagers[i].soundType == SoundType.SoundTypeEnum.Music)
                             audioManagers[i].GetComponent<AudioSource>().volume = slider.value;
                     }
 
@@ -54,7 +54,7 @@ public class VolumeSlider : MonoBehaviour {
 
                     for (int i = 0; i < audioManagers.Length; i++)
                     {
-                        if (audioManagers[i].soundType == AudioManager.SoundType.SFX)
+                        if (audioManagers[i].soundType == SoundType.SoundTypeEnum.SFX)
                             audioManagers[i].GetComponent<AudioSource>().volume = slider.value;
                     }
 

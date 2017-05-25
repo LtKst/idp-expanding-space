@@ -48,7 +48,6 @@ public class PauseManager : MonoBehaviour {
     public void Resume()
     {
         Time.timeScale = 1;
-        managerUI.HideAllPanels();
 
         isPaused = false;
 

@@ -46,7 +46,7 @@ public class Background : MonoBehaviour
     {
         if (backgroundChanged || flippingBackground)
         {
-            spriteRenderer.color = Color.Lerp(spriteRenderer.color, Color.black, Time.deltaTime * colorLerpSpeed);
+            spriteRenderer.color = Color.Lerp(spriteRenderer.color, Color.black, Time.unscaledDeltaTime * colorLerpSpeed);
 
             if (spriteRenderer.color.r <= 0.05f)
             {
@@ -59,7 +59,7 @@ public class Background : MonoBehaviour
         }
         else
         {
-            spriteRenderer.color = Color.Lerp(spriteRenderer.color, Color.white, Time.deltaTime * colorLerpSpeed);
+            spriteRenderer.color = Color.Lerp(spriteRenderer.color, Color.white, Time.unscaledDeltaTime * colorLerpSpeed);
         }
     }
 
