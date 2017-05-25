@@ -42,6 +42,12 @@ public class PlayerStartPoint : MonoBehaviour {
             if (Vector3.Distance(transform.position, player.position) < 0.1f)
             {
                 GameStateManager.InGame = true;
+
+                Object[] objects = FindObjectsOfType(typeof(GameObject));
+                foreach (GameObject go in objects)
+                {
+                    go.SendMessage("OnPlayerReachedStartPoint", SendMessageOptions.DontRequireReceiver);
+                }
             }
         }
     }

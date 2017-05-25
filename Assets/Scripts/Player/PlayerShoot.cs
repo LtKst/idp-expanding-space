@@ -14,11 +14,18 @@ public class PlayerShoot : MonoBehaviour
     float fireRate = 0.5f;
     float initialFireRate;
 
+    [Header("Audio")]
+    [SerializeField]
+    AudioClip[] shootAudioClips;
+    AudioSource audioSource;
+
     bool canShoot = true;
 
     private void Start()
     {
         initialFireRate = fireRate;
+
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -41,6 +48,8 @@ public class PlayerShoot : MonoBehaviour
             missileInstance = Instantiate(missile);
             missileInstance.transform.SetPositionAndRotation(shootPoint.position, transform.rotation);
             missileInstance.GetComponent<Missile>().belongsTo = gameObject;
+
+            audioSource.PlayOneShot(shootAudioClips[Random.Range(0, shootAudioClips.Length)]);
 
             canShoot = false;
         }

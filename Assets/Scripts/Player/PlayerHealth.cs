@@ -13,15 +13,9 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField]
     bool godMode;
 
-    PlayerManager playerManager;
-    Manager manager;
-
     private void Start()
     {
         initialHealth = health;
-
-        playerManager = GetComponent<PlayerManager>();
-        manager = GameObject.FindWithTag("Manager").GetComponent<Manager>();
     }
 
     private void Update()
@@ -43,7 +37,11 @@ public class PlayerHealth : MonoBehaviour
     {
         Destroy(gameObject);
 
-        manager.EndGame(playerManager.OtherPlayer.GetComponent<PlayerManager>().playerName);
+        Object[] objects = FindObjectsOfType(typeof(GameObject));
+        foreach (GameObject go in objects)
+        {
+            go.SendMessage("OnPlayerDeath", SendMessageOptions.DontRequireReceiver);
+        }
     }
 
     public int Health

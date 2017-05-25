@@ -19,7 +19,7 @@ public class PlayerMovement : MonoBehaviour
 
     float finalSlowDownSpeed;
 
-    void Start()
+    private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
     }

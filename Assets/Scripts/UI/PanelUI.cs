@@ -16,10 +16,7 @@ public class PanelUI : MonoBehaviour
     [SerializeField]
     bool visible;
 
-    bool changeGameObject;
-
-    GameObject changeOldGameObject;
-    GameObject changeNewGameObject;
+    bool disableOnHide;
 
     private void Start()
     {
@@ -46,10 +43,10 @@ public class PanelUI : MonoBehaviour
             rect.anchoredPosition = Vector3.Lerp(rect.anchoredPosition, hiddenPosition, Time.unscaledDeltaTime * slideSpeed);
         }
 
-        if (changeGameObject && Vector3.Distance(rect.anchoredPosition, hiddenPosition) <= 0.2f)
+        if (disableOnHide && Vector3.Distance(rect.anchoredPosition, hiddenPosition) <= 0.2f)
         {
-            changeOldGameObject.SetActive(false);
-            changeNewGameObject.SetActive(true);
+            gameObject.SetActive(false);
+            disableOnHide = false;
         }
     }
 
@@ -58,12 +55,9 @@ public class PanelUI : MonoBehaviour
         visible = !visible;
     }
 
-    public void ChangeAfterDisappear(GameObject oldGameObject, GameObject newGameObject)
+    public void DisableOnHide()
     {
-        changeOldGameObject = oldGameObject;
-        changeNewGameObject = newGameObject;
-
-        changeGameObject = true;
+        disableOnHide = true;
     }
 
     public bool IsVisible

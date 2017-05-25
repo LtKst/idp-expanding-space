@@ -18,7 +18,7 @@ public class PauseManager : MonoBehaviour {
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) && GameStateManager.InGame)
+        if (Input.GetKeyDown(KeyCode.Escape) && GameStateManager.GameStarted)
         {
             if (!isPaused)
             {
@@ -37,6 +37,12 @@ public class PauseManager : MonoBehaviour {
         pausePanel.IsVisible = true;
 
         isPaused = true;
+
+        Object[] objects = FindObjectsOfType(typeof(GameObject));
+        foreach (GameObject go in objects)
+        {
+            go.SendMessage("OnPaused", SendMessageOptions.DontRequireReceiver);
+        }
     }
 
     public void Resume()
@@ -45,6 +51,12 @@ public class PauseManager : MonoBehaviour {
         managerUI.HideAllPanels();
 
         isPaused = false;
+
+        Object[] objects = FindObjectsOfType(typeof(GameObject));
+        foreach (GameObject go in objects)
+        {
+            go.SendMessage("OnResumed", SendMessageOptions.DontRequireReceiver);
+        }
     }
 
     public static bool IsPaused

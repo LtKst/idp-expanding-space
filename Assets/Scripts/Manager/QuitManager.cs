@@ -10,13 +10,14 @@ public class QuitManager : MonoBehaviour
     [SerializeField]
     float fadeSpeed = 5;
 
-    bool quitting;
+    static bool quitting;
 
     private void Update()
     {
         if (quitting)
         {
-            fadeImage.color = Color.Lerp(fadeImage.color, Color.black, Time.deltaTime * fadeSpeed);
+            fadeImage.color = Color.Lerp(fadeImage.color, Color.black, Time.unscaledDeltaTime * fadeSpeed);
+            AudioListener.volume = Mathf.Lerp(AudioListener.volume, 0, Time.unscaledDeltaTime * fadeSpeed * 2);
 
             if (fadeImage.color.a >= 0.95f)
             {
@@ -29,5 +30,13 @@ public class QuitManager : MonoBehaviour
     public void QuitGame()
     {
         quitting = true;
+    }
+
+    public static bool IsQuitting
+    {
+        get
+        {
+            return quitting;
+        }
     }
 }
