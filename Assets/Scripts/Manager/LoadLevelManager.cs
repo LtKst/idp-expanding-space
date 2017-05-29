@@ -13,6 +13,13 @@ public class LoadLevelManager : MonoBehaviour {
 
     bool loadingLevel;
 
+    PauseManager pauseManager;
+
+    private void Start()
+    {
+        pauseManager = GetComponent<PauseManager>();
+    }
+
     private void Update()
     {
         if (loadingLevel)
@@ -26,7 +33,7 @@ public class LoadLevelManager : MonoBehaviour {
                 GameStateManager.InGame = false;
                 GameStateManager.GameEnded = false;
 
-                GameObject.FindWithTag("Manager").GetComponent<PauseManager>().Resume();
+                pauseManager.Resume();
 
                 SceneManager.LoadScene(0);
             }

@@ -11,8 +11,6 @@ public class PlayerManager : MonoBehaviour
 
     public string playerName;
 
-    GameObject[] players;
-
     [SerializeField]
     GameObject otherPlayer;
     [HideInInspector]
@@ -25,11 +23,6 @@ public class PlayerManager : MonoBehaviour
     PanelUI endScreen;
     [SerializeField]
     Text endScreenText;
-
-    private void Start()
-    {
-        players = GameObject.FindGameObjectsWithTag("Player");
-    }
 
     public void EndGame(GameObject winningPlayer)
     {
