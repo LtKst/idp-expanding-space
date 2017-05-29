@@ -857,6 +857,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: 1
   playerName: 
+  otherPlayer: {fileID: 462415349}
+  playerNameInputField: {fileID: 1317758058}
+  endScreen: {fileID: 71514125}
+  endScreenText: {fileID: 1098274027}
 --- !u!212 &155074715
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1197,7 +1201,7 @@ GameObject:
   - component: {fileID: 201977955}
   - component: {fileID: 201977954}
   m_Layer: 5
-  m_Name: Start Now Button
+  m_Name: Back to Menu Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1260,7 +1264,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 201977955}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2087897328}
+        m_MethodName: LoadScene
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &201977955
@@ -1363,7 +1378,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Start Next Game Now
+  m_Text: Back to Menu
 --- !u!222 &224976735
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1946,6 +1961,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: 0
   playerName: 
+  otherPlayer: {fileID: 155074703}
+  playerNameInputField: {fileID: 1237960082}
+  endScreen: {fileID: 71514125}
+  endScreenText: {fileID: 1098274027}
 --- !u!212 &462415361
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5261,7 +5280,18 @@ MonoBehaviour:
   m_CharacterLimit: 0
   m_OnEndEdit:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 462415360}
+        m_MethodName: SetName
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.InputField+SubmitEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
   m_OnValueChanged:
@@ -5587,7 +5617,18 @@ MonoBehaviour:
   m_CharacterLimit: 0
   m_OnEndEdit:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 155074714}
+        m_MethodName: SetName
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.InputField+SubmitEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
   m_OnValueChanged:

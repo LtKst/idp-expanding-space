@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerManager : MonoBehaviour
 {
@@ -12,17 +13,40 @@ public class PlayerManager : MonoBehaviour
 
     GameObject[] players;
 
+    [SerializeField]
     GameObject otherPlayer;
+    [HideInInspector]
+    public string winningPlayerName;
+
+    [SerializeField]
+    InputField playerNameInputField;
+
+    [SerializeField]
+    PanelUI endScreen;
+    [SerializeField]
+    Text endScreenText;
 
     private void Start()
     {
         players = GameObject.FindGameObjectsWithTag("Player");
+    }
 
-        for (int i = 0; i < players.Length; i++)
+    public void EndGame(GameObject winningPlayer)
+    {
+        if (GameStateManager.InGame)
         {
-            if (players[i] != gameObject)
-                otherPlayer = players[i];
+            //winningPlayerName = GameObject.FindWithTag("Player").GetComponent<PlayerManager>().playerName;
+
+            winningPlayerName = winningPlayer.GetComponent<PlayerManager>().playerName;
+
+            endScreen.IsVisible = true;
+            endScreenText.text = winningPlayerName + " is victorious!";
         }
+    }
+
+    public void SetName()
+    {
+        playerName = playerNameInputField.text;
     }
 
     public GameObject OtherPlayer

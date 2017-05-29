@@ -13,6 +13,11 @@ public class GameStateManager : MonoBehaviour {
         gameStarted = true;
     }
 
+    void OnplayerDeath()
+    {
+        gameStarted = false;
+        inGame = false;
+    }
 
     public static bool GameStarted
     {

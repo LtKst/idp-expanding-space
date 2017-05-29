@@ -35,6 +35,8 @@ public class PlayerHealth : MonoBehaviour
 
     private void Die()
     {
+        GetComponent<PlayerManager>().EndGame(GetComponent<PlayerManager>().OtherPlayer);
+
         Destroy(gameObject);
 
         Object[] objects = FindObjectsOfType(typeof(GameObject));
