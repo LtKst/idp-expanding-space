@@ -24,6 +24,7 @@ public class LoadLevelManager : MonoBehaviour {
             {
                 GameStateManager.GameStarted = false;
                 GameStateManager.InGame = false;
+                GameStateManager.GameEnded = false;
 
                 GameObject.FindWithTag("Manager").GetComponent<PauseManager>().Resume();
 

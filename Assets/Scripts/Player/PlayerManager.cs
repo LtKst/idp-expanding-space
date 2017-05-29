@@ -39,6 +39,8 @@ public class PlayerManager : MonoBehaviour
 
             winningPlayerName = winningPlayer.GetComponent<PlayerManager>().playerName;
 
+            GameStateManager.GameEnded = true;
+
             endScreen.IsVisible = true;
             endScreenText.text = winningPlayerName + " is victorious!";
         }
