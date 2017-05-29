@@ -32,9 +32,9 @@ public class PlayerPowerUp : MonoBehaviour
     [SerializeField]
     float fireRateIncrement = 0.5f;
     float initialFireRate;
-    bool resetFireRate = false;
 
     bool hasPowerUp = false;
+    bool resetPowerUps = false;
 
     public bool HasPowerUp
     {
@@ -76,7 +76,6 @@ public class PlayerPowerUp : MonoBehaviour
 
                 /*case PowerUpTypes.fireRateUp:
                     playerShoot.FireRate = initialFireRate * fireRateIncrement;
-                    resetFireRate = true;
                     print("firerate");
                     break;*/
             }
@@ -94,10 +93,10 @@ public class PlayerPowerUp : MonoBehaviour
         transform.localScale = Vector3.Lerp(transform.localScale, initialScale, Time.deltaTime);
         playerMovement.speed = initialSpeed;
 
-        /*if (playerShoot.FireRate != initialFireRate && resetFireRate)
+        /*if (resetPowerUps)
         {
             playerShoot.FireRate = initialFireRate;
-            resetFireRate = false;
+            resetPowerUps = false;
         }*/
     }
 
@@ -115,6 +114,7 @@ public class PlayerPowerUp : MonoBehaviour
                 return;
             }
 
+            resetPowerUps = true;
             hasPowerUp = true;
         }
     }

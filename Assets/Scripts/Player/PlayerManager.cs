@@ -5,17 +5,19 @@ using UnityEngine.UI;
 
 public class PlayerManager : MonoBehaviour
 {
-
     public enum Player { One, Two };
+    [Header("This player")]
     public Player player;
 
     public string playerName;
 
+    [Header("Other player reference")]
     [SerializeField]
     GameObject otherPlayer;
     [HideInInspector]
     public string winningPlayerName;
 
+    [Header("UI")]
     [SerializeField]
     InputField playerNameInputField;
 
