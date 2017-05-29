@@ -30,8 +30,6 @@ public class PlayerManager : MonoBehaviour
     {
         if (GameStateManager.InGame)
         {
-            //winningPlayerName = GameObject.FindWithTag("Player").GetComponent<PlayerManager>().playerName;
-
             winningPlayerName = winningPlayer.GetComponent<PlayerManager>().playerName;
 
             GameStateManager.GameEnded = true;

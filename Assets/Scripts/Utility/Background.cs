@@ -27,6 +27,11 @@ public class Background : MonoBehaviour
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
 
+        ScaleBackground();
+    }
+
+    private void ScaleBackground()
+    {
         if (scaleBackground)
         {
             transform.position = Vector3.zero;
@@ -61,6 +66,11 @@ public class Background : MonoBehaviour
         {
             spriteRenderer.color = Color.Lerp(spriteRenderer.color, Color.white, Time.unscaledDeltaTime * colorLerpSpeed);
         }
+    }
+
+    private void OnScreenResize()
+    {
+        ScaleBackground();
     }
 
     public void NextBackground()

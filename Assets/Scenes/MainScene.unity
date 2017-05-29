@@ -666,7 +666,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0.000030517578}
+  m_AnchoredPosition: {x: 0, y: 36.299988}
   m_SizeDelta: {x: 0, y: 444.3}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &155074703
@@ -858,6 +858,7 @@ MonoBehaviour:
   player: 1
   playerName: 
   otherPlayer: {fileID: 462415349}
+  winningPlayerName: 
   playerNameInputField: {fileID: 1317758058}
   endScreen: {fileID: 71514125}
   endScreenText: {fileID: 1098274027}
@@ -1962,6 +1963,7 @@ MonoBehaviour:
   player: 0
   playerName: 
   otherPlayer: {fileID: 155074703}
+  winningPlayerName: 
   playerNameInputField: {fileID: 1237960082}
   endScreen: {fileID: 71514125}
   endScreenText: {fileID: 1098274027}
@@ -6876,7 +6878,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1404670322}
   m_HandleRect: {fileID: 1404670321}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0
   m_Size: 0.9182985
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -8444,6 +8446,7 @@ GameObject:
   - component: {fileID: 2087897328}
   - component: {fileID: 2087897322}
   - component: {fileID: 2087897321}
+  - component: {fileID: 2087897329}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Manager
@@ -8565,6 +8568,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fadeImage: {fileID: 1606247628}
   fadeSpeed: 4
+--- !u!114 &2087897329
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2087897319}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e77aa6bbacf62d24d89c164910fc3776, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2104810004
 GameObject:
   m_ObjectHideFlags: 0
