@@ -2,16 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DetectResize : MonoBehaviour {
+public class DetectResize : MonoBehaviour
+{
 
     Vector2 initialSize;
-    
-	public void Start () {
+
+    private void Start()
+    {
         initialSize = new Vector2(Screen.width, Screen.height);
-	}
-	
-	public void Update () {
-		if (Screen.width != initialSize.x || Screen.height != initialSize.y)
+    }
+
+    private void Update()
+    {
+        if (Screen.width != initialSize.x || Screen.height != initialSize.y)
         {
             initialSize = new Vector2(Screen.width, Screen.height);
 
@@ -21,5 +24,5 @@ public class DetectResize : MonoBehaviour {
                 go.SendMessage("OnScreenResize", SendMessageOptions.DontRequireReceiver);
             }
         }
-	}
+    }
 }
