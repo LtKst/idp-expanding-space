@@ -22,6 +22,11 @@ public class LoadLevelManager : MonoBehaviour {
 
             if (fadeImage.color.a >= 0.95f)
             {
+                GameStateManager.GameStarted = false;
+                GameStateManager.InGame = false;
+
+                GameObject.FindWithTag("Manager").GetComponent<PauseManager>().Resume();
+
                 SceneManager.LoadScene(0);
             }
         }

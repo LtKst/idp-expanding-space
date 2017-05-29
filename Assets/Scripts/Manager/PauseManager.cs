@@ -51,6 +51,8 @@ public class PauseManager : MonoBehaviour {
 
         isPaused = false;
 
+        GetComponent<uiManager>().HideAllPanels();
+
         Object[] objects = FindObjectsOfType(typeof(GameObject));
         foreach (GameObject go in objects)
         {

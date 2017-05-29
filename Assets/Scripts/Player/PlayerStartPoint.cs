@@ -36,7 +36,6 @@ public class PlayerStartPoint : MonoBehaviour {
     {
         if (GameStateManager.GameStarted && !GameStateManager.InGame)
         {
-            //player.LookAt(transform);
             player.position = Vector3.Lerp(player.position, transform.position, Time.deltaTime * moveSpeed);
 
             if (Vector3.Distance(transform.position, player.position) < 0.1f)
