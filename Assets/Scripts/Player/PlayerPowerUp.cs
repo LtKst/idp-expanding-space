@@ -66,19 +66,12 @@ public class PlayerPowerUp : MonoBehaviour
         {
             switch (currentPowerUp)
             {
-                case PowerUpTypes.regenarateHealth:
-                    playerHealth.Health += healAmount * (int)Time.deltaTime;
-                    print("health");
-                    break;
-
                 case PowerUpTypes.speedUp:
                     playerMovement.speed = initialSpeed * speedIncrement;
-                    print("speed");
                     break;
 
                 case PowerUpTypes.small:
                     transform.localScale = Vector3.Lerp(transform.localScale, initialScale * scaleIncrement, Time.deltaTime);
-                    print("scale");
                     break;
 
                 /*case PowerUpTypes.fireRateUp:
@@ -115,6 +108,12 @@ public class PlayerPowerUp : MonoBehaviour
             currentPowerUp = (PowerUpTypes)Random.Range(0, System.Enum.GetValues(typeof(PowerUpTypes)).Length);
 
             powerUpDuration = initialPowerUpDuration;
+
+            if (currentPowerUp == PowerUpTypes.regenarateHealth)
+            {
+                playerHealth.Health += healAmount;
+                return;
+            }
 
             hasPowerUp = true;
         }
