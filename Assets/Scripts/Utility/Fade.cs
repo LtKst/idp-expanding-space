@@ -2,30 +2,46 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Events;
 
 public class Fade : MonoBehaviour {
-
+    
+    [SerializeField]
     float lerpSpeed = 4;
 
-    Color currentColor;
+    [SerializeField]
+    Color startColor;
 
     [SerializeField]
     bool fade = true;
     bool doneFading = false;
 
+    Image image;
+
+    [SerializeField]
+    UnityEvent onFinishFade;
+
     private void Start()
     {
-        currentColor = GetComponent<Image>().color;
+        image = GetComponent<Image>();
+
+        image.color = startColor;
     }
 
     private void Update()
     {
         if (!doneFading && fade)
         {
-            GetComponent<Image>().color = Color.Lerp(GetComponent<Image>().color, new Color(currentColor.r, currentColor.g, currentColor.b, 0), Time.unscaledDeltaTime * lerpSpeed);
+            image.color = Color.Lerp(image.color, new Color(startColor.r, startColor.g, startColor.b, 0), Time.unscaledDeltaTime * lerpSpeed);
 
-            if (GetComponent<Image>().color.a <= 0.007)
+            if (image.color.a <= 0.007)
+            {
+                if (onFinishFade != null)
+                {
+                    onFinishFade.Invoke();
+                }
                 doneFading = true;
+            }
         }
     }
 
