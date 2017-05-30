@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class GameStateManager : MonoBehaviour {
 
@@ -11,6 +12,17 @@ public class GameStateManager : MonoBehaviour {
     public void StartGame()
     {
         gameStarted = true;
+    }
+
+    public void StartInGame()
+    {
+        inGame = true;
+
+        Object[] objects = FindObjectsOfType(typeof(GameObject));
+        foreach (GameObject go in objects)
+        {
+            go.SendMessage("OnStartInGame", SendMessageOptions.DontRequireReceiver);
+        }
     }
 
     void OnplayerDeath()

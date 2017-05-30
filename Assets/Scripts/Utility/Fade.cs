@@ -9,7 +9,9 @@ public class Fade : MonoBehaviour {
 
     Color currentColor;
 
-    bool fadedOut = false;
+    [SerializeField]
+    bool fade = true;
+    bool doneFading = false;
 
     private void Start()
     {
@@ -18,12 +20,17 @@ public class Fade : MonoBehaviour {
 
     private void Update()
     {
-        if (!fadedOut)
+        if (!doneFading && fade)
         {
             GetComponent<Image>().color = Color.Lerp(GetComponent<Image>().color, new Color(currentColor.r, currentColor.g, currentColor.b, 0), Time.unscaledDeltaTime * lerpSpeed);
 
             if (GetComponent<Image>().color.a <= 0.007)
-                fadedOut = true;
+                doneFading = true;
         }
+    }
+
+    public void StartFade()
+    {
+        fade = true;
     }
 }

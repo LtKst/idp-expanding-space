@@ -9,7 +9,7 @@ public class PowerUpSpawner : MonoBehaviour
     GameObject powerUpInstance;
 
     [SerializeField]
-    Vector2 spawnDelay;
+    Vector2 spawnDelayMinMax;
 
     float timer;
 
@@ -24,7 +24,7 @@ public class PowerUpSpawner : MonoBehaviour
 
     private void Start()
     {
-        timer = Random.Range(spawnDelay.x, spawnDelay.y);
+        timer = Random.Range(spawnDelayMinMax.x, spawnDelayMinMax.y);
 
         horizontal = new Vector2(
             Camera.main.ScreenToWorldPoint(Vector3.zero).x + spawnPointOffset,
@@ -49,7 +49,7 @@ public class PowerUpSpawner : MonoBehaviour
             powerUpInstance = Instantiate(powerUp);
             powerUpInstance.transform.position = new Vector3(Random.Range(horizontal.x, horizontal.y), Random.Range(vertical.x, vertical.y));
 
-            timer = Random.Range(spawnDelay.x, spawnDelay.y);
+            timer = Random.Range(spawnDelayMinMax.x, spawnDelayMinMax.y);
         }
     }
 }

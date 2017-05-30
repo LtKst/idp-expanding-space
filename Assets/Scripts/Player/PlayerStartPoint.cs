@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlayerStartPoint : MonoBehaviour {
 
@@ -18,6 +19,9 @@ public class PlayerStartPoint : MonoBehaviour {
     PlayersManager playersManager;
 
     Vector2 horizontal;
+
+    [SerializeField]
+    UnityEvent onPlayerReachedStartPoints;
 
     private void Start()
     {
@@ -43,13 +47,16 @@ public class PlayerStartPoint : MonoBehaviour {
 
     private void Update()
     {
-        if (GameStateManager.GameStarted && !GameStateManager.InGame)
+        if (GameStateManager.GameStarted && !inPosition)
         {
             player.position = Vector3.Lerp(player.position, transform.position, Time.deltaTime * moveSpeed);
 
             if (Vector3.Distance(transform.position, player.position) < 0.1f)
             {
-                GameStateManager.InGame = true;
+                inPosition = true;
+
+                if (onPlayerReachedStartPoints != null)
+                    onPlayerReachedStartPoints.Invoke();
 
                 Object[] objects = FindObjectsOfType(typeof(GameObject));
                 foreach (GameObject go in objects)
