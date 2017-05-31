@@ -10,12 +10,9 @@ public class SoundManager : MonoBehaviour {
 
     SoundType[] audioManagers;
 
-    private void Start()
+    private void Awake()
     {
-        masterVolume = PlayerPrefs.GetFloat("masterVolume", 1);
-        musicVolume = PlayerPrefs.GetFloat("musicVolume", 1);
-        sfxVolume = PlayerPrefs.GetFloat("sfxVolume", 1);
-
+        LoadVolume();
         SetVolume();
     }
 
@@ -36,6 +33,8 @@ public class SoundManager : MonoBehaviour {
             if (audioManagers[i].soundType == SoundType.SoundTypeEnum.SFX)
                 audioManagers[i].GetComponent<AudioSource>().volume = sfxVolume;
         }
+
+        SaveVolume();
     }
 
     public void SetVolume(SoundType.SoundTypeEnum type, float volume)
@@ -49,8 +48,6 @@ public class SoundManager : MonoBehaviour {
                 masterVolume = volume;
                 AudioListener.volume = masterVolume;
 
-                PlayerPrefs.SetFloat("masterVolume", masterVolume);
-
                 break;
 
             case SoundType.SoundTypeEnum.Music:
@@ -62,8 +59,6 @@ public class SoundManager : MonoBehaviour {
                     if (audioManagers[i].soundType == SoundType.SoundTypeEnum.Music)
                         audioManagers[i].GetComponent<AudioSource>().volume = musicVolume;
                 }
-
-                PlayerPrefs.SetFloat("musicVolume", musicVolume);
 
                 break;
 
@@ -77,10 +72,29 @@ public class SoundManager : MonoBehaviour {
                         audioManagers[i].GetComponent<AudioSource>().volume = sfxVolume;
                 }
 
-                PlayerPrefs.SetFloat("sfxVolume", sfxVolume);
-
                 break;
         }
+
+        SaveVolume();
+    }
+
+    private void SaveVolume()
+    {
+        PlayerPrefs.SetFloat("masterVolume", masterVolume);
+        PlayerPrefs.SetFloat("musicVolume", musicVolume);
+        PlayerPrefs.SetFloat("sfxVolume", sfxVolume);
+    }
+
+    private void LoadVolume()
+    {
+        if (masterVolume != PlayerPrefs.GetFloat("masterVolume"))
+            masterVolume = PlayerPrefs.GetFloat("masterVolume", 1);
+
+        if (musicVolume != PlayerPrefs.GetFloat("musicVolume "))
+            musicVolume = PlayerPrefs.GetFloat("musicVolume", 1);
+
+        if (sfxVolume != PlayerPrefs.GetFloat("sfxVolume"))
+            sfxVolume = PlayerPrefs.GetFloat("sfxVolume", 1);
     }
 
     public float MasterVolume

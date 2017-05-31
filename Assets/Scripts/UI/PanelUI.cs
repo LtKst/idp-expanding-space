@@ -42,22 +42,11 @@ public class PanelUI : MonoBehaviour
         {
             rect.anchoredPosition = Vector3.Lerp(rect.anchoredPosition, hiddenPosition, Time.unscaledDeltaTime * slideSpeed);
         }
-
-        if (disableOnHide && Vector3.Distance(rect.anchoredPosition, hiddenPosition) <= 0.2f)
-        {
-            gameObject.SetActive(false);
-            disableOnHide = false;
-        }
     }
 
     public void ToggleVisible()
     {
         visible = !visible;
-    }
-
-    public void DisableOnHide()
-    {
-        disableOnHide = true;
     }
 
     public bool IsVisible

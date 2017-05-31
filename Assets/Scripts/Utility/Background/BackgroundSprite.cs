@@ -8,28 +8,31 @@ public class BackgroundSprite : MonoBehaviour {
 
     SpriteRenderer spriteRenderer;
 
-    [SerializeField]
-    Sprite[] backgrounds;
-
-    [SerializeField]
-    Image previewImage;
-
-    [SerializeField]
-    float colorLerpSpeed = 5;
-
     int selectedBackground = 0;
     bool backgroundChanged = false;
     bool flippingBackground = false;
 
     bool flipped = false;
 
+    [SerializeField]
+    Sprite[] backgrounds;
+    [SerializeField]
+    float colorLerpSpeed = 5;
+
+    [Header("UI")]
+    [SerializeField]
+    Image previewImage;
+
     private void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
 
+        // Load and set the selected background from PlayerPrefs
         selectedBackground = PlayerPrefs.GetInt("selectedBackground", 0);
-        ChangeBackground();
+        spriteRenderer.sprite = backgrounds[selectedBackground];
+        previewImage.sprite = backgrounds[selectedBackground];
 
+        // Load and set flip from PlayerPrefs
         flipped = System.Convert.ToBoolean(PlayerPrefs.GetInt("flippedBackground"));
         spriteRenderer.flipX = flipped;
     }
