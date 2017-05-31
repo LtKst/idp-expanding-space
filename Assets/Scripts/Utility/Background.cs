@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(SpriteRenderer))]
@@ -29,6 +30,9 @@ public class Background : MonoBehaviour
 
         selectedBackground = PlayerPrefs.GetInt("selectedBackground", 0);
         ChangeBackground();
+
+        flipped = Convert.ToBoolean(PlayerPrefs.GetInt("flippedBackground"));
+        spriteRenderer.flipX = flipped;
 
         ScaleBackground();
     }
@@ -110,7 +114,7 @@ public class Background : MonoBehaviour
 
         while (oldBackgroundIndex == selectedBackground)
         {
-            selectedBackground = Random.Range(0, backgrounds.Length);
+            selectedBackground = UnityEngine.Random.Range(0, backgrounds.Length);
         }
 
         ChangeBackground();
@@ -119,6 +123,9 @@ public class Background : MonoBehaviour
     public void FlipBackground()
     {
         flipped = !flipped;
+
+        PlayerPrefs.SetInt("flippedBackground", Convert.ToInt32(flipped));
+
         flippingBackground = true;
     }
 
