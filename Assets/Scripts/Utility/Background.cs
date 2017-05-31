@@ -17,7 +17,7 @@ public class Background : MonoBehaviour
     [SerializeField]
     float colorLerpSpeed = 5;
 
-    int backgroundIndex = 0;
+    int selectedBackground = 0;
     bool backgroundChanged = false;
     bool flippingBackground = false;
 
@@ -26,6 +26,9 @@ public class Background : MonoBehaviour
     private void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
+
+        selectedBackground = PlayerPrefs.GetInt("selectedBackground", 0);
+        ChangeBackground();
 
         ScaleBackground();
     }
@@ -55,7 +58,7 @@ public class Background : MonoBehaviour
 
             if (spriteRenderer.color.r <= 0.05f)
             {
-                spriteRenderer.sprite = backgrounds[backgroundIndex];
+                spriteRenderer.sprite = backgrounds[selectedBackground];
                 spriteRenderer.flipX = flipped;
 
                 backgroundChanged = false;
@@ -75,13 +78,13 @@ public class Background : MonoBehaviour
 
     public void NextBackground()
     {
-        if (backgroundIndex >= backgrounds.Length - 1)
+        if (selectedBackground >= backgrounds.Length - 1)
         {
-            backgroundIndex = 0;
+            selectedBackground = 0;
         }
         else
         {
-            backgroundIndex++;
+            selectedBackground++;
         }
 
         ChangeBackground();
@@ -89,13 +92,13 @@ public class Background : MonoBehaviour
 
     public void PreviousBackground()
     {
-        if (backgroundIndex <= 0)
+        if (selectedBackground <= 0)
         {
-            backgroundIndex = backgrounds.Length - 1;
+            selectedBackground = backgrounds.Length - 1;
         }
         else
         {
-            backgroundIndex--;
+            selectedBackground--;
         }
 
         ChangeBackground();
@@ -103,11 +106,11 @@ public class Background : MonoBehaviour
 
     public void RandomBackground()
     {
-        int oldBackgroundIndex = backgroundIndex;
+        int oldBackgroundIndex = selectedBackground;
 
-        while (oldBackgroundIndex == backgroundIndex)
+        while (oldBackgroundIndex == selectedBackground)
         {
-            backgroundIndex = Random.Range(0, backgrounds.Length);
+            selectedBackground = Random.Range(0, backgrounds.Length);
         }
 
         ChangeBackground();
@@ -121,7 +124,9 @@ public class Background : MonoBehaviour
 
     void ChangeBackground()
     {
-        previewImage.sprite = backgrounds[backgroundIndex];
+        previewImage.sprite = backgrounds[selectedBackground];
         backgroundChanged = true;
+
+        PlayerPrefs.SetInt("selectedBackground", selectedBackground);
     }
 }

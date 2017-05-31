@@ -5,7 +5,9 @@ using UnityEngine.UI;
 using UnityEngine.Events;
 
 public class Fade : MonoBehaviour {
-    
+
+    Image image;
+
     [SerializeField]
     float lerpSpeed = 4;
 
@@ -13,10 +15,8 @@ public class Fade : MonoBehaviour {
     Color startColor;
 
     [SerializeField]
-    bool fade = true;
-    bool doneFading = false;
-
-    Image image;
+    bool fadeOnStart = true;
+    bool finishedFading = false;
 
     [SerializeField]
     UnityEvent onFinishFade;
@@ -30,7 +30,7 @@ public class Fade : MonoBehaviour {
 
     private void Update()
     {
-        if (!doneFading && fade)
+        if (!finishedFading && fadeOnStart)
         {
             image.color = Color.Lerp(image.color, new Color(startColor.r, startColor.g, startColor.b, 0), Time.unscaledDeltaTime * lerpSpeed);
 
@@ -40,13 +40,13 @@ public class Fade : MonoBehaviour {
                 {
                     onFinishFade.Invoke();
                 }
-                doneFading = true;
+                finishedFading = true;
             }
         }
     }
 
     public void StartFade()
     {
-        fade = true;
+        fadeOnStart = true;
     }
 }

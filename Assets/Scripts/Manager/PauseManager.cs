@@ -18,7 +18,7 @@ public class PauseManager : MonoBehaviour {
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) && GameStateManager.GameStarted && !GameStateManager.GameEnded)
+        if (Input.GetKeyDown(KeyCode.Escape) && GameStateManager.InGame && !GameStateManager.GameEnded)
         {
             if (!isPaused)
             {
