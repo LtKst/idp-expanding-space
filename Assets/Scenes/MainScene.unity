@@ -667,7 +667,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.000015258789}
+  m_AnchoredPosition: {x: 0, y: -0.000030517578}
   m_SizeDelta: {x: 0, y: 341}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &155074703
@@ -1283,7 +1283,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 828408542}
+      - m_Target: {fileID: 828408545}
         m_MethodName: RandomBackground
         m_Mode: 1
         m_Arguments:
@@ -4211,7 +4211,8 @@ GameObject:
   m_Component:
   - component: {fileID: 828408544}
   - component: {fileID: 828408543}
-  - component: {fileID: 828408542}
+  - component: {fileID: 828408546}
+  - component: {fileID: 828408545}
   m_Layer: 0
   m_Name: Background
   m_TagString: Untagged
@@ -4219,29 +4220,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &828408542
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 828408541}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a71b46bf462e9244baff6084103ad126, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  backgrounds:
-  - {fileID: 21300000, guid: 0b7ed0371f106c24ca3eb1be2e754aac, type: 3}
-  - {fileID: 21300000, guid: db76ad38e80a99a48a2d422bf1131a6f, type: 3}
-  - {fileID: 21300000, guid: 97fbe19ec84de9348b61282da838d52b, type: 3}
-  - {fileID: 21300000, guid: f370e26a771bef049b9df93ff6c0e476, type: 3}
-  - {fileID: 21300000, guid: d1a030457604097458a7fed1d1932b57, type: 3}
-  - {fileID: 21300000, guid: 3353037b7c79d8242a6a4e7940b3cfa4, type: 3}
-  - {fileID: 21300000, guid: d1687fb0ed629454daa9923038cc95e5, type: 3}
-  - {fileID: 21300000, guid: 50857703d2931c64d917a72faa06b820, type: 3}
-  scaleBackground: 1
-  previewImage: {fileID: 2070435376}
-  colorLerpSpeed: 5
 --- !u!212 &828408543
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4295,6 +4273,40 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &828408545
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 828408541}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf5385ee0dc7a164b8ad0ff3b8de149d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  backgrounds:
+  - {fileID: 21300000, guid: 0b7ed0371f106c24ca3eb1be2e754aac, type: 3}
+  - {fileID: 21300000, guid: db76ad38e80a99a48a2d422bf1131a6f, type: 3}
+  - {fileID: 21300000, guid: 97fbe19ec84de9348b61282da838d52b, type: 3}
+  - {fileID: 21300000, guid: f370e26a771bef049b9df93ff6c0e476, type: 3}
+  - {fileID: 21300000, guid: d1a030457604097458a7fed1d1932b57, type: 3}
+  - {fileID: 21300000, guid: 3353037b7c79d8242a6a4e7940b3cfa4, type: 3}
+  - {fileID: 21300000, guid: d1687fb0ed629454daa9923038cc95e5, type: 3}
+  - {fileID: 21300000, guid: 50857703d2931c64d917a72faa06b820, type: 3}
+  previewImage: {fileID: 2070435376}
+  colorLerpSpeed: 5
+--- !u!114 &828408546
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 828408541}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1cfa424500b4ef41b6daac0caf5208a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scaleBackground: 1
 --- !u!1 &847386711
 GameObject:
   m_ObjectHideFlags: 0
@@ -5625,7 +5637,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 828408542}
+      - m_Target: {fileID: 828408545}
         m_MethodName: NextBackground
         m_Mode: 1
         m_Arguments:
@@ -8332,7 +8344,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1404670322}
   m_HandleRect: {fileID: 1404670321}
   m_Direction: 2
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -8449,7 +8461,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 828408542}
+      - m_Target: {fileID: 828408545}
         m_MethodName: FlipBackground
         m_Mode: 1
         m_Arguments:
@@ -9539,7 +9551,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 828408542}
+      - m_Target: {fileID: 828408545}
         m_MethodName: PreviousBackground
         m_Mode: 1
         m_Arguments:

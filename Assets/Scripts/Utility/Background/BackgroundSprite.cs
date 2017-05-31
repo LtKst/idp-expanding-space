@@ -1,16 +1,15 @@
-﻿using System;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(SpriteRenderer))]
-public class Background : MonoBehaviour
-{
+public class BackgroundSprite : MonoBehaviour {
+
     SpriteRenderer spriteRenderer;
 
     [SerializeField]
     Sprite[] backgrounds;
-    [SerializeField]
-    bool scaleBackground = true;
 
     [SerializeField]
     Image previewImage;
@@ -31,27 +30,8 @@ public class Background : MonoBehaviour
         selectedBackground = PlayerPrefs.GetInt("selectedBackground", 0);
         ChangeBackground();
 
-        flipped = Convert.ToBoolean(PlayerPrefs.GetInt("flippedBackground"));
+        flipped = System.Convert.ToBoolean(PlayerPrefs.GetInt("flippedBackground"));
         spriteRenderer.flipX = flipped;
-
-        ScaleBackground();
-    }
-
-    private void ScaleBackground()
-    {
-        if (scaleBackground)
-        {
-            transform.position = Vector3.zero;
-            transform.localScale = Vector3.one;
-
-            float width = spriteRenderer.sprite.bounds.size.x;
-            float height = spriteRenderer.sprite.bounds.size.y;
-
-            float worldScreenHeight = Camera.main.orthographicSize * 2.0f;
-            float worldScreenWidth = worldScreenHeight / Screen.height * Screen.width;
-
-            transform.localScale = new Vector3(worldScreenWidth / width, worldScreenHeight / height, 0);
-        }
     }
 
     private void Update()
@@ -73,11 +53,6 @@ public class Background : MonoBehaviour
         {
             spriteRenderer.color = Color.Lerp(spriteRenderer.color, Color.white, Time.unscaledDeltaTime * colorLerpSpeed);
         }
-    }
-
-    private void OnScreenResize()
-    {
-        ScaleBackground();
     }
 
     public void NextBackground()
@@ -114,7 +89,7 @@ public class Background : MonoBehaviour
 
         while (oldBackgroundIndex == selectedBackground)
         {
-            selectedBackground = UnityEngine.Random.Range(0, backgrounds.Length);
+            selectedBackground = Random.Range(0, backgrounds.Length);
         }
 
         ChangeBackground();
@@ -124,7 +99,7 @@ public class Background : MonoBehaviour
     {
         flipped = !flipped;
 
-        PlayerPrefs.SetInt("flippedBackground", Convert.ToInt32(flipped));
+        PlayerPrefs.SetInt("flippedBackground", System.Convert.ToInt32(flipped));
 
         flippingBackground = true;
     }
