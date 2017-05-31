@@ -7,114 +7,37 @@ using UnityEngine.UI;
 public class VolumeSlider : MonoBehaviour {
 
     Slider slider;
+    SoundManager soundManager;
 
     [SerializeField]
-    Text volumeText;
-
-    enum VolumeType { Master, Music, SFX }
-    [SerializeField]
-    VolumeType volumeType;
-
-    SoundType[] audioManagers;
-
-    float masterVolume = 1;
-    float musicVolume = 1;
-    float sfxVolume = 1;
+    SoundType.SoundTypeEnum volumeType;
 
     private void Start()
     {
         slider = GetComponent<Slider>();
-        audioManagers = FindObjectsOfType(typeof(SoundType)) as SoundType[];
+        soundManager = GameObject.FindWithTag("Manager").GetComponent<SoundManager>();
 
         switch (volumeType)
         {
-            case VolumeType.Master:
-
-                masterVolume = PlayerPrefs.GetFloat("masterVolume", 1);
-                AudioListener.volume = masterVolume;
-                slider.value = masterVolume;
-
+            case SoundType.SoundTypeEnum.Master:
+                slider.value = soundManager.MasterVolume;
                 break;
 
-            case VolumeType.Music:
-
-                musicVolume = PlayerPrefs.GetFloat("musicVolume", 1);
-
-                slider.value = musicVolume;
-
-                for (int i = 0; i < audioManagers.Length; i++)
-                {
-                    if (audioManagers[i].soundType == SoundType.SoundTypeEnum.Music)
-                        audioManagers[i].GetComponent<AudioSource>().volume = musicVolume;
-                }
-
+            case SoundType.SoundTypeEnum.Music:
+                slider.value = soundManager.MusicVolume;
                 break;
 
-            case VolumeType.SFX:
-
-                sfxVolume = PlayerPrefs.GetFloat("sfxVolume", 1);
-
-                slider.value = sfxVolume;
-
-                for (int i = 0; i < audioManagers.Length; i++)
-                {
-                    if (audioManagers[i].soundType == SoundType.SoundTypeEnum.SFX)
-                        audioManagers[i].GetComponent<AudioSource>().volume = sfxVolume;
-                }
-
+            case SoundType.SoundTypeEnum.SFX:
+                slider.value = soundManager.SfxVolume;
                 break;
         }
     }
 
     private void Update()
     {
-        audioManagers = FindObjectsOfType(typeof(SoundType)) as SoundType[];
-
         if (!QuitManager.IsQuitting)
         {
-            switch (volumeType)
-            {
-                case VolumeType.Master:
-
-                    AudioListener.volume = slider.value;
-                    volumeText.text = "Master Volume: " + slider.value.ToString("F2");
-
-                    if (slider.value != PlayerPrefs.GetFloat("masterVolume"))
-                        PlayerPrefs.SetFloat("masterVolume", slider.value);
-
-                    break;
-
-                case VolumeType.Music:
-
-                    
-                    for (int i = 0; i < audioManagers.Length; i++)
-                    {
-                        if (audioManagers[i].soundType == SoundType.SoundTypeEnum.Music)
-                            audioManagers[i].GetComponent<AudioSource>().volume = slider.value;
-                    }
-
-                    volumeText.text = "Music Volume: " + slider.value.ToString("F2");
-
-                    if (slider.value != PlayerPrefs.GetFloat("musicVolume"))
-                        PlayerPrefs.SetFloat("musicVolume", slider.value);
-
-                    break;
-
-                case VolumeType.SFX:
-
-                    for (int i = 0; i < audioManagers.Length; i++)
-                    {
-                        if (audioManagers[i].soundType == SoundType.SoundTypeEnum.SFX)
-                            audioManagers[i].GetComponent<AudioSource>().volume = slider.value;
-                    }
-
-                    volumeText.text = "SFX Volume: " + slider.value.ToString("F2");
-
-                    if (slider.value != PlayerPrefs.GetFloat("sfxVolume"))
-                        PlayerPrefs.SetFloat("sfxVolume", slider.value);
-
-                    break;
-            }
+            soundManager.SetVolume(volumeType, slider.value);
         }
     }
 }
