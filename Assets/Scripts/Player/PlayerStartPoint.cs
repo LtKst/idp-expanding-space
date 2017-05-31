@@ -51,7 +51,7 @@ public class PlayerStartPoint : MonoBehaviour {
         {
             player.position = Vector3.Lerp(player.position, transform.position, Time.deltaTime * moveSpeed);
 
-            if (Vector3.Distance(transform.position, player.position) < 0.1f)
+            if (Vector3.Distance(transform.position, player.position) < 0.2f)
             {
                 inPosition = true;
 
