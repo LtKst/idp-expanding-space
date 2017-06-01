@@ -2,6 +2,7 @@
 
 [RequireComponent(typeof(SpriteRenderer))]
 [RequireComponent(typeof(Collider2D))]
+[RequireComponent(typeof(AudioSource))]
 public class PowerUp : MonoBehaviour
 {
 
@@ -12,6 +13,10 @@ public class PowerUp : MonoBehaviour
     float despawnTime = 15;
     bool despawned;
 
+    [SerializeField]
+    AudioClip pickUpClip;
+    AudioSource audioSource;
+
     SpriteRenderer spriteRenderer;
 
     private void Start()
@@ -19,6 +24,8 @@ public class PowerUp : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
 
         spriteRenderer.color = new Color(255, 255, 255, 0);
+
+        audioSource = gameObject.GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -34,7 +41,7 @@ public class PowerUp : MonoBehaviour
         {
             spriteRenderer.color = Color.Lerp(spriteRenderer.color, new Color(255, 255, 255, 0), colorTransitionSpeed * Time.deltaTime * 20);
 
-            if (spriteRenderer.color.a <= 0.05)
+            if (spriteRenderer.color.a <= 0.05 && !audioSource.isPlaying)
             {
                 Destroy(gameObject);
             }
@@ -48,6 +55,8 @@ public class PowerUp : MonoBehaviour
             if (!collision.GetComponent<PlayerPowerUp>().HasPowerUp)
             {
                 collision.GetComponent<PlayerPowerUp>().GetPowerUp();
+
+                audioSource.PlayOneShot(pickUpClip);
 
                 despawned = true;
             }

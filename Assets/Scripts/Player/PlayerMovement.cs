@@ -19,6 +19,9 @@ public class PlayerMovement : MonoBehaviour
 
     float finalSlowDownSpeed;
 
+    [SerializeField]
+    ParticleSystem particles;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -43,6 +46,8 @@ public class PlayerMovement : MonoBehaviour
         if (getForwardKey)
         {
             rb.AddRelativeForce(Vector2.up * speed * Time.deltaTime);
+
+            particles.Emit(2);
         }
         // rotation
 

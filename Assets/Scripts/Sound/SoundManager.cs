@@ -90,7 +90,7 @@ public class SoundManager : MonoBehaviour {
         if (masterVolume != PlayerPrefs.GetFloat("masterVolume"))
             masterVolume = PlayerPrefs.GetFloat("masterVolume", 1);
 
-        if (musicVolume != PlayerPrefs.GetFloat("musicVolume "))
+        if (musicVolume != PlayerPrefs.GetFloat("musicVolume"))
             musicVolume = PlayerPrefs.GetFloat("musicVolume", 1);
 
         if (sfxVolume != PlayerPrefs.GetFloat("sfxVolume"))

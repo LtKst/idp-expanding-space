@@ -28,15 +28,15 @@ public class PlayerInput : MonoBehaviour
                 case PlayerManager.Player.One:
                     playerMovement.Move(Input.GetAxis("PlayerOneHorizontal"), Input.GetKey(KeyCode.W), Input.GetKey(KeyCode.S));
 
-                    if (Input.GetKeyDown(KeyCode.Space))
+                    if (Input.GetKeyDown(KeyCode.LeftShift))
                     {
                         playerShoot.Shoot();
                     }
                     break;
                 case PlayerManager.Player.Two:
-                    playerMovement.Move(Input.GetAxis("PlayerTwoHorizontal"), Input.GetKey(KeyCode.Keypad8), Input.GetKey(KeyCode.Keypad5));
+                    playerMovement.Move(Input.GetAxis("PlayerTwoHorizontal"), Input.GetKey(KeyCode.O), Input.GetKey(KeyCode.L));
 
-                    if (Input.GetKeyDown(KeyCode.Keypad0))
+                    if (Input.GetKeyDown(KeyCode.Return))
                     {
                         playerShoot.Shoot();
                     }

@@ -25,8 +25,8 @@ InputManager:
     m_Name: PlayerTwoHorizontal
     descriptiveName: 
     descriptiveNegativeName: 
-    negativeButton: '[4]'
-    positiveButton: '[6]'
+    negativeButton: k
+    positiveButton: ;
     altNegativeButton: 
     altPositiveButton: 
     gravity: 3

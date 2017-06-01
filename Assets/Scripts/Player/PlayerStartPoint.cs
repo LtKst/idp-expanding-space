@@ -79,11 +79,11 @@ public class PlayerStartPoint : MonoBehaviour {
             switch (belongsTo)
             {
                 case BelongsTo.One:
-                    player.position = new Vector3(horizontal.x - 5, 0, 0);
+                    player.position = new Vector3(horizontal.x - 20, 0, 0);
                     transform.position = new Vector3(horizontal.x, 0, 0);
                     break;
                 case BelongsTo.Two:
-                    player.position = new Vector3(horizontal.y + 5, 0, 0);
+                    player.position = new Vector3(horizontal.y + 20, 0, 0);
                     transform.position = new Vector3(horizontal.y, 0, 0);
                     break;
             }

@@ -26,6 +26,19 @@ public class BoundToScreenSpace : MonoBehaviour
         );
     }
 
+    private void OnScreenResize()
+    {
+        horizontal = new Vector2(
+            Camera.main.ScreenToWorldPoint(Vector3.zero).x - offset,
+            Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, 0)).x + offset
+        );
+
+        vertical = new Vector2(
+            Camera.main.ScreenToWorldPoint(new Vector3(0, Screen.height)).y + offset,
+            Camera.main.ScreenToWorldPoint(new Vector3(0, 0)).y - offset
+        );
+    }
+
     private void Update()
     {
         if (GameStateManager.InGame || !boundIfInGame)
