@@ -4,9 +4,8 @@ using UnityEngine;
 
 public class CursorManager : MonoBehaviour {
 
+    [SerializeField]
     Texture2D cursorTextrue;
-
-    bool isVisible;
 
     private void Start()
     {

@@ -32,10 +32,14 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField]
     Text statText;
 
+    Quaternion startRotation;
+
     private void Start()
     {
         initialHealth = health;
         initialLives = lives;
+
+        startRotation = transform.rotation;
     }
 
     private void Update()
@@ -91,7 +95,7 @@ public class PlayerHealth : MonoBehaviour
             go.SendMessage("OnPlayerDeath", SendMessageOptions.DontRequireReceiver);
         }
 
-        transform.position = startPoint.position;
+        transform.SetPositionAndRotation(startPoint.position, startRotation);
 
         if (lives <= 0)
         {
