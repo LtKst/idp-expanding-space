@@ -6,6 +6,7 @@ public class PlayerSkin : MonoBehaviour {
 
     [SerializeField]
     Sprite[] playerSkins;
+    [SerializeField]
     int skinIndex;
 
     SpriteRenderer spr;

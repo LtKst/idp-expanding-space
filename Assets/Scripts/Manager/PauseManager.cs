@@ -9,13 +9,6 @@ public class PauseManager : MonoBehaviour {
 
     static bool isPaused;
 
-    uiManager managerUI;
-
-    private void Start()
-    {
-        managerUI = GameObject.FindWithTag("Manager").GetComponent<uiManager>();
-    }
-
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape) && GameStateManager.InGame && !GameStateManager.GameEnded)
@@ -51,7 +44,7 @@ public class PauseManager : MonoBehaviour {
 
         isPaused = false;
 
-        managerUI.HideAllPanels();
+        uiManager.HideAllPanels();
 
         Object[] objects = FindObjectsOfType(typeof(GameObject));
         foreach (GameObject go in objects)

@@ -4,18 +4,18 @@ using UnityEngine;
 
 public class uiManager : MonoBehaviour {
     
-    PanelUI[] panels;
-
-    private void Start()
+    public static void HideAllPanels()
     {
-        panels = FindObjectsOfType(typeof(PanelUI)) as PanelUI[];
-    }
+        PanelUI[] panels = FindObjectsOfType(typeof(PanelUI)) as PanelUI[];
 
-    public void HideAllPanels()
-    {
         for (int i = 0; i < panels.Length; i++)
         {
             panels[i].IsVisible = false;
         }
+    }
+
+    public void HideAllPanelsWrapper()
+    {
+        HideAllPanels();
     }
 }

@@ -7,7 +7,6 @@ using UnityEngine.UI;
 public class VolumeSlider : MonoBehaviour {
 
     Slider slider;
-    SoundManager soundManager;
 
     [SerializeField]
     SoundType.SoundTypeEnum volumeType;
@@ -15,20 +14,19 @@ public class VolumeSlider : MonoBehaviour {
     private void Start()
     {
         slider = GetComponent<Slider>();
-        soundManager = GameObject.FindWithTag("Manager").GetComponent<SoundManager>();
 
         switch (volumeType)
         {
             case SoundType.SoundTypeEnum.Master:
-                slider.value = soundManager.MasterVolume;
+                slider.value = SoundManager.MasterVolume;
                 break;
 
             case SoundType.SoundTypeEnum.Music:
-                slider.value = soundManager.MusicVolume;
+                slider.value = SoundManager.MusicVolume;
                 break;
 
             case SoundType.SoundTypeEnum.SFX:
-                slider.value = soundManager.SfxVolume;
+                slider.value = SoundManager.SfxVolume;
                 break;
         }
     }
@@ -37,7 +35,7 @@ public class VolumeSlider : MonoBehaviour {
     {
         if (!QuitManager.IsQuitting)
         {
-            soundManager.SetVolume(volumeType, slider.value);
+            SoundManager.SetVolume(volumeType, slider.value);
         }
     }
 }

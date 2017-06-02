@@ -25,7 +25,7 @@ public class GameStateManager : MonoBehaviour {
         }
     }
 
-    void OnplayerDeath()
+    void OnplayerLost()
     {
         gameStarted = false;
         inGame = false;

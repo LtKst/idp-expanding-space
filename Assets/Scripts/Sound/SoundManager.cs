@@ -4,11 +4,9 @@ using UnityEngine;
 
 public class SoundManager : MonoBehaviour {
 
-    float masterVolume;
-    float musicVolume;
-    float sfxVolume;
-
-    SoundType[] audioManagers;
+    static float masterVolume = 1;
+    static float musicVolume = 1;
+    static float sfxVolume = 1;
 
     private void Awake()
     {
@@ -20,7 +18,7 @@ public class SoundManager : MonoBehaviour {
     {
         AudioListener.volume = masterVolume;
 
-        audioManagers = FindObjectsOfType(typeof(SoundType)) as SoundType[];
+        SoundType[] audioManagers = FindObjectsOfType(typeof(SoundType)) as SoundType[];
 
         for (int i = 0; i < audioManagers.Length; i++)
         {
@@ -37,9 +35,9 @@ public class SoundManager : MonoBehaviour {
         SaveVolume();
     }
 
-    public void SetVolume(SoundType.SoundTypeEnum type, float volume)
+    public static void SetVolume(SoundType.SoundTypeEnum type, float volume)
     {
-        audioManagers = FindObjectsOfType(typeof(SoundType)) as SoundType[];
+        SoundType[] audioManagers = FindObjectsOfType(typeof(SoundType)) as SoundType[];
 
         switch (type)
         {
@@ -78,14 +76,14 @@ public class SoundManager : MonoBehaviour {
         SaveVolume();
     }
 
-    private void SaveVolume()
+    private static void SaveVolume()
     {
         PlayerPrefs.SetFloat("masterVolume", masterVolume);
         PlayerPrefs.SetFloat("musicVolume", musicVolume);
         PlayerPrefs.SetFloat("sfxVolume", sfxVolume);
     }
 
-    private void LoadVolume()
+    private static void LoadVolume()
     {
         if (masterVolume != PlayerPrefs.GetFloat("masterVolume"))
             masterVolume = PlayerPrefs.GetFloat("masterVolume", 1);
@@ -97,7 +95,7 @@ public class SoundManager : MonoBehaviour {
             sfxVolume = PlayerPrefs.GetFloat("sfxVolume", 1);
     }
 
-    public float MasterVolume
+    public static float MasterVolume
     {
         get
         {
@@ -109,7 +107,7 @@ public class SoundManager : MonoBehaviour {
         }
     }
 
-    public float MusicVolume
+    public static float MusicVolume
     {
         get
         {
@@ -121,7 +119,7 @@ public class SoundManager : MonoBehaviour {
         }
     }
 
-    public float SfxVolume
+    public static float SfxVolume
     {
         get
         {

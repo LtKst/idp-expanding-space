@@ -26,6 +26,9 @@ public class PlayerManager : MonoBehaviour
     [SerializeField]
     Text endScreenText;
 
+    [SerializeField]
+    PanelUI statsPanel;
+
     public void EndGame(GameObject winningPlayer)
     {
         if (GameStateManager.InGame)
@@ -33,6 +36,8 @@ public class PlayerManager : MonoBehaviour
             winningPlayerName = winningPlayer.GetComponent<PlayerManager>().playerName;
 
             GameStateManager.GameEnded = true;
+
+            statsPanel.IsVisible = false;
 
             endScreen.IsVisible = true;
             endScreenText.text = winningPlayerName + " is victorious!";

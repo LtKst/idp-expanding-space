@@ -13,7 +13,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     float rotationSpeed = 150;
     [SerializeField]
-    float slowDownSpeed = 0.5f;
+    float slowDownSpeed = 1.5f;
     [SerializeField]
     float manualSlowDownSpeed = 5;
 

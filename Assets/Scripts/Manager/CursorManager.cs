@@ -4,8 +4,17 @@ using UnityEngine;
 
 public class CursorManager : MonoBehaviour {
 
+    Texture2D cursorTextrue;
+
+    bool isVisible;
+
     private void Start()
     {
-        Cursor.visible = false;
+        Cursor.SetCursor(cursorTextrue, new Vector2(0, 0), CursorMode.ForceSoftware);
+    }
+
+    private void Update()
+    {
+        Cursor.visible = (!GameStateManager.InGame || PauseManager.IsPaused || GameStateManager.GameEnded);
     }
 }
