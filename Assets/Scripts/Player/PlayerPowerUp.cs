@@ -8,10 +8,9 @@ using UnityEngine;
 public class PlayerPowerUp : MonoBehaviour
 {
     PlayerHealth playerHealth;
-    PlayerShoot playerShoot;
     PlayerMovement playerMovement;
 
-    enum PowerUpTypes { regenarateHealth, speedUp, small, fireRateUp }
+    enum PowerUpTypes { regenarateHealth, speedUp, small }
     PowerUpTypes currentPowerUp;
 
     [Header("Heal")]
@@ -28,13 +27,7 @@ public class PlayerPowerUp : MonoBehaviour
     float scaleIncrement = 0.5f;
     Vector3 initialScale;
 
-    [Header("Fire rate")]
-    [SerializeField]
-    float fireRateIncrement = 0.5f;
-    float initialFireRate;
-
     bool hasPowerUp = false;
-    bool resetPowerUps = false;
 
     public bool HasPowerUp
     {
@@ -50,12 +43,10 @@ public class PlayerPowerUp : MonoBehaviour
     private void Start()
     {
         playerHealth = GetComponent<PlayerHealth>();
-        playerShoot = GetComponent<PlayerShoot>();
         playerMovement = GetComponent<PlayerMovement>();
 
         initialSpeed = playerMovement.speed;
         initialScale = transform.localScale;
-        initialFireRate = playerShoot.FireRate;
 
         initialPowerUpDuration = powerUpDuration;
     }
@@ -73,11 +64,6 @@ public class PlayerPowerUp : MonoBehaviour
                 case PowerUpTypes.small:
                     transform.localScale = Vector3.Lerp(transform.localScale, initialScale * scaleIncrement, Time.deltaTime);
                     break;
-
-                /*case PowerUpTypes.fireRateUp:
-                    playerShoot.FireRate = initialFireRate * fireRateIncrement;
-                    print("firerate");
-                    break;*/
             }
 
             UpdateTimer();
@@ -92,12 +78,6 @@ public class PlayerPowerUp : MonoBehaviour
     {
         transform.localScale = Vector3.Lerp(transform.localScale, initialScale, Time.deltaTime);
         playerMovement.speed = initialSpeed;
-
-        /*if (resetPowerUps)
-        {
-            playerShoot.FireRate = initialFireRate;
-            resetPowerUps = false;
-        }*/
     }
 
     public void GetPowerUp()
@@ -114,7 +94,7 @@ public class PlayerPowerUp : MonoBehaviour
                 return;
             }
 
-            resetPowerUps = true;
+
             hasPowerUp = true;
         }
     }

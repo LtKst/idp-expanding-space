@@ -18,8 +18,6 @@ public class PlayerStartPoint : MonoBehaviour {
 
     PlayersManager playersManager;
 
-    Vector2 horizontal;
-
     [SerializeField]
     UnityEvent onPlayerReachedStartPoints;
 
@@ -27,20 +25,15 @@ public class PlayerStartPoint : MonoBehaviour {
     {
         playersManager = GameObject.FindWithTag("Manager").GetComponent<PlayersManager>();
 
-        horizontal = new Vector2(
-            Camera.main.ScreenToWorldPoint(Vector3.zero).x + 2,
-            Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, 0)).x - 2
-        );
-
         switch (belongsTo)
         {
             case BelongsTo.One:
                 player = playersManager.PlayerOne.transform;
-                transform.position = new Vector3(horizontal.x, 0, 0);
+                transform.position = new Vector3(ScreenToWorld.Left + 2, 0, 0);
                 break;
             case BelongsTo.Two:
                 player = playersManager.PlayerTwo.transform;
-                transform.position = new Vector3(horizontal.y, 0, 0);
+                transform.position = new Vector3(ScreenToWorld.Right - 2, 0, 0);
                 break;
         }
     }
@@ -63,29 +56,6 @@ public class PlayerStartPoint : MonoBehaviour {
                 {
                     go.SendMessage("OnPlayerReachedStartPoint", SendMessageOptions.DontRequireReceiver);
                 }
-            }
-        }
-    }
-
-    void OnScreenResize()
-    {
-        if (!GameStateManager.GameStarted)
-        {
-            horizontal = new Vector2(
-                Camera.main.ScreenToWorldPoint(Vector3.zero).x + 2,
-                Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, 0)).x - 2
-            );
-
-            switch (belongsTo)
-            {
-                case BelongsTo.One:
-                    player.position = new Vector3(horizontal.x - 20, 0, 0);
-                    transform.position = new Vector3(horizontal.x, 0, 0);
-                    break;
-                case BelongsTo.Two:
-                    player.position = new Vector3(horizontal.y + 20, 0, 0);
-                    transform.position = new Vector3(horizontal.y, 0, 0);
-                    break;
             }
         }
     }

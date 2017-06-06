@@ -10,57 +10,28 @@ public class BoundToScreenSpace : MonoBehaviour
     [SerializeField]
     bool boundIfInGame;
 
-    Vector2 horizontal;
-    Vector2 vertical;
-
-    private void Start()
-    {
-        horizontal = new Vector2(
-            Camera.main.ScreenToWorldPoint(Vector3.zero).x - offset,
-            Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, 0)).x + offset
-        );
-
-        vertical = new Vector2(
-            Camera.main.ScreenToWorldPoint(new Vector3(0, Screen.height)).y + offset,
-            Camera.main.ScreenToWorldPoint(new Vector3(0, 0)).y - offset
-        );
-    }
-
-    private void OnScreenResize()
-    {
-        horizontal = new Vector2(
-            Camera.main.ScreenToWorldPoint(Vector3.zero).x - offset,
-            Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, 0)).x + offset
-        );
-
-        vertical = new Vector2(
-            Camera.main.ScreenToWorldPoint(new Vector3(0, Screen.height)).y + offset,
-            Camera.main.ScreenToWorldPoint(new Vector3(0, 0)).y - offset
-        );
-    }
-
     private void Update()
     {
         if (GameStateManager.InGame || !boundIfInGame)
         {
             // horizontal
-            if (transform.position.x <= horizontal.x)
+            if (transform.position.x <= ScreenToWorld.Left - offset)
             {
-                transform.position = new Vector3(horizontal.y, transform.position.y);
+                transform.position = new Vector3(ScreenToWorld.Right + offset, transform.position.y);
             }
-            else if (transform.position.x >= horizontal.y)
+            else if (transform.position.x >= ScreenToWorld.Right + offset)
             {
-                transform.position = new Vector3(horizontal.x, transform.position.y);
+                transform.position = new Vector3(ScreenToWorld.Left - offset, transform.position.y);
             }
 
             // vertical
-            if (transform.position.y >= vertical.x)
+            if (transform.position.y >= ScreenToWorld.Top + offset)
             {
-                transform.position = new Vector3(transform.position.x, vertical.y);
+                transform.position = new Vector3(transform.position.x, ScreenToWorld.Bottom - offset);
             }
-            else if (transform.position.y <= vertical.y)
+            else if (transform.position.y <= ScreenToWorld.Bottom - offset)
             {
-                transform.position = new Vector3(transform.position.x, vertical.x);
+                transform.position = new Vector3(transform.position.x, ScreenToWorld.Top + offset);
             }
         }
     }

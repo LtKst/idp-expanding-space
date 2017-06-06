@@ -49,6 +49,11 @@ public class PanelUI : MonoBehaviour
         visible = !visible;
     }
 
+    public void SetVisible(bool value)
+    {
+        visible = value;
+    }
+
     public bool IsVisible
     {
         get
