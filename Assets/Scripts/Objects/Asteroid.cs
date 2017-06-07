@@ -50,7 +50,7 @@ public class Asteroid : MonoBehaviour
     {
         if (isHit)
         {
-            rb.AddForce(force * speed * Time.deltaTime, ForceMode2D.Force);
+            rb.AddForce(force * forceOnHit * Time.deltaTime, ForceMode2D.Force);
         }
         else if (!collided)
         {

@@ -13067,7 +13067,7 @@ MonoBehaviour:
   - {fileID: 1502109710496352, guid: 0b9cc30bd3cc8324b8106f49a75dede7, type: 2}
   spawnDelayMinMax: {x: 30, y: 60}
   spawnPointOffset: 2.5
-  spawnWithX: 1
+  spawnWithX: 0
 --- !u!114 &2087897328
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13117,7 +13117,7 @@ MonoBehaviour:
   asteroid: {fileID: 1896321451771302, guid: 81ddb1f5bda20e34486673850a37a13e, type: 2}
   spawnDelayMinMax: {x: 30, y: 60}
   spawnPointOffset: 50
-  spawnWithX: 0
+  spawnWithX: 1
 --- !u!1 &2091789955
 GameObject:
   m_ObjectHideFlags: 0

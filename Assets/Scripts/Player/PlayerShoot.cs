@@ -61,6 +61,8 @@ public class PlayerShoot : MonoBehaviour
                     missileInstance.transform.SetPositionAndRotation(shootPoint.position, transform.rotation);
                     missileInstance.GetComponent<Missile>().belongsTo = gameObject;
 
+                    missileInstance.GetComponent<SpriteRenderer>().color = Color.red;
+
                     audioSource.PlayOneShot(shootAudioClips[Random.Range(0, shootAudioClips.Length)]);
 
                     canShoot = false;
@@ -81,6 +83,8 @@ public class PlayerShoot : MonoBehaviour
                         missileInstance.GetComponent<Missile>().belongsTo = gameObject;
 
                         missileInstance.transform.Rotate(new Vector3(0, 0, degree));
+
+                        missileInstance.GetComponent<SpriteRenderer>().color = Color.green;
 
                         degree -= burstDegree;
 
