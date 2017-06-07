@@ -55,9 +55,4 @@ public class AsteroidSpawner : MonoBehaviour
             timer = Random.Range(spawnDelayMinMax.x, spawnDelayMinMax.y);
         }
     }
-
-    void RandomBoolean()
-    {
-
-    }
 }

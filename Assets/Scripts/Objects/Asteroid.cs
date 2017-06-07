@@ -6,15 +6,17 @@ using UnityEngine;
 public class Asteroid : MonoBehaviour
 {
     Rigidbody2D rb;
-    Vector2 force;
 
     Vector3 playerPosition;
     Vector3 direction;
 
     bool collided;
+    bool collidedPlayer;
 
     GameObject miniAsteroid;
     bool isHit;
+
+    Vector3 explosionPosition;
 
     [SerializeField]
     float speed = 50;
@@ -33,7 +35,6 @@ public class Asteroid : MonoBehaviour
         direction = playerPosition - transform.position;
 
         rb = GetComponent<Rigidbody2D>();
-        force = new Vector2(Random.Range(-20, 20), Random.Range(-20, 20));
 
         if (randomSprite)
         {
@@ -48,9 +49,9 @@ public class Asteroid : MonoBehaviour
 
     private void Update()
     {
-        if (isHit)
+        if (isHit && !collidedPlayer)
         {
-            rb.AddForce(force * forceOnHit * Time.deltaTime, ForceMode2D.Force);
+            Rigidbody2DExtension.AddExplosionForce(rb, 5, explosionPosition, 5);
         }
         else if (!collided)
         {
@@ -60,8 +61,19 @@ public class Asteroid : MonoBehaviour
         rb.velocity = Vector2.Lerp(rb.velocity, Vector2.zero, Time.deltaTime);
     }
 
+    // niet meer mee kloten :-)
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        if (collision.gameObject.tag == "Player")
+        {
+            if (rb.velocity.magnitude >= 4)
+            {
+                collision.gameObject.GetComponent<PlayerHealth>().Health -= (int)rb.velocity.magnitude * 3;
+            }
+
+            collidedPlayer = true;
+        }
+
         collided = true;
     }
 
@@ -69,11 +81,14 @@ public class Asteroid : MonoBehaviour
     {
         if (!isHit)
         {
-            for (int i = 0; i < 4; i++)
+            for (int i = 0; i < 1; i++)
             {
                 miniAsteroid = Instantiate(gameObject);
                 miniAsteroid.transform.localScale = transform.localScale / 2;
+                miniAsteroid.GetComponent<Asteroid>().explosionPosition = transform.position;
                 miniAsteroid.GetComponent<Asteroid>().isHit = true;
+
+                Rigidbody2DExtension.AddExplosionForce(miniAsteroid.GetComponent<Rigidbody2D>(), 5, transform.position, 5);
             }
         }
 

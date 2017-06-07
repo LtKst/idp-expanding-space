@@ -59,7 +59,7 @@ public class PlayerShoot : MonoBehaviour
 
                     missileInstance = Instantiate(missile);
                     missileInstance.transform.SetPositionAndRotation(shootPoint.position, transform.rotation);
-                    missileInstance.GetComponent<Missile>().belongsTo = gameObject;
+                    missileInstance.GetComponent<Laser>().belongsTo = gameObject;
 
                     missileInstance.GetComponent<SpriteRenderer>().color = Color.red;
 
@@ -80,7 +80,7 @@ public class PlayerShoot : MonoBehaviour
                     {
                         missileInstance = Instantiate(missile);
                         missileInstance.transform.SetPositionAndRotation(shootPoint.position, transform.rotation);
-                        missileInstance.GetComponent<Missile>().belongsTo = gameObject;
+                        missileInstance.GetComponent<Laser>().belongsTo = gameObject;
 
                         missileInstance.transform.Rotate(new Vector3(0, 0, degree));
 

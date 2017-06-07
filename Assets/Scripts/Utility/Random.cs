@@ -11,9 +11,7 @@ namespace Utility
         {
             int i = UnityEngine.Random.Range(0, 1);
             
-            bool returnBool = i == 1 ? true : false;
-
-            return returnBool;
+            return i == 1 ? true : false;
         }
     }
 }

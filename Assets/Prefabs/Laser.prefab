@@ -107,7 +107,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0211f52f8f69764f959a8557a9f8d20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 800
+  speed: 30000
   damage: 20
   maxDistanceFromPlayer: 200
   explosionParticleSystem: {fileID: 1197212851549084, guid: 8e5ac97dbe131694089e2937a9f0a49b,

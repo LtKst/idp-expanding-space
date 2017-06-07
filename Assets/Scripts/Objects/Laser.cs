@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
-public class Missile : MonoBehaviour
+public class Laser : MonoBehaviour
 {
 
     [SerializeField]
-    float speed = 400;
+    float speed = 4000;
 
     [SerializeField]
     int damage;
@@ -26,12 +26,12 @@ public class Missile : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+
+        rb.AddRelativeForce(Vector2.up * speed * Time.deltaTime);
     }
 
     private void Update()
     {
-        rb.AddRelativeForce(Vector2.up * speed * Time.deltaTime);
-
         if (Vector3.Distance(transform.position, Camera.main.transform.position) >= maxDistanceFromPlayer)
         {
             Destroy(gameObject);
