@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 
+[RequireComponent(typeof(PlayerWeapon))]
 public class PlayerShoot : MonoBehaviour
 {
 
@@ -14,10 +15,16 @@ public class PlayerShoot : MonoBehaviour
     float fireRate = 0.5f;
     float initialFireRate;
 
+    int burstAmount = 3;
+    [SerializeField]
+    float burstDegree = 30;
+
     [Header("Audio")]
     [SerializeField]
     AudioClip[] shootAudioClips;
     AudioSource audioSource;
+
+    PlayerWeapon playerWeapon;
 
     bool canShoot = true;
 
@@ -26,6 +33,7 @@ public class PlayerShoot : MonoBehaviour
         initialFireRate = fireRate;
 
         audioSource = GetComponent<AudioSource>();
+        playerWeapon = GetComponent<PlayerWeapon>();
     }
 
     private void Update()
@@ -45,13 +53,48 @@ public class PlayerShoot : MonoBehaviour
     {
         if (canShoot)
         {
-            missileInstance = Instantiate(missile);
-            missileInstance.transform.SetPositionAndRotation(shootPoint.position, transform.rotation);
-            missileInstance.GetComponent<Missile>().belongsTo = gameObject;
+            switch (playerWeapon.currentWeapon)
+            {
+                case PlayerWeapon.WeaponTypes.normal:
 
-            audioSource.PlayOneShot(shootAudioClips[Random.Range(0, shootAudioClips.Length)]);
+                    missileInstance = Instantiate(missile);
+                    missileInstance.transform.SetPositionAndRotation(shootPoint.position, transform.rotation);
+                    missileInstance.GetComponent<Missile>().belongsTo = gameObject;
 
-            canShoot = false;
+                    audioSource.PlayOneShot(shootAudioClips[Random.Range(0, shootAudioClips.Length)]);
+
+                    canShoot = false;
+
+                    break;
+
+                case PlayerWeapon.WeaponTypes.burst:
+
+                    
+                    float degree = transform.rotation.z + burstDegree * (burstAmount/2);
+
+                    print(degree);
+
+                    for (int i = 0; i < burstAmount; i++)
+                    {
+                        missileInstance = Instantiate(missile);
+                        missileInstance.transform.SetPositionAndRotation(shootPoint.position, transform.rotation);
+                        missileInstance.GetComponent<Missile>().belongsTo = gameObject;
+
+                        missileInstance.transform.Rotate(new Vector3(0, 0, degree));
+
+                        degree -= burstDegree;
+
+                        audioSource.PlayOneShot(shootAudioClips[Random.Range(0, shootAudioClips.Length)]);
+                    }
+
+                    canShoot = false;
+
+                    break;
+
+                case PlayerWeapon.WeaponTypes.automatic:
+
+                    break;
+            }
         }
     }
 

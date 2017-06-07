@@ -2,17 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerWeapon : MonoBehaviour {
+public class PlayerWeapon : MonoBehaviour
+{
 
-    PlayerShoot playerShoot;
-
-    enum WeaponTypes { def, burst, automatic }
-    WeaponTypes currentWeapon = WeaponTypes.def;
-
-    private void Start()
-    {
-        playerShoot = GetComponent<PlayerShoot>();
-    }
+    public enum WeaponTypes { normal, burst, automatic }
+    public WeaponTypes currentWeapon = WeaponTypes.normal;
 
     public void GetNewWeapon()
     {
