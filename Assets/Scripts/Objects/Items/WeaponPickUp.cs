@@ -52,9 +52,9 @@ public class WeaponPickUp : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.GetComponent<PlayerPowerUp>())
+        if (collision.GetComponent<PlayerWeapon>() && !despawned)
         {
-            // implement picking up here
+            collision.GetComponent<PlayerWeapon>().GetNewWeapon();
 
             audioSource.PlayOneShot(pickUpClip);
 

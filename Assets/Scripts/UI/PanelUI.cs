@@ -9,6 +9,9 @@ public class PanelUI : MonoBehaviour
     float slideSpeed = 5;
 
     [SerializeField]
+    bool generateVisibilityPositions;
+
+    [SerializeField]
     Vector3 visiblePosition = new Vector3(-200, 0, 0);
     [SerializeField]
     Vector3 hiddenPosition = new Vector3(200, 0, 0);
@@ -42,6 +45,12 @@ public class PanelUI : MonoBehaviour
         {
             rect.anchoredPosition = Vector3.Lerp(rect.anchoredPosition, hiddenPosition, Time.unscaledDeltaTime * slideSpeed);
         }
+    }
+
+    public void SetVisibilityPositions(Vector3 visible, Vector3 hidden)
+    {
+        visiblePosition = visible;
+        hiddenPosition = hidden;
     }
 
     public void ToggleVisible()

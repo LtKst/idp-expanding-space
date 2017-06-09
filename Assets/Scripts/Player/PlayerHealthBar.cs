@@ -32,13 +32,21 @@ public class PlayerHealthBar : MonoBehaviour
         // size
         healthBar.rectTransform.sizeDelta = Vector2.Lerp(healthBar.rectTransform.sizeDelta, new Vector2(250 - (250 / playerHealth.InitialHealth) * (playerHealth.InitialHealth - playerHealth.Health), healthBar.rectTransform.sizeDelta.y), Time.deltaTime);
 
-        // position
-        if (GameStateManager.InGame && !PauseManager.IsPaused)
+        Vector3 position = Vector3.zero;
+
+        if (right)
         {
-            if (right)
-                healthBar.rectTransform.anchoredPosition = new Vector2(healthBar.rectTransform.sizeDelta.x / 2, healthBar.rectTransform.anchoredPosition.y);
-            else
-                healthBar.rectTransform.anchoredPosition = new Vector2(-(healthBar.rectTransform.sizeDelta.x / 2), healthBar.rectTransform.anchoredPosition.y);
+            position = new Vector2(healthBar.rectTransform.sizeDelta.x / 2, healthBar.rectTransform.anchoredPosition.y);
+        }
+        else
+        {
+            position = new Vector2(-(healthBar.rectTransform.sizeDelta.x / 2), healthBar.rectTransform.anchoredPosition.y);
+        }
+
+        // position
+        if (GameStateManager.InGame && !GameStateManager.GameEnded && !PauseManager.IsPaused)
+        {
+            healthBar.rectTransform.anchoredPosition = position;
         }
 
         // colours
@@ -61,6 +69,15 @@ public class PlayerHealthBar : MonoBehaviour
 
 
         statText.text = GetComponent<PlayerManager>().playerName + ": lives " + playerHealth.Lives + "/" + playerHealth.InitialLives;
+
+
+        panel.SetVisibilityPositions(position, new Vector2(-(position.x), position.y));
+
+        if (GameStateManager.GameEnded)
+        {
+            panel.enabled = true;
+            panel.IsVisible = false;
+        }
     }
 
     private void OnResumed()

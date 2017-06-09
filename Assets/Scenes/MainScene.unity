@@ -567,6 +567,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slideSpeed: 5
+  generateVisibilityPositions: 0
   visiblePosition: {x: 0, y: -75, z: 0}
   hiddenPosition: {x: 0, y: 75, z: 0}
   visible: 0
@@ -1365,7 +1366,7 @@ MonoBehaviour:
   lives: 3
   godMode: 0
   startPoint: {fileID: 1741706569}
-  explosion: {fileID: 1197212851549084, guid: 8e5ac97dbe131694089e2937a9f0a49b, type: 2}
+  explosion: {fileID: 1084429624126188, guid: e6a0f4dcd037a1f44b4360d6d8aa1186, type: 2}
 --- !u!114 &155074714
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2344,6 +2345,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slideSpeed: 5
+  generateVisibilityPositions: 0
   visiblePosition: {x: -125, y: 12.5, z: 0}
   hiddenPosition: {x: 125, y: 12.5, z: 0}
   visible: 0
@@ -3599,7 +3601,7 @@ MonoBehaviour:
   lives: 3
   godMode: 0
   startPoint: {fileID: 314459208}
-  explosion: {fileID: 1197212851549084, guid: 8e5ac97dbe131694089e2937a9f0a49b, type: 2}
+  explosion: {fileID: 1084429624126188, guid: e6a0f4dcd037a1f44b4360d6d8aa1186, type: 2}
 --- !u!114 &462415360
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4332,6 +4334,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slideSpeed: 5
+  generateVisibilityPositions: 0
   visiblePosition: {x: 150, y: 0, z: 0}
   hiddenPosition: {x: -150, y: 0, z: 0}
   visible: 1
@@ -5463,6 +5466,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slideSpeed: 5
+  generateVisibilityPositions: 0
   visiblePosition: {x: 150, y: 0, z: 0}
   hiddenPosition: {x: -150, y: 0, z: 0}
   visible: 0
@@ -5660,6 +5664,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slideSpeed: 5
+  generateVisibilityPositions: 0
   visiblePosition: {x: -150, y: 75, z: 0}
   hiddenPosition: {x: 150, y: 75, z: 0}
   visible: 0
@@ -7563,6 +7568,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slideSpeed: 5
+  generateVisibilityPositions: 0
   visiblePosition: {x: -200, y: 0, z: 0}
   hiddenPosition: {x: 200, y: 0, z: 0}
   visible: 0
@@ -9253,6 +9259,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slideSpeed: 5
+  generateVisibilityPositions: 0
   visiblePosition: {x: 125, y: 12.5, z: 0}
   hiddenPosition: {x: -125, y: 12.5, z: 0}
   visible: 0
@@ -10400,6 +10407,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slideSpeed: 5
+  generateVisibilityPositions: 0
   visiblePosition: {x: -200, y: 0, z: 0}
   hiddenPosition: {x: 200, y: 0, z: 0}
   visible: 0
@@ -10897,6 +10905,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slideSpeed: 5
+  generateVisibilityPositions: 0
   visiblePosition: {x: 150, y: 75, z: 0}
   hiddenPosition: {x: -150, y: 75, z: 0}
   visible: 0
@@ -11400,6 +11409,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slideSpeed: 5
+  generateVisibilityPositions: 0
   visiblePosition: {x: 0, y: 17, z: 0}
   hiddenPosition: {x: 0, y: -17, z: 0}
   visible: 0
@@ -12138,6 +12148,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slideSpeed: 5
+  generateVisibilityPositions: 0
   visiblePosition: {x: 0, y: 75, z: 0}
   hiddenPosition: {x: 0, y: -75, z: 0}
   visible: 0
@@ -13024,6 +13035,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slideSpeed: 5
+  generateVisibilityPositions: 0
   visiblePosition: {x: -125, y: 12.5, z: 0}
   hiddenPosition: {x: 125, y: 12.5, z: 0}
   visible: 0
