@@ -24,14 +24,6 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField]
     GameObject explosion;
 
-    [SerializeField]
-    Image healthBar;
-    [SerializeField]
-    Sprite[] healthBarSprites;
-
-    [SerializeField]
-    Text statText;
-
     Quaternion startRotation;
 
     private void Start()
@@ -55,30 +47,6 @@ public class PlayerHealth : MonoBehaviour
         {
             Die();
         }
-
-        if (health <= initialHealth && health > 80)
-        {
-            healthBar.sprite = healthBarSprites[4];
-        }
-        else if (health <= 80 && health > 60)
-        {
-            healthBar.sprite = healthBarSprites[3];
-        }
-        else if (health <= 60 && health > 40)
-        {
-            healthBar.sprite = healthBarSprites[2];
-        }
-        else if (health <= 40 && health > 20)
-        {
-            healthBar.sprite = healthBarSprites[1];
-        }
-        else if (health <= 20)
-        {
-            healthBar.sprite = healthBarSprites[0];
-        }
-
-
-        statText.text = GetComponent<PlayerManager>().playerName + ": lives " + lives + "/" + initialLives;
     }
 
     private void Die()
@@ -120,6 +88,30 @@ public class PlayerHealth : MonoBehaviour
         get
         {
             return health;
+        }
+    }
+
+    public int InitialHealth
+    {
+        get
+        {
+            return initialHealth;
+        }
+    }
+
+    public int Lives
+    {
+        get
+        {
+            return lives;
+        }
+    }
+
+    public int InitialLives
+    {
+        get
+        {
+            return initialLives;
         }
     }
 }

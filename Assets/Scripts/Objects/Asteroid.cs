@@ -60,8 +60,7 @@ public class Asteroid : MonoBehaviour
 
         rb.velocity = Vector2.Lerp(rb.velocity, Vector2.zero, Time.deltaTime);
     }
-
-    // niet meer mee kloten :-)
+    
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Player")
