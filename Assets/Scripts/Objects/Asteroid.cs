@@ -29,6 +29,9 @@ public class Asteroid : MonoBehaviour
     [SerializeField]
     Sprite[] sprites;
 
+    [SerializeField]
+    GameObject breakParticle;
+
     private void Start()
     {
         playerPosition = Random.Range(0, 2) == 0 ? GameObject.FindWithTag("Manager").GetComponent<PlayersManager>().PlayerOne.transform.position : GameObject.FindWithTag("Manager").GetComponent<PlayersManager>().PlayerTwo.transform.position;
@@ -83,6 +86,9 @@ public class Asteroid : MonoBehaviour
         {
             for (int i = 0; i < 4; i++)
             {
+                GameObject breakParticleInstance = Instantiate(breakParticle);
+                breakParticleInstance.transform.position = transform.position;
+
                 miniAsteroid = Instantiate(gameObject);
                 miniAsteroid.transform.localScale = transform.localScale / 2;
                 miniAsteroid.GetComponent<Asteroid>().explosionPosition = transform.position;
