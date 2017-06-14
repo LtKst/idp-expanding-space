@@ -88,7 +88,10 @@ public class Asteroid : MonoBehaviour
                 miniAsteroid.GetComponent<Asteroid>().explosionPosition = transform.position;
                 miniAsteroid.GetComponent<Asteroid>().isHit = true;
 
-                Rigidbody2DExtension.AddExplosionForce(miniAsteroid.GetComponent<Rigidbody2D>(), 5, transform.position, 5);
+                Vector2 force = Random.insideUnitCircle;
+                force.Normalize();
+
+                miniAsteroid.GetComponent<Rigidbody2D>().AddForce(force * forceOnHit, ForceMode2D.Force);
             }
         }
 
