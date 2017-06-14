@@ -67,6 +67,8 @@ public class PlayerShoot : MonoBehaviour
             {
                 case PlayerWeapon.WeaponTypes.normal:
 
+                    initialFireRate = 0.35f;
+
                     missileInstance = Instantiate(missile);
                     missileInstance.transform.SetPositionAndRotation(shootPoint.position, transform.rotation);
                     missileInstance.GetComponent<Laser>().belongsTo = gameObject;
@@ -80,8 +82,9 @@ public class PlayerShoot : MonoBehaviour
                     break;
 
                 case PlayerWeapon.WeaponTypes.burst:
-
                     
+                    initialFireRate = 0.35f * 4;
+
                     float degree = transform.rotation.z + burstDegree * (burstAmount/2);
 
                     print(degree);
@@ -106,6 +109,8 @@ public class PlayerShoot : MonoBehaviour
                     break;
 
                 case PlayerWeapon.WeaponTypes.automatic:
+
+                    initialFireRate = 0.35f;
 
                     missileInstance = Instantiate(missile);
                     missileInstance.transform.SetPositionAndRotation(shootPoint.position, transform.rotation);

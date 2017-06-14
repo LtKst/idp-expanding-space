@@ -110,7 +110,7 @@ MonoBehaviour:
   speed: 30000
   damage: 20
   maxDistanceFromPlayer: 200
-  explosionParticleSystem: {fileID: 1084429624126188, guid: e6a0f4dcd037a1f44b4360d6d8aa1186,
+  laserParticleSystem: {fileID: 1743029150074310, guid: 430bde6bbb1e0422d8534309c501caaf,
     type: 2}
   belongsTo: {fileID: 0}
 --- !u!212 &212478054877784928

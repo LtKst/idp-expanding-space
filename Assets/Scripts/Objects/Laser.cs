@@ -16,7 +16,7 @@ public class Laser : MonoBehaviour
     float maxDistanceFromPlayer = 200;
 
     [SerializeField]
-    GameObject explosionParticleSystem;
+    GameObject laserParticleSystem;
 
     Rigidbody2D rb;
 
@@ -44,20 +44,21 @@ public class Laser : MonoBehaviour
         {
             collision.GetComponent<PlayerHealth>().Health -= damage;
 
-            BlowUp();
+            Hit();
         }
         else if (collision.gameObject.GetComponent<Asteroid>())
         {
             collision.gameObject.GetComponent<Asteroid>().Break();
 
-            BlowUp();
+            Hit();
         }
     }
 
-    void BlowUp()
+    void Hit()
     {
-        GameObject explosionInstance = Instantiate(explosionParticleSystem);
-        explosionInstance.transform.position = transform.position;
+        GameObject laserSplahInstance = Instantiate(laserParticleSystem);
+        laserSplahInstance.transform.position = transform.position;
+        laserSplahInstance.GetComponent<ParticleSystem>().startColor = GetComponent<SpriteRenderer>().color;
 
         Destroy(gameObject);
     }

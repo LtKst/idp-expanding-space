@@ -34,7 +34,12 @@ public class Asteroid : MonoBehaviour
 
     private void Start()
     {
-        playerPosition = Random.Range(0, 2) == 0 ? GameObject.FindWithTag("Manager").GetComponent<PlayersManager>().PlayerOne.transform.position : GameObject.FindWithTag("Manager").GetComponent<PlayersManager>().PlayerTwo.transform.position;
+        if (!GameStateManager.GameEnded)
+        {
+            playerPosition = Utility.Random.RandomBool() ?
+                GameObject.FindWithTag("Manager").GetComponent<PlayersManager>().PlayerOne.transform.position :
+                GameObject.FindWithTag("Manager").GetComponent<PlayersManager>().PlayerTwo.transform.position;
+        }
 
         direction = playerPosition - transform.position;
 
@@ -53,11 +58,7 @@ public class Asteroid : MonoBehaviour
 
     private void Update()
     {
-        if (isHit && !collidedPlayer)
-        {
-            Rigidbody2DExtension.AddExplosionForce(rb, 5, explosionPosition, 5);
-        }
-        else if (!collided)
+        if (!collided)
         {
             rb.AddForce(direction.normalized * speed * Time.deltaTime, ForceMode2D.Force);
         }

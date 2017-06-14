@@ -9,7 +9,7 @@ namespace Utility
 
         public static bool RandomBool()
         {
-            int i = UnityEngine.Random.Range(0, 1);
+            int i = UnityEngine.Random.Range(0, 2);
             
             return i == 1 ? true : false;
         }
