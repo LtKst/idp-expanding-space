@@ -31,7 +31,8 @@ public class Asteroid : MonoBehaviour
 
     private void Start()
     {
-        playerPosition = GameObject.FindWithTag("Manager").GetComponent<PlayersManager>().PlayerOne.transform.position;
+        playerPosition = Random.Range(0, 2) == 0 ? GameObject.FindWithTag("Manager").GetComponent<PlayersManager>().PlayerOne.transform.position : GameObject.FindWithTag("Manager").GetComponent<PlayersManager>().PlayerTwo.transform.position;
+
         direction = playerPosition - transform.position;
 
         rb = GetComponent<Rigidbody2D>();
@@ -80,7 +81,7 @@ public class Asteroid : MonoBehaviour
     {
         if (!isHit)
         {
-            for (int i = 0; i < 1; i++)
+            for (int i = 0; i < 4; i++)
             {
                 miniAsteroid = Instantiate(gameObject);
                 miniAsteroid.transform.localScale = transform.localScale / 2;

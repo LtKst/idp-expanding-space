@@ -1,27 +1,55 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
+﻿using UnityEngine;
 
 public class FrameAnimation : MonoBehaviour {
 
-    [SerializeField]
-    Sprite[] frames;
-    [SerializeField]
-    float fps = 24;
+    SpriteRenderer spr;
+    
+    public Sprite[] frames;
 
-    Image image;
+    public float frameRate = 24;
+    
+    public bool playAutomatically;
+    public bool loop;
+
+    bool isPlaying;
 
     private void Start()
     {
-        image = GetComponent<Image>();
+        spr = GetComponent<SpriteRenderer>();
+
+        isPlaying = playAutomatically;
     }
 
     private void Update()
     {
-        int index = (int)((Time.time * fps) % frames.Length);
+        if (isPlaying)
+        {
+            int index = (int)((Time.unscaledTime * frameRate) % frames.Length);
 
-        image.sprite = frames[index];
-        
+            spr.sprite = frames[index];
+
+            if (!loop && index == frames.Length)
+            {
+                isPlaying = false;
+            }
+        }
+    }
+
+    public void Play()
+    {
+        isPlaying = true;
+    }
+
+    public void Stop()
+    {
+        isPlaying = false;
+    }
+
+    public bool IsPlaying
+    {
+        get
+        {
+            return isPlaying;
+        }
     }
 }

@@ -4,9 +4,11 @@ using UnityEngine;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(SpriteRenderer))]
+[RequireComponent(typeof(FrameAnimation))]
 public class BackgroundSprite : MonoBehaviour {
 
     SpriteRenderer spriteRenderer;
+    FrameAnimation frameAnimation;
 
     int selectedBackground = 0;
     bool backgroundChanged = false;
@@ -17,7 +19,13 @@ public class BackgroundSprite : MonoBehaviour {
     [SerializeField]
     Sprite[] backgrounds;
     [SerializeField]
-    float colorLerpSpeed = 5;
+    float fadeSpeed = 5;
+
+    [Header("Animated")]
+    [SerializeField]
+    int animatedAmount;
+    [SerializeField]
+    Sprite[] animationOneFrames;
 
     [Header("UI")]
     [SerializeField]
@@ -27,21 +35,14 @@ public class BackgroundSprite : MonoBehaviour {
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
 
-        // Load and set the selected background from PlayerPrefs
-        selectedBackground = PlayerPrefs.GetInt("selectedBackground", 0);
-        spriteRenderer.sprite = backgrounds[selectedBackground];
-        previewImage.sprite = backgrounds[selectedBackground];
-
-        // Load and set flip from PlayerPrefs
-        flipped = System.Convert.ToBoolean(PlayerPrefs.GetInt("flippedBackground"));
-        spriteRenderer.flipX = flipped;
+        LoadBackground();
     }
 
     private void Update()
     {
         if (backgroundChanged || flippingBackground)
         {
-            spriteRenderer.color = Color.Lerp(spriteRenderer.color, Color.black, Time.unscaledDeltaTime * colorLerpSpeed);
+            spriteRenderer.color = Color.Lerp(spriteRenderer.color, Color.black, Time.unscaledDeltaTime * fadeSpeed);
 
             if (spriteRenderer.color.r <= 0.05f)
             {
@@ -54,7 +55,7 @@ public class BackgroundSprite : MonoBehaviour {
         }
         else
         {
-            spriteRenderer.color = Color.Lerp(spriteRenderer.color, Color.white, Time.unscaledDeltaTime * colorLerpSpeed);
+            spriteRenderer.color = Color.Lerp(spriteRenderer.color, Color.white, Time.unscaledDeltaTime * fadeSpeed);
         }
     }
 
@@ -113,5 +114,17 @@ public class BackgroundSprite : MonoBehaviour {
         backgroundChanged = true;
 
         PlayerPrefs.SetInt("selectedBackground", selectedBackground);
+    }
+
+    private void LoadBackground()
+    {
+        // Load and set the selected background from PlayerPrefs
+        selectedBackground = PlayerPrefs.GetInt("selectedBackground", 0);
+        spriteRenderer.sprite = backgrounds[selectedBackground];
+        previewImage.sprite = backgrounds[selectedBackground];
+
+        // Load and set flip from PlayerPrefs
+        flipped = System.Convert.ToBoolean(PlayerPrefs.GetInt("flippedBackground"));
+        spriteRenderer.flipX = flipped;
     }
 }

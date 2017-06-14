@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CursorManager : MonoBehaviour {
+public class CursorManager : MonoBehaviour
+{
 
     [SerializeField]
     Texture2D cursorTextrue;

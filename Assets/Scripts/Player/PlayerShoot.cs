@@ -26,6 +26,9 @@ public class PlayerShoot : MonoBehaviour
 
     PlayerWeapon playerWeapon;
 
+    [HideInInspector]
+    public bool shootKeyDown;
+
     bool canShoot = true;
 
     private void Start()
@@ -47,10 +50,17 @@ public class PlayerShoot : MonoBehaviour
             canShoot = true;
             fireRate = initialFireRate;
         }
+
+        if (playerWeapon.currentWeapon == PlayerWeapon.WeaponTypes.automatic && shootKeyDown)
+        {
+            Shoot();
+        }
     }
 
     public void Shoot()
     {
+        shootKeyDown = true;
+
         if (canShoot)
         {
             switch (playerWeapon.currentWeapon)
@@ -97,20 +107,18 @@ public class PlayerShoot : MonoBehaviour
 
                 case PlayerWeapon.WeaponTypes.automatic:
 
+                    missileInstance = Instantiate(missile);
+                    missileInstance.transform.SetPositionAndRotation(shootPoint.position, transform.rotation);
+                    missileInstance.GetComponent<Laser>().belongsTo = gameObject;
+
+                    missileInstance.GetComponent<SpriteRenderer>().color = Color.cyan;
+
+                    audioSource.PlayOneShot(shootAudioClips[Random.Range(0, shootAudioClips.Length)]);
+
+                    canShoot = false;
+
                     break;
             }
-        }
-    }
-
-    public float FireRate
-    {
-        get
-        {
-            return fireRate;
-        }
-        set
-        {
-            fireRate = value;
         }
     }
 }

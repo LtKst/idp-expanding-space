@@ -29,6 +29,7 @@ public class PlayerInput : MonoBehaviour
             switch (playerManager.player)
             {
                 case PlayerManager.Player.One:
+
                     playerMovement.Move(Input.GetAxis("PlayerOneHorizontal"), Input.GetKey(KeyCode.W), Input.GetKey(KeyCode.S));
                     playerEngine.UpdateEngineSound(Input.GetKey(KeyCode.W));
 
@@ -36,8 +37,12 @@ public class PlayerInput : MonoBehaviour
                     {
                         playerShoot.Shoot();
                     }
+
+                    playerShoot.shootKeyDown = Input.GetKey(KeyCode.LeftShift);
+
                     break;
                 case PlayerManager.Player.Two:
+
                     playerMovement.Move(Input.GetAxis("PlayerTwoHorizontal"), Input.GetKey(KeyCode.UpArrow), Input.GetKey(KeyCode.DownArrow));
                     playerEngine.UpdateEngineSound(Input.GetKey(KeyCode.UpArrow));
 
@@ -45,6 +50,9 @@ public class PlayerInput : MonoBehaviour
                     {
                         playerShoot.Shoot();
                     }
+
+                    playerShoot.shootKeyDown = Input.GetKey(KeyCode.RightShift);
+
                     break;
             }
         }
