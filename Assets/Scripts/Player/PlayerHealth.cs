@@ -19,6 +19,9 @@ public class PlayerHealth : MonoBehaviour
     bool godMode;
 
     [SerializeField]
+    bool spawnProtection;
+
+    [SerializeField]
     Transform startPoint;
 
     [SerializeField]
@@ -75,7 +78,7 @@ public class PlayerHealth : MonoBehaviour
                 go.SendMessage("OnPlayerLost", SendMessageOptions.DontRequireReceiver);
             }
 
-            Destroy(gameObject);
+            gameObject.SetActive(false);
         }
     }
 

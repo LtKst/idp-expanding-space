@@ -47,12 +47,6 @@ public class PanelUI : MonoBehaviour
         }
     }
 
-    public void SetVisibilityPositions(Vector3 visible, Vector3 hidden)
-    {
-        visiblePosition = visible;
-        hiddenPosition = hidden;
-    }
-
     public void ToggleVisible()
     {
         visible = !visible;
@@ -72,6 +66,36 @@ public class PanelUI : MonoBehaviour
         set
         {
             visible = value;
+        }
+    }
+
+    public void SetVisibilityPositions(Vector3 visible, Vector3 hidden)
+    {
+        visiblePosition = visible;
+        hiddenPosition = hidden;
+    }
+
+    public Vector3 VisiblePosition
+    {
+        get
+        {
+            return visiblePosition;
+        }
+    }
+
+    public Vector3 HiddenPosition
+    {
+        get
+        {
+            return hiddenPosition;
+        }
+    }
+
+    public float SlideSpeed
+    {
+        get
+        {
+            return slideSpeed;
         }
     }
 }

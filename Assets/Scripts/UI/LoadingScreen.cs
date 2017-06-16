@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
 public class LoadingScreen : MonoBehaviour {
 
@@ -12,7 +11,7 @@ public class LoadingScreen : MonoBehaviour {
     RectTransform loadingAnimation;
 
     [SerializeField]
-    float speed = 5;
+    float rotationSpeed = 5;
 
     private void Start()
     {
@@ -23,7 +22,7 @@ public class LoadingScreen : MonoBehaviour {
     {
         if (Application.isLoadingLevel)
         {
-            loadingAnimation.Rotate(new Vector3(0, 0, -1) * Time.unscaledDeltaTime * speed);
+            loadingAnimation.Rotate(new Vector3(0, 0, -1) * Time.unscaledDeltaTime * rotationSpeed);
         }
         else
         {

@@ -5,6 +5,8 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class Asteroid : MonoBehaviour
 {
+    PlayersManager playersManager;
+
     Rigidbody2D rb;
 
     Vector3 playerPosition;
@@ -34,11 +36,13 @@ public class Asteroid : MonoBehaviour
 
     private void Start()
     {
+        playersManager = GameObject.FindWithTag("Manager").GetComponent<PlayersManager>();
+
         if (!GameStateManager.GameEnded)
         {
             playerPosition = Utility.Random.RandomBool() ?
-                GameObject.FindWithTag("Manager").GetComponent<PlayersManager>().PlayerOne.transform.position :
-                GameObject.FindWithTag("Manager").GetComponent<PlayersManager>().PlayerTwo.transform.position;
+                playersManager.PlayerOne.transform.position :
+                playersManager.PlayerTwo.transform.position;
         }
 
         direction = playerPosition - transform.position;
