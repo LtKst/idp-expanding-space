@@ -12,7 +12,13 @@ public class PlayerShoot : MonoBehaviour
     Transform shootPoint;
 
     [SerializeField]
-    float fireRate = 0.5f;
+    float normalFireRate = 0.35f;
+    [SerializeField]
+    float burstFireRate = 1.4f;
+    [SerializeField]
+    float automaticFireRate = 0.20f;
+
+    float fireRate;
     float initialFireRate;
 
     int burstAmount = 3;
@@ -26,14 +32,11 @@ public class PlayerShoot : MonoBehaviour
 
     PlayerWeapon playerWeapon;
 
-    [HideInInspector]
-    public bool shootKeyDown;
-
     bool canShoot = true;
 
     private void Start()
     {
-        initialFireRate = fireRate;
+        initialFireRate = normalFireRate;
 
         audioSource = GetComponent<AudioSource>();
         playerWeapon = GetComponent<PlayerWeapon>();
@@ -50,24 +53,15 @@ public class PlayerShoot : MonoBehaviour
             canShoot = true;
             fireRate = initialFireRate;
         }
-
-        if (playerWeapon.currentWeapon == PlayerWeapon.WeaponTypes.automatic && shootKeyDown)
-        {
-            Shoot();
-        }
     }
 
     public void Shoot()
     {
-        shootKeyDown = true;
-
         if (canShoot)
         {
             switch (playerWeapon.currentWeapon)
             {
-                case PlayerWeapon.WeaponTypes.normal:
-
-                    initialFireRate = 0.35f;
+                case PlayerWeapon.Weapons.normal:
 
                     missileInstance = Instantiate(missile);
                     missileInstance.transform.SetPositionAndRotation(shootPoint.position, transform.rotation);
@@ -77,17 +71,11 @@ public class PlayerShoot : MonoBehaviour
 
                     audioSource.PlayOneShot(shootAudioClips[Random.Range(0, shootAudioClips.Length)]);
 
-                    canShoot = false;
-
                     break;
 
-                case PlayerWeapon.WeaponTypes.burst:
-                    
-                    initialFireRate = 0.35f * 4;
+                case PlayerWeapon.Weapons.burst:
 
                     float degree = transform.rotation.z + burstDegree * (burstAmount/2);
-
-                    print(degree);
 
                     for (int i = 0; i < burstAmount; i++)
                     {
@@ -104,13 +92,9 @@ public class PlayerShoot : MonoBehaviour
                         audioSource.PlayOneShot(shootAudioClips[Random.Range(0, shootAudioClips.Length)]);
                     }
 
-                    canShoot = false;
-
                     break;
 
-                case PlayerWeapon.WeaponTypes.automatic:
-
-                    initialFireRate = 0.35f;
+                case PlayerWeapon.Weapons.automatic:
 
                     missileInstance = Instantiate(missile);
                     missileInstance.transform.SetPositionAndRotation(shootPoint.position, transform.rotation);
@@ -120,10 +104,34 @@ public class PlayerShoot : MonoBehaviour
 
                     audioSource.PlayOneShot(shootAudioClips[Random.Range(0, shootAudioClips.Length)]);
 
-                    canShoot = false;
-
                     break;
             }
+
+            canShoot = false;
+        }
+    }
+
+    public void UpdateFireRate()
+    {
+        switch (playerWeapon.currentWeapon)
+        {
+            case PlayerWeapon.Weapons.normal:
+
+                initialFireRate = normalFireRate;
+
+                break;
+
+            case PlayerWeapon.Weapons.burst:
+
+                initialFireRate = burstFireRate;
+
+                break;
+
+            case PlayerWeapon.Weapons.automatic:
+
+                initialFireRate = automaticFireRate;
+
+                break;
         }
     }
 }

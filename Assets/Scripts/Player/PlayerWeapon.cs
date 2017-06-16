@@ -1,15 +1,41 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(PlayerShoot))]
 public class PlayerWeapon : MonoBehaviour
 {
+    PlayerShoot playerShoot;
 
-    public enum WeaponTypes { normal, burst, automatic }
-    public WeaponTypes currentWeapon = WeaponTypes.normal;
+    public enum Weapons { normal, burst, automatic }
+    public Weapons currentWeapon = Weapons.normal;
+
+    bool hasSpecialWeapon;
+
+    [SerializeField]
+    int specialWeaponDuration = 15;
+
+    private void Start()
+    {
+        playerShoot = GetComponent<PlayerShoot>();
+    }
 
     public void GetNewWeapon()
     {
-        currentWeapon = (WeaponTypes)Random.Range(0, System.Enum.GetValues(typeof(WeaponTypes)).Length);
+        StartCoroutine(ChangeWeapon());
+    }
+
+    IEnumerator ChangeWeapon()
+    {
+        hasSpecialWeapon = true;
+
+        currentWeapon = (Weapons)Random.Range(1, System.Enum.GetValues(typeof(Weapons)).Length);
+        playerShoot.UpdateFireRate();
+
+        yield return new WaitForSeconds(specialWeaponDuration);
+
+        currentWeapon = Weapons.normal;
+        playerShoot.UpdateFireRate();
+
+        hasSpecialWeapon = false;
     }
 }

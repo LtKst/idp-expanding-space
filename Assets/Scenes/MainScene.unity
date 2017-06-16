@@ -1321,7 +1321,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   missile: {fileID: 1420922162965316, guid: 41efc240f0198bd45b8fa027efc9d2ee, type: 2}
   shootPoint: {fileID: 1491051375}
-  fireRate: 0.35
+  normalFireRate: 0.35
+  burstFireRate: 1.4
+  automaticFireRate: 0.2
   burstDegree: 30
   shootAudioClips:
   - {fileID: 8300000, guid: 1e429d67972fb114bae040b44a8c72b9, type: 3}
@@ -3603,7 +3605,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   missile: {fileID: 1420922162965316, guid: 41efc240f0198bd45b8fa027efc9d2ee, type: 2}
   shootPoint: {fileID: 1055843734}
-  fireRate: 0.35
+  normalFireRate: 0.35
+  burstFireRate: 1.4
+  automaticFireRate: 0.2
   burstDegree: 30
   shootAudioClips:
   - {fileID: 8300000, guid: 1e429d67972fb114bae040b44a8c72b9, type: 3}
@@ -14692,7 +14696,7 @@ MonoBehaviour:
   - {fileID: 1502109710496352, guid: 0b9cc30bd3cc8324b8106f49a75dede7, type: 2}
   spawnDelayMinMax: {x: 30, y: 60}
   spawnPointOffset: 2.5
-  spawnWithX: 0
+  spawnWithX: 1
 --- !u!114 &2087897328
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14740,9 +14744,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   asteroid: {fileID: 1896321451771302, guid: 81ddb1f5bda20e34486673850a37a13e, type: 2}
-  spawnDelayMinMax: {x: 30, y: 60}
+  spawnDelayMinMax: {x: 25, y: 35}
   spawnPointOffset: 50
-  spawnWithX: 1
+  spawnWithX: 0
 --- !u!1 &2091789955
 GameObject:
   m_ObjectHideFlags: 0

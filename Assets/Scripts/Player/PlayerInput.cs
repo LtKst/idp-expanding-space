@@ -38,7 +38,8 @@ public class PlayerInput : MonoBehaviour
                         playerShoot.Shoot();
                     }
 
-                    playerShoot.shootKeyDown = Input.GetKey(KeyCode.LeftShift);
+                    if (Input.GetKey(KeyCode.LeftShift))
+                        playerShoot.Shoot();
 
                     break;
                 case PlayerManager.Player.Two:
@@ -51,7 +52,8 @@ public class PlayerInput : MonoBehaviour
                         playerShoot.Shoot();
                     }
 
-                    playerShoot.shootKeyDown = Input.GetKey(KeyCode.RightShift);
+                    if (Input.GetKey(KeyCode.RightShift))
+                        playerShoot.Shoot();
 
                     break;
             }
