@@ -6,7 +6,7 @@ Astrozone is a local multiplayer asteroid shooter game made in <a href="https://
 
 ## Play it
 
-<a href="http://22084.hosts.ma-cloud.nl/bewijzenmap/p1.3/idp/expanding-space/" target="_blank">You can play the game here</a>
+<a href="http://22084.hosts.ma-cloud.nl/bewijzenmap/p1.4/idp/expanding-space/" target="_blank">You can play the game here</a>
 
 ---
 
