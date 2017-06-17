@@ -1,8 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class uiManager : MonoBehaviour {
+public class UIManager : MonoBehaviour {
     
     public static void HideAllPanels()
     {

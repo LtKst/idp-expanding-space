@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class QuitManager : MonoBehaviour
@@ -21,7 +19,7 @@ public class QuitManager : MonoBehaviour
 
             if (fadeImage.color.a >= 0.95f)
             {
-                AppHelper.Quit();
+                ApplicationHelper.Quit();
 
             }
         }

@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PauseManager : MonoBehaviour {
 
@@ -11,7 +9,7 @@ public class PauseManager : MonoBehaviour {
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) && GameStateManager.InGame && !GameStateManager.GameEnded)
+        if (Input.GetKeyDown(KeyCode.Escape) && GameState.InGame && !GameState.InEndGame)
         {
             if (!isPaused)
             {
@@ -27,6 +25,7 @@ public class PauseManager : MonoBehaviour {
     public void Pause()
     {
         Time.timeScale = 0;
+
         pausePanel.IsVisible = true;
 
         isPaused = true;
@@ -44,7 +43,7 @@ public class PauseManager : MonoBehaviour {
 
         isPaused = false;
 
-        uiManager.HideAllPanels();
+        UIManager.HideAllPanels();
 
         Object[] objects = FindObjectsOfType(typeof(GameObject));
         foreach (GameObject go in objects)

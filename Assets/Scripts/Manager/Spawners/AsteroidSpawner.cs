@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class AsteroidSpawner : MonoBehaviour
 {
@@ -26,7 +24,7 @@ public class AsteroidSpawner : MonoBehaviour
 
     private void Update()
     {
-        if (GameStateManager.InGame)
+        if (GameState.InGame)
         {
             timer -= Time.deltaTime * 2;
         }

@@ -1,13 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.Events;
+﻿using UnityEngine;
 
-public class GameStateManager : MonoBehaviour {
+public class GameState : MonoBehaviour {
 
     static bool gameStarted;
+
     static bool inGame;
-    static bool gameEnded;
+    static bool inEndGame;
 
     public void StartGame()
     {
@@ -55,15 +53,15 @@ public class GameStateManager : MonoBehaviour {
         }
     }
 
-    public static bool GameEnded
+    public static bool InEndGame
     {
         get
         {
-            return gameEnded;
+            return inEndGame;
         }
         set
         {
-            gameEnded = value;
+            inEndGame = value;
         }
     }
 }

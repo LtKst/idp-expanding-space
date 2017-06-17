@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 [RequireComponent(typeof(PlayerManager))]
 [RequireComponent(typeof(PlayerMovement))]
@@ -24,7 +22,7 @@ public class PlayerInput : MonoBehaviour
 
     private void Update()
     {
-        if (GameStateManager.InGame && !PauseManager.IsPaused)
+        if (GameState.InGame && !PauseManager.IsPaused)
         {
             switch (playerManager.player)
             {

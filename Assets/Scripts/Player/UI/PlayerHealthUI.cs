@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(PlayerHealth))]
@@ -62,7 +60,7 @@ public class PlayerHealthUI : MonoBehaviour
         panel.SetVisibilityPositions(position, new Vector2(hiddenX, position.y));
 
         // position
-        if (GameStateManager.InGame && !GameStateManager.GameEnded && !PauseManager.IsPaused)
+        if (GameState.InGame && !GameState.InEndGame && !PauseManager.IsPaused)
         {
             healthBar.rectTransform.anchoredPosition = position; //Vector2.Lerp(healthBar.rectTransform.anchoredPosition, position, Time.deltaTime * panel.SlideSpeed);
         }

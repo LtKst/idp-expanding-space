@@ -1,8 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class AppHelper : MonoBehaviour {
+public class ApplicationHelper : MonoBehaviour {
 
 	public static void Quit()
     {

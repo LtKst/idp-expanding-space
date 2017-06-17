@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class CursorManager : MonoBehaviour
 {
@@ -15,6 +13,6 @@ public class CursorManager : MonoBehaviour
 
     private void Update()
     {
-        Cursor.visible = (!GameStateManager.InGame || PauseManager.IsPaused || GameStateManager.GameEnded);
+        Cursor.visible = (!GameState.InGame || PauseManager.IsPaused || GameState.InEndGame);
     }
 }

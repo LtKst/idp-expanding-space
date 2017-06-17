@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class Asteroid : MonoBehaviour
@@ -13,12 +11,9 @@ public class Asteroid : MonoBehaviour
     Vector3 direction;
 
     bool collided;
-    bool collidedPlayer;
 
     GameObject miniAsteroid;
     bool isHit;
-
-    Vector3 explosionPosition;
 
     [SerializeField]
     float speed = 50;
@@ -38,7 +33,7 @@ public class Asteroid : MonoBehaviour
     {
         playersManager = GameObject.FindWithTag("Manager").GetComponent<PlayersManager>();
 
-        if (!GameStateManager.GameEnded)
+        if (!GameState.InEndGame)
         {
             playerPosition = Utility.Random.RandomBool() ?
                 playersManager.PlayerOne.transform.position :
@@ -78,8 +73,6 @@ public class Asteroid : MonoBehaviour
             {
                 collision.gameObject.GetComponent<PlayerHealth>().Health -= (int)rb.velocity.magnitude * 3;
             }
-
-            collidedPlayer = true;
         }
 
         collided = true;
@@ -96,7 +89,6 @@ public class Asteroid : MonoBehaviour
 
                 miniAsteroid = Instantiate(gameObject);
                 miniAsteroid.transform.localScale = transform.localScale / 2;
-                miniAsteroid.GetComponent<Asteroid>().explosionPosition = transform.position;
                 miniAsteroid.GetComponent<Asteroid>().isHit = true;
 
                 Vector2 force = Random.insideUnitCircle;

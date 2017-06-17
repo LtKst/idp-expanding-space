@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class PlayerManager : MonoBehaviour
@@ -31,11 +29,11 @@ public class PlayerManager : MonoBehaviour
 
     public void EndGame(GameObject winningPlayer)
     {
-        if (GameStateManager.InGame)
+        if (GameState.InGame)
         {
             winningPlayerName = winningPlayer.GetComponent<PlayerManager>().playerName;
 
-            GameStateManager.GameEnded = true;
+            GameState.InEndGame = true;
 
             statsPanel.IsVisible = false;
 

@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class BoundToScreenSpace : MonoBehaviour
 {
@@ -12,7 +10,7 @@ public class BoundToScreenSpace : MonoBehaviour
 
     private void Update()
     {
-        if (GameStateManager.InGame || !boundIfInGame)
+        if (GameState.InGame || !boundIfInGame)
         {
             // horizontal
             if (transform.position.x <= ScreenToWorld.Left - offset)

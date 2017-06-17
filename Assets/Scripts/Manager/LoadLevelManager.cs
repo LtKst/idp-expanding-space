@@ -1,8 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class LoadLevelManager : MonoBehaviour {
 
@@ -29,9 +27,9 @@ public class LoadLevelManager : MonoBehaviour {
 
             if (fadeImage.color.a >= 0.95f)
             {
-                GameStateManager.GameStarted = false;
-                GameStateManager.InGame = false;
-                GameStateManager.GameEnded = false;
+                GameState.GameStarted = false;
+                GameState.InGame = false;
+                GameState.InEndGame = false;
 
                 pauseManager.Resume();
 

@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Events;
 
 public class PlayerStartPoint : MonoBehaviour {
@@ -40,7 +38,7 @@ public class PlayerStartPoint : MonoBehaviour {
 
     private void Update()
     {
-        if (GameStateManager.GameStarted && !inPosition)
+        if (GameState.GameStarted && !inPosition)
         {
             player.position = Vector3.Lerp(player.position, transform.position, Time.deltaTime * moveSpeed);
 

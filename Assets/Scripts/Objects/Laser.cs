@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class Laser : MonoBehaviour
@@ -58,7 +56,9 @@ public class Laser : MonoBehaviour
     {
         GameObject laserSplahInstance = Instantiate(laserParticleSystem);
         laserSplahInstance.transform.position = transform.position;
-        laserSplahInstance.GetComponent<ParticleSystem>().startColor = GetComponent<SpriteRenderer>().color;
+
+        var main = laserSplahInstance.GetComponent<ParticleSystem>().main;
+        main.startColor = GetComponent<SpriteRenderer>().color;
 
         Destroy(gameObject);
     }
