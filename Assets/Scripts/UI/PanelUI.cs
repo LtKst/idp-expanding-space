@@ -1,15 +1,12 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class PanelUI : MonoBehaviour
 {
     RectTransform rect;
-
-    [SerializeField]
-    float slideSpeed = 5;
-
-    [SerializeField]
-    bool generateVisibilityPositions;
+    
+    public float slideSpeed = 5;
 
     [SerializeField]
     Vector3 visiblePosition = new Vector3(-200, 0, 0);
@@ -18,8 +15,6 @@ public class PanelUI : MonoBehaviour
 
     [SerializeField]
     bool visible;
-
-    bool disableOnHide;
 
     private void Start()
     {
@@ -57,6 +52,20 @@ public class PanelUI : MonoBehaviour
         visible = value;
     }
 
+    public void SetVisibilityForSeconds(float seconds)
+    {
+        StartCoroutine(VisibleForSeconds(seconds));
+    }
+
+    IEnumerator VisibleForSeconds(float seconds)
+    {
+        visible = true;
+
+        yield return new WaitForSeconds(seconds);
+
+        visible = false;
+    }
+
     public bool IsVisible
     {
         get
@@ -88,14 +97,6 @@ public class PanelUI : MonoBehaviour
         get
         {
             return hiddenPosition;
-        }
-    }
-
-    public float SlideSpeed
-    {
-        get
-        {
-            return slideSpeed;
         }
     }
 }

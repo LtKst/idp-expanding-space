@@ -6,7 +6,7 @@ public class PlayerWeapon : MonoBehaviour
 {
     PlayerShoot playerShoot;
 
-    public enum Weapons { normal, burst, automatic }
+    public enum Weapons { normal, burst, automatic, god }
     public Weapons currentWeapon = Weapons.normal;
 
     bool hasSpecialWeapon;

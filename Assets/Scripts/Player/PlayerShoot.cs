@@ -11,19 +11,36 @@ public class PlayerShoot : MonoBehaviour
     [SerializeField]
     Transform shootPoint;
 
+    [Header("Normal")]
     [SerializeField]
     float normalFireRate = 0.35f;
     [SerializeField]
+    Color normalLaserColor;
+
+    [Header("Burst")]
+    [SerializeField]
     float burstFireRate = 1.4f;
     [SerializeField]
-    float automaticFireRate = 0.20f;
-
-    float fireRate;
-    float initialFireRate;
-
     int burstAmount = 3;
     [SerializeField]
     float burstDegree = 30;
+    [SerializeField]
+    Color burstColor;
+
+    [Header("Automatic")]
+    [SerializeField]
+    float automaticFireRate = 0.20f;
+    [SerializeField]
+    Color automaticColor;
+
+    [Header("God gun")]
+    [SerializeField]
+    float godFireRate = 0.02f;
+    [SerializeField]
+    Color godColor;
+
+    float fireRate;
+    float initialFireRate;
 
     [Header("Audio")]
     [SerializeField]
@@ -67,7 +84,7 @@ public class PlayerShoot : MonoBehaviour
                     missileInstance.transform.SetPositionAndRotation(shootPoint.position, transform.rotation);
                     missileInstance.GetComponent<Laser>().belongsTo = gameObject;
 
-                    missileInstance.GetComponent<SpriteRenderer>().color = Color.red;
+                    missileInstance.GetComponent<SpriteRenderer>().color = normalLaserColor;
 
                     audioSource.PlayOneShot(shootAudioClips[Random.Range(0, shootAudioClips.Length)]);
 
@@ -85,7 +102,7 @@ public class PlayerShoot : MonoBehaviour
 
                         missileInstance.transform.Rotate(new Vector3(0, 0, degree));
 
-                        missileInstance.GetComponent<SpriteRenderer>().color = Color.green;
+                        missileInstance.GetComponent<SpriteRenderer>().color = burstColor;
 
                         degree -= burstDegree;
 
@@ -100,7 +117,19 @@ public class PlayerShoot : MonoBehaviour
                     missileInstance.transform.SetPositionAndRotation(shootPoint.position, transform.rotation);
                     missileInstance.GetComponent<Laser>().belongsTo = gameObject;
 
-                    missileInstance.GetComponent<SpriteRenderer>().color = Color.cyan;
+                    missileInstance.GetComponent<SpriteRenderer>().color = automaticColor;
+
+                    audioSource.PlayOneShot(shootAudioClips[Random.Range(0, shootAudioClips.Length)]);
+
+                    break;
+
+                case PlayerWeapon.Weapons.god:
+
+                    missileInstance = Instantiate(missile);
+                    missileInstance.transform.SetPositionAndRotation(shootPoint.position, transform.rotation);
+                    missileInstance.GetComponent<Laser>().belongsTo = gameObject;
+
+                    missileInstance.GetComponent<SpriteRenderer>().color = godColor;
 
                     audioSource.PlayOneShot(shootAudioClips[Random.Range(0, shootAudioClips.Length)]);
 
@@ -130,6 +159,12 @@ public class PlayerShoot : MonoBehaviour
             case PlayerWeapon.Weapons.automatic:
 
                 initialFireRate = automaticFireRate;
+
+                break;
+
+            case PlayerWeapon.Weapons.god:
+
+                initialFireRate = godFireRate;
 
                 break;
         }
