@@ -11,7 +11,7 @@ public class Laser : MonoBehaviour
     int damage;
 
     [SerializeField]
-    float maxDistanceFromPlayer = 200;
+    float maxDistanceFromCamera = 200;
 
     [SerializeField]
     GameObject laserParticleSystem;
@@ -30,7 +30,7 @@ public class Laser : MonoBehaviour
 
     private void Update()
     {
-        if (Vector3.Distance(transform.position, Camera.main.transform.position) >= maxDistanceFromPlayer)
+        if (Vector3.Distance(transform.position, Camera.main.transform.position) >= maxDistanceFromCamera)
         {
             Destroy(gameObject);
         }
@@ -40,7 +40,7 @@ public class Laser : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player" && collision.gameObject != belongsTo)
         {
-            collision.GetComponent<PlayerHealth>().Health -= damage;
+            collision.GetComponent<PlayerHealth>().Damage(damage);
 
             Hit();
         }

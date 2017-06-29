@@ -39,14 +39,14 @@ public class AsteroidSpawner : MonoBehaviour
             {
                 instance.transform.position = new Vector3(
                     Random.Range(ScreenToWorld.Left - spawnPointOffset, ScreenToWorld.Right + spawnPointOffset),
-                    Random.Range(ScreenToWorld.Top - spawnPointOffset, ScreenToWorld.Bottom + spawnPointOffset)
+                    ScreenToWorld.Top - spawnPointOffset
                 );
             }
             else
             {
                 instance.transform.position = new Vector3(
                     Random.Range(ScreenToWorld.Left - spawnPointOffset, ScreenToWorld.Right + spawnPointOffset),
-                    Random.Range(ScreenToWorld.Top + spawnPointOffset, ScreenToWorld.Bottom - spawnPointOffset)
+                    ScreenToWorld.Bottom + spawnPointOffset
                 );
             }
 

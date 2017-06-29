@@ -1,172 +1,70 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
+using UnityEngine.UI;
 
-[RequireComponent(typeof(PlayerWeapon))]
+[RequireComponent(typeof(LaserGun))]
 public class PlayerShoot : MonoBehaviour
 {
+    [SerializeField]
+    LaserGun laserGun;
+    LaserGun defaultGun;
+    [SerializeField]
+    LaserGun[] specialGuns;
 
     [SerializeField]
-    GameObject missile;
-    GameObject missileInstance;
+    float specialWeaponDuration = 15;
 
+    [Header("UI")]
     [SerializeField]
-    Transform shootPoint;
+    PanelUI specialGunNotificationPanel;
+    [SerializeField]
+    Image specialGunNotificationImage;
+    [SerializeField]
+    float specialGunNotificationTime = 5;
 
-    [Header("Normal")]
-    [SerializeField]
-    float normalFireRate = 0.35f;
-    [SerializeField]
-    Color normalLaserColor;
-
-    [Header("Burst")]
-    [SerializeField]
-    float burstFireRate = 1.4f;
-    [SerializeField]
-    int burstAmount = 3;
-    [SerializeField]
-    float burstDegree = 30;
-    [SerializeField]
-    Color burstColor;
-
-    [Header("Automatic")]
-    [SerializeField]
-    float automaticFireRate = 0.20f;
-    [SerializeField]
-    Color automaticColor;
-
-    [Header("God gun")]
-    [SerializeField]
-    float godFireRate = 0.02f;
-    [SerializeField]
-    Color godColor;
-
-    float fireRate;
-    float initialFireRate;
-
-    [Header("Audio")]
-    [SerializeField]
-    AudioClip[] shootAudioClips;
-    AudioSource audioSource;
-
-    PlayerWeapon playerWeapon;
-
-    bool canShoot = true;
+    bool hasSpecialGun;
 
     private void Start()
     {
-        initialFireRate = normalFireRate;
-
-        audioSource = GetComponent<AudioSource>();
-        playerWeapon = GetComponent<PlayerWeapon>();
-    }
-
-    private void Update()
-    {
-        if (fireRate >= 0 && !canShoot)
-        {
-            fireRate -= Time.deltaTime;
-        }
-        else if (fireRate <= 0)
-        {
-            canShoot = true;
-            fireRate = initialFireRate;
-        }
+        defaultGun = laserGun;
     }
 
     public void Shoot()
     {
-        if (canShoot)
-        {
-            switch (playerWeapon.currentWeapon)
-            {
-                case PlayerWeapon.Weapons.normal:
-
-                    missileInstance = Instantiate(missile);
-                    missileInstance.transform.SetPositionAndRotation(shootPoint.position, transform.rotation);
-                    missileInstance.GetComponent<Laser>().belongsTo = gameObject;
-
-                    missileInstance.GetComponent<SpriteRenderer>().color = normalLaserColor;
-
-                    audioSource.PlayOneShot(shootAudioClips[Random.Range(0, shootAudioClips.Length)]);
-
-                    break;
-
-                case PlayerWeapon.Weapons.burst:
-
-                    float degree = transform.rotation.z + burstDegree * (burstAmount/2);
-
-                    for (int i = 0; i < burstAmount; i++)
-                    {
-                        missileInstance = Instantiate(missile);
-                        missileInstance.transform.SetPositionAndRotation(shootPoint.position, transform.rotation);
-                        missileInstance.GetComponent<Laser>().belongsTo = gameObject;
-
-                        missileInstance.transform.Rotate(new Vector3(0, 0, degree));
-
-                        missileInstance.GetComponent<SpriteRenderer>().color = burstColor;
-
-                        degree -= burstDegree;
-
-                        audioSource.PlayOneShot(shootAudioClips[Random.Range(0, shootAudioClips.Length)]);
-                    }
-
-                    break;
-
-                case PlayerWeapon.Weapons.automatic:
-
-                    missileInstance = Instantiate(missile);
-                    missileInstance.transform.SetPositionAndRotation(shootPoint.position, transform.rotation);
-                    missileInstance.GetComponent<Laser>().belongsTo = gameObject;
-
-                    missileInstance.GetComponent<SpriteRenderer>().color = automaticColor;
-
-                    audioSource.PlayOneShot(shootAudioClips[Random.Range(0, shootAudioClips.Length)]);
-
-                    break;
-
-                case PlayerWeapon.Weapons.god:
-
-                    missileInstance = Instantiate(missile);
-                    missileInstance.transform.SetPositionAndRotation(shootPoint.position, transform.rotation);
-                    missileInstance.GetComponent<Laser>().belongsTo = gameObject;
-
-                    missileInstance.GetComponent<SpriteRenderer>().color = godColor;
-
-                    audioSource.PlayOneShot(shootAudioClips[Random.Range(0, shootAudioClips.Length)]);
-
-                    break;
-            }
-
-            canShoot = false;
-        }
+        laserGun.Shoot();
     }
 
-    public void UpdateFireRate()
+    public void GetSpecialWeapon()
     {
-        switch (playerWeapon.currentWeapon)
+        StartCoroutine(ChangeWeapon());
+
+        specialGunNotificationImage.sprite = laserGun.GunSprite;
+        specialGunNotificationPanel.SetVisibilityForSeconds(specialGunNotificationTime);
+    }
+
+    IEnumerator ChangeWeapon()
+    {
+        hasSpecialGun = true;
+
+        laserGun = specialGuns[Random.Range(0, specialGuns.Length)];
+
+        yield return new WaitForSeconds(specialWeaponDuration);
+
+        laserGun = defaultGun;
+
+        hasSpecialGun = false;
+    }
+
+    private void OnPlayerDeath()
+    {
+        laserGun = defaultGun;
+    }
+
+    public bool HasSpecialGun
+    {
+        get
         {
-            case PlayerWeapon.Weapons.normal:
-
-                initialFireRate = normalFireRate;
-
-                break;
-
-            case PlayerWeapon.Weapons.burst:
-
-                initialFireRate = burstFireRate;
-
-                break;
-
-            case PlayerWeapon.Weapons.automatic:
-
-                initialFireRate = automaticFireRate;
-
-                break;
-
-            case PlayerWeapon.Weapons.god:
-
-                initialFireRate = godFireRate;
-
-                break;
+            return hasSpecialGun;
         }
     }
 }

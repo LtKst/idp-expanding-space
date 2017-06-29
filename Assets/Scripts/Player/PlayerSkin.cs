@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 
-public class PlayerSkin : MonoBehaviour {
+public class PlayerSkin : MonoBehaviour
+{
 
     [SerializeField]
     Sprite[] playerSkins;

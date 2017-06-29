@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 
-public class PlayerEngine : MonoBehaviour {
+public class PlayerEngine : MonoBehaviour
+{
 
     [SerializeField]
     AudioClip engineClip;
@@ -10,7 +11,7 @@ public class PlayerEngine : MonoBehaviour {
 
     private void Start()
     {
-        audioSource = Instantiate(new GameObject("Engine")).AddComponent<AudioSource>();
+        audioSource = Instantiate(new GameObject(gameObject.name + " engine")).AddComponent<AudioSource>();
 
         audioSource.volume = 0;
         audioSource.clip = engineClip;

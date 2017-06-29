@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 [RequireComponent(typeof(PlayerManager))]
 public class PlayerHealth : MonoBehaviour
@@ -13,10 +14,12 @@ public class PlayerHealth : MonoBehaviour
     int initialLives;
 
     [SerializeField]
-    bool godMode;
+    GameObject bubbleShield;
+    [SerializeField]
+    bool hasBubbleShield;
 
     [SerializeField]
-    bool spawnProtection;
+    bool godMode;
 
     [SerializeField]
     Transform startPoint;
@@ -47,25 +50,26 @@ public class PlayerHealth : MonoBehaviour
         {
             Die();
         }
+
+        bubbleShield.SetActive(hasBubbleShield);
     }
 
     private void Die()
     {
         lives--;
-        health = initialHealth;
 
         GameObject explosionInst = Instantiate(explosion);
         explosionInst.transform.position = transform.position;
 
-        Object[] objects = FindObjectsOfType(typeof(GameObject));
-        foreach (GameObject go in objects)
+        if (lives > 0)
         {
-            go.SendMessage("OnPlayerDeath", SendMessageOptions.DontRequireReceiver);
+            Object[] objects = FindObjectsOfType(typeof(GameObject));
+            foreach (GameObject go in objects)
+            {
+                go.SendMessage("OnPlayerDeath", SendMessageOptions.DontRequireReceiver);
+            }
         }
-
-        transform.SetPositionAndRotation(startPoint.position, startRotation);
-
-        if (lives <= 0)
+        else if (lives <= 0)
         {
             GetComponent<PlayerManager>().EndGame(GetComponent<PlayerManager>().OtherPlayer);
 
@@ -79,12 +83,43 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
+    private void OnPlayerDeath()
+    {
+        GameState.InCountdown = true;
+
+        health = initialHealth;
+        GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+        transform.SetPositionAndRotation(startPoint.position, startRotation);
+    }
+
+    public void Heal(int amount)
+    {
+        health += amount;
+    }
+
+    public void Damage(int amount)
+    {
+        if (hasBubbleShield)
+        {
+            health -= amount / 2;
+        }
+        else
+        {
+            health -= amount;
+        }
+    }
+
+    public IEnumerator GetBubbleShield(float duration)
+    {
+        hasBubbleShield = true;
+
+        yield return new WaitForSeconds(duration);
+
+        hasBubbleShield = false;
+    }
+
     public int Health
     {
-        set
-        {
-            health = value;
-        }
         get
         {
             return health;

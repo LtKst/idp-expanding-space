@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: 170026ea11f22a34a821fc8ae0d5f3e9
+timeCreated: 1497801659
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: GALACTIC VANGUARDIAN NCV
+  fontNames:
+  - GALACTIC VANGUARDIAN NCV
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -77,7 +77,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.13, y: 1.41}
+  m_Size: {x: 0.05, y: 0.72}
   m_Direction: 0
 --- !u!95 &95112240229478900
 Animator:
@@ -109,7 +109,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 30000
   damage: 20
-  maxDistanceFromPlayer: 200
+  maxDistanceFromCamera: 200
   laserParticleSystem: {fileID: 1743029150074310, guid: 430bde6bbb1e0422d8534309c501caaf,
     type: 2}
   belongsTo: {fileID: 0}

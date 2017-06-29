@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: e4a0a140bfa42374094a8b6a27213909
+timeCreated: 1497945045
+licenseType: Free
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - laser: {fileID: 1420922162965316, guid: 41efc240f0198bd45b8fa027efc9d2ee, type: 2}
+  - shootAudioClip: {fileID: 8300000, guid: 1e429d67972fb114bae040b44a8c72b9, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

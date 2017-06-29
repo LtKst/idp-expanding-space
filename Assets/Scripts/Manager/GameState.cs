@@ -5,6 +5,7 @@ public class GameState : MonoBehaviour {
     static bool gameStarted;
 
     static bool inGame;
+    static bool inCountdown;
     static bool inEndGame;
 
     public void StartGame()
@@ -50,6 +51,18 @@ public class GameState : MonoBehaviour {
         set
         {
             inGame = value;
+        }
+    }
+
+    public static bool InCountdown
+    {
+        get
+        {
+            return inCountdown;
+        }
+        set
+        {
+            inCountdown = value;
         }
     }
 

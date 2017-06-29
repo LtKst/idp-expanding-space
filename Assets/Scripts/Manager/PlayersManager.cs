@@ -34,6 +34,10 @@ public class PlayersManager : MonoBehaviour {
         }
     }
 
+    private void OnPlayerDeath()
+    {
+    }
+
     public GameObject PlayerOne
     {
         get

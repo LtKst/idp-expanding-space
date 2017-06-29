@@ -11,11 +11,6 @@ public class LoadingScreen : MonoBehaviour {
     [SerializeField]
     float rotationSpeed = 5;
 
-    private void Start()
-    {
-
-    }
-
     private void Update()
     {
         if (Application.isLoadingLevel)

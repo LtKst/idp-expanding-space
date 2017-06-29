@@ -71,7 +71,7 @@ public class Asteroid : MonoBehaviour
         {
             if (rb.velocity.magnitude >= 4)
             {
-                collision.gameObject.GetComponent<PlayerHealth>().Health -= (int)rb.velocity.magnitude * 3;
+                collision.gameObject.GetComponent<PlayerHealth>().Damage((int)rb.velocity.magnitude * 3);
             }
         }
 

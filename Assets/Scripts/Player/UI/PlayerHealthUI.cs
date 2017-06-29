@@ -23,9 +23,6 @@ public class PlayerHealthUI : MonoBehaviour
     [SerializeField]
     bool right;
 
-    [SerializeField]
-    Text livesText;
-
     private void Start()
     {
         playerHealth = GetComponent<PlayerHealth>();
@@ -71,9 +68,6 @@ public class PlayerHealthUI : MonoBehaviour
         currentColor = Mathf.Clamp(currentColor, 0, healthColors.Length-1);
 
         healthBar.color = Color.Lerp(healthBar.color, healthColors[currentColor], Time.deltaTime * healthBarColorLerpSpeed);
-
-        // stat text
-        livesText.text = GetComponent<PlayerManager>().playerName + ": lives " + playerHealth.Lives + "/" + playerHealth.InitialLives;
     }
 
     private void OnPlayerLost()

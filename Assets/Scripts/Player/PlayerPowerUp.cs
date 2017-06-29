@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 [RequireComponent(typeof(PlayerHealth))]
 [RequireComponent(typeof(PlayerShoot))]
@@ -8,22 +9,30 @@ public class PlayerPowerUp : MonoBehaviour
     PlayerHealth playerHealth;
     PlayerMovement playerMovement;
 
-    enum PowerUpTypes { regenarateHealth, speedUp, small }
+    enum PowerUpTypes { regenarateHealth, speedUp, bubbleShield }
     PowerUpTypes currentPowerUp;
 
     [Header("Heal")]
     [SerializeField]
     int healAmount = 15;
+    Sprite healSprite;
 
     [Header("Speed")]
     [SerializeField]
     float speedIncrement = 1.2f;
-    float initialSpeed;
+    Sprite speedSprite;
 
+
+    /* Scale power up no longer used
     [Header("Scale")]
     [SerializeField]
     float scaleIncrement = 0.5f;
     Vector3 initialScale;
+    Sprite scaleSprite;
+    */
+
+    [Header("UI")]
+    PanelUI powerUpPanel;
 
     bool hasPowerUp = false;
 
@@ -36,75 +45,53 @@ public class PlayerPowerUp : MonoBehaviour
     }
 
     float powerUpDuration = 15;
-    float initialPowerUpDuration;
 
     private void Start()
     {
         playerHealth = GetComponent<PlayerHealth>();
         playerMovement = GetComponent<PlayerMovement>();
 
-        initialSpeed = playerMovement.speed;
-        initialScale = transform.localScale;
-
-        initialPowerUpDuration = powerUpDuration;
+        //initialScale = transform.localScale;
     }
 
-    private void Update()
+    private IEnumerator PowerUpDurationTimer()
     {
-        if (hasPowerUp)
-        {
-            switch (currentPowerUp)
-            {
-                case PowerUpTypes.speedUp:
-                    playerMovement.speed = initialSpeed * speedIncrement;
-                    break;
+        hasPowerUp = true;
 
-                case PowerUpTypes.small:
-                    transform.localScale = Vector3.Lerp(transform.localScale, initialScale * scaleIncrement, Time.deltaTime);
-                    break;
-            }
+        yield return new WaitForSeconds(powerUpDuration);
 
-            UpdateTimer();
-        }
-        else
-        {
-            ResetPowerUps();
-        }
-    }
-
-    void ResetPowerUps()
-    {
-        transform.localScale = Vector3.Lerp(transform.localScale, initialScale, Time.deltaTime);
-        playerMovement.speed = initialSpeed;
+        hasPowerUp = false;
     }
 
     public void GetPowerUp()
     {
-        if (!hasPowerUp)
+        currentPowerUp = (PowerUpTypes)Random.Range(0, System.Enum.GetValues(typeof(PowerUpTypes)).Length);
+
+        switch (currentPowerUp)
         {
-            currentPowerUp = (PowerUpTypes)Random.Range(0, System.Enum.GetValues(typeof(PowerUpTypes)).Length);
+            case PowerUpTypes.regenarateHealth:
 
-            powerUpDuration = initialPowerUpDuration;
+                playerHealth.Heal(healAmount);
 
-            if (currentPowerUp == PowerUpTypes.regenarateHealth)
-            {
-                playerHealth.Health += healAmount;
-                return;
-            }
+                break;
 
+            case PowerUpTypes.speedUp:
 
-            hasPowerUp = true;
-        }
-    }
+                StartCoroutine(playerMovement.SpeedUpForSeconds(playerMovement.Speed * speedIncrement, powerUpDuration));
 
-    void UpdateTimer()
-    {
-        powerUpDuration -= Time.deltaTime;
+                break;
 
-        if (powerUpDuration <= 0)
-        {
-            hasPowerUp = false;
-            powerUpDuration = initialPowerUpDuration;
+            case PowerUpTypes.bubbleShield:
+
+                StartCoroutine(playerHealth.GetBubbleShield(powerUpDuration));
+
+                break;
+
+            default:
+
+                StartCoroutine(PowerUpDurationTimer());
+
+                break;
         }
     }
 }

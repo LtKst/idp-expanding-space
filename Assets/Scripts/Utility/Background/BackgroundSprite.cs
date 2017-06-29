@@ -2,7 +2,6 @@
 using UnityEngine.UI;
 
 [RequireComponent(typeof(SpriteRenderer))]
-[RequireComponent(typeof(FrameAnimation))]
 public class BackgroundSprite : MonoBehaviour {
 
     SpriteRenderer spriteRenderer;
@@ -18,12 +17,6 @@ public class BackgroundSprite : MonoBehaviour {
     Sprite[] backgrounds;
     [SerializeField]
     float fadeSpeed = 5;
-
-    [Header("Animated")]
-    [SerializeField]
-    int animatedAmount;
-    [SerializeField]
-    Sprite[] animationOneFrames;
 
     [Header("UI")]
     [SerializeField]

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerMovement : MonoBehaviour
@@ -7,7 +8,9 @@ public class PlayerMovement : MonoBehaviour
     Rigidbody2D rb;
 
     [Header("Speed variables")]
-    public float speed = 700;
+    [SerializeField]
+    float speed = 700;
+    float initialSpeed;
     [SerializeField]
     float rotationSpeed = 150;
     [SerializeField]
@@ -23,6 +26,7 @@ public class PlayerMovement : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        initialSpeed = speed;
     }
 
     public void LookAtCursor(Vector3 mousePosition)
@@ -56,5 +60,22 @@ public class PlayerMovement : MonoBehaviour
 
         finalSlowDownSpeed = getBrakeKey ? manualSlowDownSpeed : slowDownSpeed;
         rb.velocity = Vector2.Lerp(rb.velocity, Vector2.zero, Time.deltaTime * finalSlowDownSpeed);
+    }
+
+    public IEnumerator SpeedUpForSeconds(float speed, float seconds)
+    {
+        speed = this.speed;
+
+        yield return new WaitForSeconds(seconds);
+
+        speed = initialSpeed;
+    }
+
+    public float Speed
+    {
+        get
+        {
+            return speed;
+        }
     }
 }

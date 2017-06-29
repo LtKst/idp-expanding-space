@@ -2,7 +2,8 @@
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-public class Fade : MonoBehaviour {
+public class Fade : MonoBehaviour
+{
 
     Image image;
 

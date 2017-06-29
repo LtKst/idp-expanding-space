@@ -20,7 +20,6 @@ public class QuitManager : MonoBehaviour
             if (fadeImage.color.a >= 0.95f)
             {
                 ApplicationHelper.Quit();
-
             }
         }
     }

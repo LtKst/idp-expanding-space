@@ -2,8 +2,13 @@
 
 public class SoundManager : MonoBehaviour {
 
+    static string masterVolumePrefName = "masterVolume";
     static float masterVolume = 1;
+
+    static string musicVolumePrefName = "musicVolume";
     static float musicVolume = 1;
+
+    static string sfxVolumePrefName = "sfxVolume";
     static float sfxVolume = 1;
 
     private void Awake()
@@ -76,21 +81,23 @@ public class SoundManager : MonoBehaviour {
 
     private static void SaveVolume()
     {
-        PlayerPrefs.SetFloat("masterVolume", masterVolume);
-        PlayerPrefs.SetFloat("musicVolume", musicVolume);
-        PlayerPrefs.SetFloat("sfxVolume", sfxVolume);
+        PlayerPrefs.SetFloat(masterVolumePrefName, masterVolume);
+
+        PlayerPrefs.SetFloat(musicVolumePrefName, musicVolume);
+
+        PlayerPrefs.SetFloat(sfxVolumePrefName, sfxVolume);
     }
 
     private static void LoadVolume()
     {
-        if (masterVolume != PlayerPrefs.GetFloat("masterVolume"))
-            masterVolume = PlayerPrefs.GetFloat("masterVolume", 1);
+        if (masterVolume != PlayerPrefs.GetFloat(masterVolumePrefName))
+            masterVolume = PlayerPrefs.GetFloat(masterVolumePrefName, 1);
 
-        if (musicVolume != PlayerPrefs.GetFloat("musicVolume"))
-            musicVolume = PlayerPrefs.GetFloat("musicVolume", 1);
+        if (musicVolume != PlayerPrefs.GetFloat(musicVolumePrefName))
+            musicVolume = PlayerPrefs.GetFloat(musicVolumePrefName, 1);
 
-        if (sfxVolume != PlayerPrefs.GetFloat("sfxVolume"))
-            sfxVolume = PlayerPrefs.GetFloat("sfxVolume", 1);
+        if (sfxVolume != PlayerPrefs.GetFloat(sfxVolumePrefName))
+            sfxVolume = PlayerPrefs.GetFloat(sfxVolumePrefName, 1);
     }
 
     public static float MasterVolume

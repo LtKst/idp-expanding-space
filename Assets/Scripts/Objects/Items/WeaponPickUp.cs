@@ -1,71 +1,17 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
-[RequireComponent(typeof(SpriteRenderer))]
-[RequireComponent(typeof(Collider2D))]
-[RequireComponent(typeof(AudioSource))]
-public class WeaponPickUp : MonoBehaviour
+public class WeaponPickUp : PickUp
 {
 
-    [SerializeField]
-    float colorTransitionSpeed = 1;
-
-    [SerializeField]
-    float despawnTime = 15;
-    bool despawned;
-
-    [SerializeField]
-    AudioClip pickUpClip;
-    AudioSource audioSource;
-
-    SpriteRenderer spriteRenderer;
-
-    private void Start()
+    private void OnTriggerStay2D(Collider2D collision)
     {
-        spriteRenderer = GetComponent<SpriteRenderer>();
-
-        spriteRenderer.color = new Color(255, 255, 255, 0);
-
-        audioSource = gameObject.GetComponent<AudioSource>();
-    }
-
-    private void Update()
-    {
-        spriteRenderer.color = Color.Lerp(spriteRenderer.color, new Color(255, 255, 255, 1), colorTransitionSpeed * Time.deltaTime);
-
-        if (spriteRenderer.color.a >= 0.93)
+        if (collision.GetComponent<PlayerShoot>() && !collision.GetComponent<PlayerShoot>().HasSpecialGun && !despawned)
         {
-            UpdateTimer();
-        }
-
-        if (despawned)
-        {
-            spriteRenderer.color = Color.Lerp(spriteRenderer.color, new Color(255, 255, 255, 0), colorTransitionSpeed * Time.deltaTime * 20);
-
-            if (spriteRenderer.color.a <= 0.05 && !audioSource.isPlaying)
-            {
-                Destroy(gameObject);
-            }
-        }
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.GetComponent<PlayerWeapon>() && !despawned)
-        {
-            collision.GetComponent<PlayerWeapon>().GetNewWeapon();
+            collision.GetComponent<PlayerShoot>().GetSpecialWeapon();
 
             audioSource.PlayOneShot(pickUpClip);
 
-            despawned = true;
-        }
-    }
-
-    private void UpdateTimer()
-    {
-        despawnTime -= Time.deltaTime;
-
-        if (despawnTime <= 0)
-        {
             despawned = true;
         }
     }
