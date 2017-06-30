@@ -1,4 +1,4 @@
-# Astrozone
+<img src="https://i.imgur.com/owes12k.png" width="256">
 
 ## Description
 
