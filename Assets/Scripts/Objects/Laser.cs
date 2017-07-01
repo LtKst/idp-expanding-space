@@ -25,7 +25,7 @@ public class Laser : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
 
-        rb.AddRelativeForce(Vector2.up * speed * Time.deltaTime);
+        rb.AddRelativeForce(Vector2.up * speed);
     }
 
     private void Update()

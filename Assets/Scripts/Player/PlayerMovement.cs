@@ -9,8 +9,8 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Speed variables")]
     [SerializeField]
-    float speed = 700;
-    float initialSpeed;
+    float moveSpeed = 700;
+    float initialMoveSpeed;
     [SerializeField]
     float rotationSpeed = 150;
     [SerializeField]
@@ -26,7 +26,7 @@ public class PlayerMovement : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        initialSpeed = speed;
+        initialMoveSpeed = moveSpeed;
     }
 
     public void LookAtCursor(Vector3 mousePosition)
@@ -47,7 +47,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (getForwardKey)
         {
-            rb.AddRelativeForce(Vector2.up * speed * Time.deltaTime);
+            rb.AddRelativeForce(Vector2.up * moveSpeed);
 
             particles.Emit(2);
         }
@@ -64,18 +64,18 @@ public class PlayerMovement : MonoBehaviour
 
     public IEnumerator SpeedUpForSeconds(float speed, float seconds)
     {
-        speed = this.speed;
+        speed = this.moveSpeed;
 
         yield return new WaitForSeconds(seconds);
 
-        speed = initialSpeed;
+        speed = initialMoveSpeed;
     }
 
     public float Speed
     {
         get
         {
-            return speed;
+            return moveSpeed;
         }
     }
 }

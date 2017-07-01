@@ -5,6 +5,9 @@ using UnityEngine;
 public class InputSettings : MonoBehaviour
 {
 
+    [SerializeField]
+    GameObject UIRaycastBlocker;
+
     string keyDown;
 
     private void Update()
@@ -17,11 +20,13 @@ public class InputSettings : MonoBehaviour
 
     public void WaitForKey()
     {
+        UIRaycastBlocker.SetActive(true);
         StartCoroutine(WaitForKeyPress());
     }
 
     public void StopWaitingForKey()
     {
+        UIRaycastBlocker.SetActive(false);
         StopCoroutine(WaitForKeyPress());
     }
 
@@ -41,7 +46,7 @@ public class InputSettings : MonoBehaviour
                 keyDown = "Key: " + kcode;
             }
         }
-
+        UIRaycastBlocker.SetActive(false);
         Debug.Log(keyDown);
     }
 }

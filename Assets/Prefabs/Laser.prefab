@@ -107,7 +107,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0211f52f8f69764f959a8557a9f8d20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 30000
+  speed: 550
   damage: 20
   maxDistanceFromCamera: 200
   laserParticleSystem: {fileID: 1743029150074310, guid: 430bde6bbb1e0422d8534309c501caaf,
