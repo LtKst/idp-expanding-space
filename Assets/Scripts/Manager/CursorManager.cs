@@ -5,10 +5,12 @@ public class CursorManager : MonoBehaviour
 
     [SerializeField]
     Texture2D cursorTextrue;
+    [SerializeField]
+    Vector2 hotspot = Vector2.zero;
 
     private void Start()
     {
-        Cursor.SetCursor(cursorTextrue, new Vector2(0, 0), CursorMode.ForceSoftware);
+        Cursor.SetCursor(cursorTextrue, hotspot, CursorMode.ForceSoftware);
     }
 
     private void Update()

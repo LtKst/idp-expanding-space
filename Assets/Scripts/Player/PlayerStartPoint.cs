@@ -9,6 +9,8 @@ public class PlayerStartPoint : MonoBehaviour {
 
     [SerializeField]
     float moveSpeed = 2;
+    [SerializeField]
+    float positionOffset = 2;
 
     Transform player;
 
@@ -27,11 +29,11 @@ public class PlayerStartPoint : MonoBehaviour {
         {
             case BelongsTo.One:
                 player = playersManager.PlayerOne.transform;
-                transform.position = new Vector3(ScreenToWorld.Left + 3, 0, 0);
+                transform.position = new Vector3(ScreenToWorld.Left + positionOffset, 0, 0);
                 break;
             case BelongsTo.Two:
                 player = playersManager.PlayerTwo.transform;
-                transform.position = new Vector3(ScreenToWorld.Right - 3, 0, 0);
+                transform.position = new Vector3(ScreenToWorld.Right - positionOffset, 0, 0);
                 break;
         }
     }

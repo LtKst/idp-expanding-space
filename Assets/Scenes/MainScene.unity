@@ -2794,6 +2794,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   belongsTo: 0
   moveSpeed: 1
+  positionOffset: 2
   onPlayerReachedStartPoints:
     m_PersistentCalls:
       m_Calls:
@@ -15031,6 +15032,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   belongsTo: 1
   moveSpeed: 1
+  positionOffset: 2
   onPlayerReachedStartPoints:
     m_PersistentCalls:
       m_Calls: []
