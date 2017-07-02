@@ -10,10 +10,6 @@ public class PlayerHealth : MonoBehaviour
     int initialHealth;
 
     [SerializeField]
-    int lives = 3;
-    int initialLives;
-
-    [SerializeField]
     GameObject bubbleShield;
     [SerializeField]
     bool hasBubbleShield;
@@ -32,7 +28,6 @@ public class PlayerHealth : MonoBehaviour
     private void Start()
     {
         initialHealth = health;
-        initialLives = lives;
 
         startRotation = transform.rotation;
     }
@@ -56,12 +51,21 @@ public class PlayerHealth : MonoBehaviour
 
     private void Die()
     {
-        lives--;
-
         GameObject explosionInst = Instantiate(explosion);
         explosionInst.transform.position = transform.position;
 
-        if (lives > 0)
+        GameObject.FindWithTag("Manager").GetComponent<PlanetTerritoryStatus>().UpdatePlanetTerritory(GetComponent<PlayerManager>().OtherPlayer.GetComponent<PlayerManager>());
+
+        if (!GameObject.FindWithTag("Manager").GetComponent<PlanetTerritoryStatus>().AllTerritoriesOwnedByOne)
+        {
+            Object[] objects = FindObjectsOfType(typeof(GameObject));
+            foreach (GameObject go in objects)
+            {
+                go.SendMessage("OnPlayerDeath", SendMessageOptions.DontRequireReceiver);
+            }
+        }
+
+        /*if (lives > 0)
         {
             Object[] objects = FindObjectsOfType(typeof(GameObject));
             foreach (GameObject go in objects)
@@ -80,7 +84,7 @@ public class PlayerHealth : MonoBehaviour
             }
 
             gameObject.SetActive(false);
-        }
+        }*/
     }
 
     private void OnPlayerDeath()
@@ -131,22 +135,6 @@ public class PlayerHealth : MonoBehaviour
         get
         {
             return initialHealth;
-        }
-    }
-
-    public int Lives
-    {
-        get
-        {
-            return lives;
-        }
-    }
-
-    public int InitialLives
-    {
-        get
-        {
-            return initialLives;
         }
     }
 }

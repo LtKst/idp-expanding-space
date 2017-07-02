@@ -59,7 +59,7 @@ public class Asteroid : MonoBehaviour
     {
         if (!collided)
         {
-            rb.AddForce(direction.normalized * speed * Time.deltaTime, ForceMode2D.Force);
+            rb.AddForce(direction.normalized * speed, ForceMode2D.Force);
         }
 
         rb.velocity = Vector2.Lerp(rb.velocity, Vector2.zero, Time.deltaTime);

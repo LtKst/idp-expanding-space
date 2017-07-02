@@ -79,7 +79,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.496, y: 1.448}
+    oldSize: {x: 1.0685714, y: 1.0342857}
     newSize: {x: 1.87, y: 1.81}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -120,7 +120,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e1ceecbb5ff09646a329b6770407175, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 500
+  speed: 4
   forceOnHit: 800
   randomSprite: 1
   sprites:

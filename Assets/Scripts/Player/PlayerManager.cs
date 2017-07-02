@@ -25,6 +25,9 @@ public class PlayerManager : MonoBehaviour
     Text endScreenText;
 
     [SerializeField]
+    Color playerColor;
+
+    [SerializeField]
     PanelUI statsPanel;
 
     public void EndGame(GameObject winningPlayer)
@@ -38,7 +41,7 @@ public class PlayerManager : MonoBehaviour
             statsPanel.IsVisible = false;
 
             endScreen.IsVisible = true;
-            endScreenText.text = winningPlayerName + " is victorious!";
+            endScreenText.text = winningPlayerName + " owns all territories and is victorious!";
         }
     }
 
@@ -52,6 +55,14 @@ public class PlayerManager : MonoBehaviour
         get
         {
             return otherPlayer;
+        }
+    }
+
+    public Color PlayerColor
+    {
+        get
+        {
+            return playerColor;
         }
     }
 }

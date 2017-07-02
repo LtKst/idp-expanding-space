@@ -29,18 +29,13 @@ public class Countdown : MonoBehaviour
 
         Utility.DestroyObjects.DestroyAllObject();
 
-        string playerStats = GameObject.FindWithTag("Manager").GetComponent<PlayersManager>().PlayerOne.GetComponent<PlayerManager>().playerName + "\n"
-            + GameObject.FindWithTag("Manager").GetComponent<PlayersManager>().PlayerOne.GetComponent<PlayerHealth>().Lives + " lives left\n\n"
-            + GameObject.FindWithTag("Manager").GetComponent<PlayersManager>().PlayerTwo.GetComponent<PlayerManager>().playerName + "\n"
-            + GameObject.FindWithTag("Manager").GetComponent<PlayersManager>().PlayerTwo.GetComponent<PlayerHealth>().Lives + " lives left";
-
-        countdownText.text = playerStats + "\n\nNew round starting in " + seconds;
+        countdownText.text = "New round starting in " + seconds;
 
         for (int i = seconds - 1; i > -1; i--)
         {
             yield return new WaitForSeconds(1);
 
-            countdownText.text = playerStats + "\n\nNew round starting in " + i;
+            countdownText.text = "New round starting in " + i;
         }
 
         GameState.InCountdown = false;

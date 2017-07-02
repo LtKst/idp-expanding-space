@@ -11,21 +11,29 @@ public class PlanetManager : MonoBehaviour
     int planetIndex;
 
     [SerializeField]
+    bool randomPlanetIndex;
+
+    [SerializeField]
     SpriteRenderer backgroundSpriteRenderer;
 
     [SerializeField]
-    Image planetPreview;
+    Image[] planetPreviews;
 
     private void Start()
     {
         planets = GetComponents<Planet>();
+
+        if (randomPlanetIndex)
+        {
+            planetIndex = Random.Range(0, planets.Length);
+        }
 
         planetIndex = Mathf.Clamp(planetIndex, 0, planets.Length - 1);
 
         SetPlanet();
     }
 
-    public void NextPlanet()
+    public void PreviousPlanet()
     {
         planetIndex--;
 
@@ -37,11 +45,11 @@ public class PlanetManager : MonoBehaviour
         SetPlanet();
     }
 
-    public void PreviousPlanet()
+    public void NextPlanet()
     {
         planetIndex++;
 
-        if (planetIndex > planets.Length)
+        if (planetIndex > planets.Length - 1)
         {
             planetIndex = 0;
         }
@@ -52,7 +60,11 @@ public class PlanetManager : MonoBehaviour
     private void SetPlanet()
     {
         backgroundSpriteRenderer.sprite = planets[planetIndex].background;
-        planetPreview.sprite = planets[planetIndex].planet.GetComponent<SpriteRenderer>().sprite;
+
+        for (int i = 0; i < planetPreviews.Length; i++)
+        {
+            planetPreviews[i].sprite = planets[planetIndex].planet.GetComponent<SpriteRenderer>().sprite;
+        }
 
         for (int i = 0; i < planets.Length; i++)
         {

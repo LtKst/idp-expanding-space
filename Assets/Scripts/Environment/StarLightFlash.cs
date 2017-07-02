@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 [RequireComponent(typeof(SpriteRenderer))]
-public class StarLight : MonoBehaviour
+public class StarLightFlash : MonoBehaviour
 {
 
     SpriteRenderer spr;
@@ -11,18 +11,18 @@ public class StarLight : MonoBehaviour
     [SerializeField]
     private float colorAmplitude;
 
-    private float initialA;
+    private float initialAlpha;
 
     private void Start()
     {
         spr = GetComponent<SpriteRenderer>();
 
-        initialA = spr.color.a;
+        initialAlpha = spr.color.a;
     }
 
     private void Update()
     {
-        float a = initialA + colorAmplitude * Mathf.Sin(colorSpeed * Time.time);
+        float a = initialAlpha + colorAmplitude * Mathf.Sin(colorSpeed * Time.time);
 
         spr.color = new Color(1, 1, 1, a);
     }
