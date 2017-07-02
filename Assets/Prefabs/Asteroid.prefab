@@ -120,7 +120,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e1ceecbb5ff09646a329b6770407175, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 4
+  speed: 650
   forceOnHit: 800
   randomSprite: 1
   sprites:

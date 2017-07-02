@@ -47,7 +47,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (getForwardKey)
         {
-            rb.AddRelativeForce(Vector2.up * moveSpeed);
+            rb.AddRelativeForce(Vector2.up * moveSpeed * Time.deltaTime);
 
             particles.Emit(2);
         }

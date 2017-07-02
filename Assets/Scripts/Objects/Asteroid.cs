@@ -53,16 +53,16 @@ public class Asteroid : MonoBehaviour
                 gameObject.AddComponent<PolygonCollider2D>();
             }
         }
+
+        rb.AddForce(direction.normalized * speed, ForceMode2D.Force);
     }
 
     private void Update()
     {
-        if (!collided)
+        if (collided)
         {
-            rb.AddForce(direction.normalized * speed, ForceMode2D.Force);
+            rb.velocity = Vector2.Lerp(rb.velocity, Vector2.zero, Time.deltaTime);
         }
-
-        rb.velocity = Vector2.Lerp(rb.velocity, Vector2.zero, Time.deltaTime);
     }
     
     private void OnCollisionEnter2D(Collision2D collision)
