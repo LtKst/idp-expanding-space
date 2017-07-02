@@ -8,9 +8,12 @@ public class ShootingStarSpawner : MonoBehaviour
     GameObject shootingStar;
 
     [SerializeField]
-    private Vector2 spawnDurationMinMax = new Vector2(10, 20);
+    Vector2 spawnDurationMinMax = new Vector2(10, 20);
 
-    private bool isWaitingForSpawn;
+    [SerializeField]
+    float spawnOffset = 1.5f;
+
+    bool isWaitingForSpawn;
 
     private void Start()
     {
@@ -24,8 +27,8 @@ public class ShootingStarSpawner : MonoBehaviour
         GameObject shootingStarInstance = Instantiate(shootingStar);
 
         shootingStarInstance.transform.position = new Vector3(
-                Random.Range(ScreenToWorld.Left, ScreenToWorld.Right),
-                Random.Range(ScreenToWorld.Top, ScreenToWorld.Bottom)
+                Random.Range(ScreenToWorld.Left + spawnOffset, ScreenToWorld.Right - spawnOffset),
+                Random.Range(ScreenToWorld.Top - spawnOffset, ScreenToWorld.Bottom + spawnOffset)
         );
 
         shootingStarInstance.transform.Rotate(new Vector3(0, 0, Random.Range(0, 359)));

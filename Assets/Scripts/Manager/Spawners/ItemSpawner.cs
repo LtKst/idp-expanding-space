@@ -24,7 +24,7 @@ public class ItemSpawner : MonoBehaviour
 
     private void Update()
     {
-        if (GameState.InGame)
+        if (GameState.InGame && !GameState.InCountdown)
         {
             timer -= Time.deltaTime * 2;
         }

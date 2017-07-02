@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(Planet))]
 public class PlanetManager : MonoBehaviour
@@ -11,6 +12,9 @@ public class PlanetManager : MonoBehaviour
 
     [SerializeField]
     SpriteRenderer backgroundSpriteRenderer;
+
+    [SerializeField]
+    Image planetPreview;
 
     private void Start()
     {
@@ -48,6 +52,7 @@ public class PlanetManager : MonoBehaviour
     private void SetPlanet()
     {
         backgroundSpriteRenderer.sprite = planets[planetIndex].background;
+        planetPreview.sprite = planets[planetIndex].planet.GetComponent<SpriteRenderer>().sprite;
 
         for (int i = 0; i < planets.Length; i++)
         {
