@@ -8,15 +8,13 @@ Astrozone is a local multiplayer asteroid shooter game made in <a href="https://
 
 ### Programmers
 
-Koen Sparreboom
-<br>
-Han Reemer
+* Koen Sparreboom
+* Han Reemer
 
 ### Artists
 
-Michael van de Kant
-<br>
-Desirée Scheper
+* Michael van de Kant
+* Desirée Scheper
 
 ## Play it here
 
