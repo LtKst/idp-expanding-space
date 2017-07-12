@@ -1,4 +1,4 @@
-<img src="https://i.imgur.com/e1SuDEd.png" width="256">
+<p align="center"><img src="https://i.imgur.com/e1SuDEd.png" width="256"></p>
 
 ## Description
 
